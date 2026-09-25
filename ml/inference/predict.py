@@ -168,6 +168,14 @@ def generate_predictions(inputs: Inputs, bundle: ModelBundle) -> dict[str, Any]:
             "hotspot_state": state_col,
             **{f"comp_{n}": np.round(comps[n], 4) for n in CRS_COMPONENTS},
             **{f"contrib_{n}": np.round(contrib[n], 3) for n in CRS_COMPONENTS},
+            # raw inputs behind the band-level components (for display, never re-scored)
+            "raw_F_band_count": cp.current_b[zi, ci, bi, k].astype(int),
+            "raw_F_city_mean": np.round(cp.city_mean_current_b[0, ci, bi, k], 3),
+            "raw_S_neighbour_mean": np.round(cp.nbr_current_b[zi, ci, bi, k], 3),
+            "raw_P_band_share": np.round(cp.band_share[zi, ci, bi, k], 4),
+            "recency_half_life_days": [
+                bundle.scoring_state.recency_half_life_days[c] for c in crime_codes
+            ],
             "shap_top": [json.dumps(x) for x in shap_top],
             "shap_bias_log_odds": np.round(bundle.shap_values(fm.X[:1])[0, -1], 4),
             "reasons": [json.dumps(x) for x in reason_rows],

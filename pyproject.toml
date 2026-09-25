@@ -33,7 +33,10 @@ include = ["ml*", "backend*"]
 [tool.pytest.ini_options]
 testpaths = ["ml/tests", "backend/tests"]
 addopts = "-q"
-filterwarnings = ["ignore::DeprecationWarning:xgboost.*"]
+filterwarnings = [
+  "ignore::DeprecationWarning:xgboost.*",
+  "ignore:Using `httpx` with `starlette.testclient` is deprecated",
+]
 
 [tool.ruff]
 line-length = 100
