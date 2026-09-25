@@ -102,8 +102,8 @@ synthetic:
   noise_share: 0.06
   hotspots: {persistent_per_type: 1, persistent_extra: 3, seasonal: 4, emerging: 6, declining: 5}
   hotspot_share_range: [0.025, 0.05]
-  hotspot_spill: 0.3
-  rarity_boost_max: 3.0
+  hotspot_spill: 0.25
+  rarity_boost_max: 2.0
   emerging_onset_weeks_before_end: [8, 22]
   emerging_ramp_weeks: [4, 10]
   declining_start_range: [2023-01-01, 2025-06-30]
