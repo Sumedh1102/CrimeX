@@ -1,0 +1,7402 @@
+{
+  "report": {
+    "title": "Brihan Mumbai - monthly crime statement",
+    "jurisdiction": "Brihan Mumbai (city level; no station or zone breakdown)",
+    "source_file": "MumbaiCrime2026data.pdf",
+    "source_sha256": "0ef20423769c681dc1131808c2260869709dbc470847ae63b019400f84946e9b",
+    "statement_month": "2026-08",
+    "data_nature": "OFFICIAL_AGGREGATE",
+    "extractor_version": "1.0.0"
+  },
+  "periods": {
+    "CM": {
+      "label": "Current Month",
+      "start": "2026-08-01",
+      "end": "2026-08-31",
+      "law_label_as_printed": "IPC + BNS"
+    },
+    "PM": {
+      "label": "Previous Month",
+      "start": "2026-07-01",
+      "end": "2026-07-31",
+      "law_label_as_printed": "IPC"
+    },
+    "CY": {
+      "label": "Current Year (year to date)",
+      "start": "2026-01-01",
+      "end": "2026-08-31",
+      "law_label_as_printed": "IPC + BNS"
+    },
+    "PY": {
+      "label": "Previous Year (same period)",
+      "start": "2025-01-01",
+      "end": "2025-08-31",
+      "law_label_as_printed": null
+    }
+  },
+  "sections": [
+    {
+      "id": "IPC",
+      "title": "Comparative Statement of I.P.C. Crime",
+      "page": 1
+    },
+    {
+      "id": "CAW",
+      "title": "Comparative Statement of Crime Against Women",
+      "page": 2
+    },
+    {
+      "id": "NDPS",
+      "title": "Comparative Statement of N.D.P.S. Cases",
+      "page": 3
+    },
+    {
+      "id": "BROTHELS",
+      "title": "Statement showing zonewise information regarding cases on brothels",
+      "page": 4
+    },
+    {
+      "id": "EOW",
+      "title": "Cases Registered by Economic Offences Wing",
+      "page": 5
+    },
+    {
+      "id": "CYBER",
+      "title": "Cyber Crime Headwise",
+      "page": 6
+    }
+  ],
+  "heads": [
+    {
+      "code": "MURDER",
+      "section": "IPC",
+      "sr": "1",
+      "label_official": "Murder",
+      "label_as_extracted": "Murder",
+      "label": "Murder",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "ATTEMPT_TO_MURDER",
+      "section": "IPC",
+      "sr": "2",
+      "label_official": "Att.to.C.Murder",
+      "label_as_extracted": "Att.to.C.Murder",
+      "label": "Attempt to Commit Murder",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "DACOITY",
+      "section": "IPC",
+      "sr": "3",
+      "label_official": "Dacoity",
+      "label_as_extracted": "Dacoity",
+      "label": "Dacoity",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "PREPARATION_FOR_DACOITY",
+      "section": "IPC",
+      "sr": "4",
+      "label_official": "Prep.for Dacoity",
+      "label_as_extracted": "Prep.for Dacoity",
+      "label": "Preparation for Dacoity",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "ROBBERY",
+      "section": "IPC",
+      "sr": "5",
+      "label_official": "Robbery",
+      "label_as_extracted": "Robbery",
+      "label": "Robbery",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "ROBBERY_CHAIN_SNATCHING",
+      "section": "IPC",
+      "sr": "6",
+      "label_official": "Robbery Chain Snatching",
+      "label_as_extracted": "Robbery Chain Snatching",
+      "label": "Robbery Chain Snatching",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "ATTEMPT_TO_ROBBERY",
+      "section": "IPC",
+      "sr": "7",
+      "label_official": "Att.to.C.Robbery",
+      "label_as_extracted": "Att.to.C.Robbery",
+      "label": "Attempt to Commit Robbery",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "EXTORTION",
+      "section": "IPC",
+      "sr": "8",
+      "label_official": "Extortion",
+      "label_as_extracted": "Extortion",
+      "label": "Extortion",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "HBT_DAY",
+      "section": "IPC",
+      "sr": "9",
+      "label_official": "H.B.T.Day",
+      "label_as_extracted": "H.B.T.Day",
+      "label": "House Breaking Theft - Day",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "HBT_NIGHT",
+      "section": "IPC",
+      "sr": "10",
+      "label_official": "H.B.T.Night.",
+      "label_as_extracted": "H.B.T.Night.",
+      "label": "House Breaking Theft - Night",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "THEFT",
+      "section": "IPC",
+      "sr": "11",
+      "label_official": "Thefts.",
+      "label_as_extracted": "Thefts.",
+      "label": "Thefts",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "MV_THEFT",
+      "section": "IPC",
+      "sr": "12",
+      "label_official": "M.V.Thefts.",
+      "label_as_extracted": "M.V.Thefts.",
+      "label": "Motor Vehicle Thefts",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "SNATCHING",
+      "section": "IPC",
+      "sr": "13",
+      "label_official": "Snatching",
+      "label_as_extracted": "Snatching",
+      "label": "Snatching",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "HURT",
+      "section": "IPC",
+      "sr": "14",
+      "label_official": "Hurt",
+      "label_as_extracted": "Hurt",
+      "label": "Hurt",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "RIOTS",
+      "section": "IPC",
+      "sr": "15",
+      "label_official": "Riots.",
+      "label_as_extracted": "Riots.",
+      "label": "Riots",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "RAPE",
+      "section": "IPC",
+      "sr": "16",
+      "label_official": "Rape",
+      "label_as_extracted": "Rape",
+      "label": "Rape",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "SEXUAL_OFFENCES_SEC69",
+      "section": "IPC",
+      "sr": "17",
+      "label_official": "Sexual Offences (Sec 69 BNS -only Mejor)",
+      "label_as_extracted": "Sexual Offences (Sec 69 BNS -only Mejor)",
+      "label": "Sexual Offences (Sec 69 BNS, only Major)",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "Sec 69 BNS"
+    },
+    {
+      "code": "MOLESTATION",
+      "section": "IPC",
+      "sr": "18",
+      "label_official": "Molestation",
+      "label_as_extracted": "Molestation",
+      "label": "Molestation",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "OTHER_IPC",
+      "section": "IPC",
+      "sr": "19",
+      "label_official": "Other I.P.C.",
+      "label_as_extracted": "Other I.P.C.",
+      "label": "Other IPC",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "TOTAL_IPC",
+      "section": "IPC",
+      "sr": null,
+      "label_official": "Total IPC",
+      "label_as_extracted": "Total IPC",
+      "label": "Total IPC",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_RAPE_POCSO_MINOR",
+      "section": "CAW",
+      "sr": "1",
+      "label_official": "Rape u/s (Sec. 64 (1), 65 (2), 66, 67, 68, 69 70 & 71 BNS R/w POCSO (ii) Minor",
+      "label_as_extracted": "Rape u/s (Sec. 64 (1), 65 (2), 66, 67, 68, 69 70 & 71 BNS R/w POCSO (ii) Minor",
+      "label": "Rape r/w POCSO - Minor",
+      "parent": "CAW_RAPE_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": "Sec. 64(1), 65(2), 66, 67, 68, 69, 70 & 71 BNS r/w POCSO"
+    },
+    {
+      "code": "CAW_RAPE_MAJOR",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(Sec. 64 (1), 65 (2), 66, 67, 68, 69 70 & 71 BNS ) (ii) Major",
+      "label_as_extracted": "(Sec. 64 (1), 65 (2), 66, 67, 68, 69 70 & 71 BNS ) (ii) Major",
+      "label": "Rape - Major",
+      "parent": "CAW_RAPE_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": "Sec. 64(1), 65(2), 66, 67, 68, 69, 70 & 71 BNS"
+    },
+    {
+      "code": "CAW_RAPE_TOTAL",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "Total Rape Cases",
+      "label_as_extracted": "Total Rape Cases",
+      "label": "Total Rape Cases",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_SEXUAL_OFFENCES_SEC69",
+      "section": "CAW",
+      "sr": "2",
+      "label_official": "Sexual Offences (Sec 69 BNS -only Mejor)",
+      "label_as_extracted": "Sexual Offences (Sec 69 BNS -only Mejor)",
+      "label": "Sexual Offences (Sec 69 BNS, only Major)",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "Sec 69 BNS"
+    },
+    {
+      "code": "CAW_KIDNAPPING_MINOR",
+      "section": "CAW",
+      "sr": "3",
+      "label_official": "Kidnapping of Women (Sec. 87, 96, 97, 137 (2), 139 (1), (2), 140 (1), (2), (3), (4), 141 & 142 BNS) (i) Minor",
+      "label_as_extracted": "Kidnapping of Women (Sec. 87, 96, 97, 137 (2), 139 (1), (2), 140 (1), (2), (3), (4), 141 & 142 BNS) (i) Minor",
+      "label": "Kidnapping of Women - Minor",
+      "parent": "CAW_KIDNAPPING_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": "Sec. 87, 96, 97, 137(2), 139(1),(2), 140(1)-(4), 141 & 142 BNS"
+    },
+    {
+      "code": "CAW_KIDNAPPING_MAJOR",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(Sec. 87, 96, 97, 137 (2), 139 (1), (2), 140 (1), (2), (3), (4), 141 & 142 BNS) (ii) Major",
+      "label_as_extracted": "(Sec. 87, 96, 97, 137 (2), 139 (1), (2), 140 (1), (2), (3), (4), 141 & 142 BNS) (ii) Major",
+      "label": "Kidnapping of Women - Major",
+      "parent": "CAW_KIDNAPPING_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": "Sec. 87, 96, 97, 137(2), 139(1),(2), 140(1)-(4), 141 & 142 BNS"
+    },
+    {
+      "code": "CAW_KIDNAPPING_TOTAL",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "Total Kidnapping Cases",
+      "label_as_extracted": "Total Kidnapping Cases",
+      "label": "Total Kidnapping Cases",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_OUTRAGING_MODESTY",
+      "section": "CAW",
+      "sr": "4",
+      "label_official": "Outraging Modesty of Women (u/s 354 IPC /74 , 75, 76, 77, 78 BNS)",
+      "label_as_extracted": "Outraging Modesty of Women (u/s 354 IPC /74 , 75, 76, 77, 78 BNS)",
+      "label": "Outraging Modesty of Women",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "354 IPC / 74, 75, 76, 77, 78 BNS"
+    },
+    {
+      "code": "CAW_INSULT_TO_MODESTY",
+      "section": "CAW",
+      "sr": "5",
+      "label_official": "Intended insult to Modesty of Women (u/s 509 IPC. / u/s 79 BNS)",
+      "label_as_extracted": "Intended insult to Modesty of Women (u/s 509 IPC. / u/s 79 BNS)",
+      "label": "Intended Insult to Modesty of Women",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "509 IPC / 79 BNS"
+    },
+    {
+      "code": "CAW_DOWRY_PROHIBITION_ACT",
+      "section": "CAW",
+      "sr": "6",
+      "label_official": "Dowry Prohibition Act.",
+      "label_as_extracted": "Dowry Prohibition Act.",
+      "label": "Dowry Prohibition Act",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_DOWRY_MURDER",
+      "section": "CAW",
+      "sr": "7",
+      "label_official": "(a) Dowry related murder (u/s 302 IPC / u/s 103 (1) BNS)",
+      "label_as_extracted": "(a) Dowry related murder (u/s 302 IPC / u/s 103 (1) BNS)",
+      "label": "Dowry Related Murder",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "302 IPC / 103(1) BNS"
+    },
+    {
+      "code": "CAW_DOWRY_DEATH",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(b) Dowry Death (u/s 304-B IPC / u/s 80 (2) BNS)",
+      "label_as_extracted": "(b) Dowry Death (u/s 304-B IPC / u/s 80 (2) BNS)",
+      "label": "Dowry Death",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "304-B IPC / 80(2) BNS"
+    },
+    {
+      "code": "CAW_DOWRY_SUICIDE",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(C) Dowry related suicides (u/s 306 IPC / u/s 108 BNS)",
+      "label_as_extracted": "(C) Dowry related suicides (u/s 306 IPC / u/s 108 BNS)",
+      "label": "Dowry Related Suicides",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "306 IPC / 108 BNS"
+    },
+    {
+      "code": "CAW_DOWRY_HARASSMENT",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(D) Dowry related Mental/Phy. Harrasment ( 498-A IPC/ 85 BNS)",
+      "label_as_extracted": "(D) Dowry related Mental/Phy. Harrasment ( 498-A IPC/ 85 BNS)",
+      "label": "Dowry Related Mental/Physical Harassment",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "498-A IPC / 85 BNS"
+    },
+    {
+      "code": "CAW_MURDER_OTHER_REASONS",
+      "section": "CAW",
+      "sr": "8",
+      "label_official": "(a) Murder due to other reasons (u/s 302 IPC / u/s 103 (1) BNS)",
+      "label_as_extracted": "(a) Murder due to other reasons (u/s 302 IPC / u/s 103 (1) BNS)",
+      "label": "Murder due to Other Reasons",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "302 IPC / 103(1) BNS"
+    },
+    {
+      "code": "CAW_SUICIDE_OTHER_REASONS",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(b) Suicides due to other reasons (u/s 306 IPC / u/s 108 BNS)",
+      "label_as_extracted": "(b) Suicides due to other reasons (u/s 306 IPC / u/s 108 BNS)",
+      "label": "Suicides due to Other Reasons",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "306 IPC / 108 BNS"
+    },
+    {
+      "code": "CAW_HARASSMENT_OTHER_REASONS",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "(c) Mental/Phy. Harrast. due to other reasons (498-A IPC/85 BNS)",
+      "label_as_extracted": "(c) Mental/Phy. Harrast. due to other reasons (498-A IPC/85 BNS)",
+      "label": "Mental/Physical Harassment due to Other Reasons",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "498-A IPC / 85 BNS"
+    },
+    {
+      "code": "CAW_ACID_ATTACK",
+      "section": "CAW",
+      "sr": "9",
+      "label_official": "Acid Attack (u/s 326A IPC / u/s 124 (1) BNS))",
+      "label_as_extracted": "Acid Attack (u/s 326A IPC / u/s 124 (1) BNS))",
+      "label": "Acid Attack",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": "326A IPC / 124(1) BNS"
+    },
+    {
+      "code": "CAW_POCSO_RAPE",
+      "section": "CAW",
+      "sr": "10",
+      "label_official": "No of cases registered Rape with POCSO",
+      "label_as_extracted": "No of cases registered Rape with POCSO",
+      "label": "Cases Registered: Rape with POCSO",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_POCSO_MOLESTATION",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "No. of cases registered Molestation with POCSO",
+      "label_as_extracted": "No. of cases registered Molestation with POCSO",
+      "label": "Cases Registered: Molestation with POCSO",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_POCSO_EVE_TEASING",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "No. of cases registered Eve-Teasing with POCSO",
+      "label_as_extracted": "No. of cases registered Eve-Teasing with POCSO",
+      "label": "Cases Registered: Eve-Teasing with POCSO",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_POCSO_OTHER_IPC",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "Other IPC with POCSO",
+      "label_as_extracted": "Other IPC with POCSO",
+      "label": "Other IPC with POCSO",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_PITA_POCSO",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "PITA With POCSO (Excluding Rape)",
+      "label_as_extracted": "PITA With POCSO (Excluding Rape)",
+      "label": "PITA with POCSO (Excluding Rape)",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CAW_TOTAL",
+      "section": "CAW",
+      "sr": null,
+      "label_official": "Total Crime Against Women (excl. col. 9.1,9.2 to 9.4)",
+      "label_as_extracted": "Total Crime Against Women (excl. col. 9.1,9.2 to 9.4)",
+      "label": "Total Crime Against Women (excl. col. 9.1, 9.2 to 9.4)",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_HEROIN",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Heroin",
+      "label_as_extracted": "Heroin",
+      "label": "Heroin",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_CHARAS",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Charas",
+      "label_as_extracted": "Charas",
+      "label": "Charas",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_COCAINE",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Cocaine",
+      "label_as_extracted": "Cocaine",
+      "label": "Cocaine",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_GANJA",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Ganja",
+      "label_as_extracted": "Ganja",
+      "label": "Ganja",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_MD",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "MD",
+      "label_as_extracted": "MD",
+      "label": "MD",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_OTHER_DRUGS",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Other Drugs",
+      "label_as_extracted": "Other Drugs",
+      "label": "Other Drugs",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_COUGH_SYRUP",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Cough Syrup (All types)",
+      "label_as_extracted": "Cough Syrup (All types)",
+      "label": "Cough Syrup (All Types)",
+      "parent": "NDPS_POSSESSION_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_POSSESSION_TOTAL",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Total Possession Cases",
+      "label_as_extracted": "Total Possession Cases",
+      "label": "Total Possession Cases",
+      "parent": "NDPS_TOTAL",
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_CONSUMPTION",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Consumption Cases",
+      "label_as_extracted": "Consumption Cases",
+      "label": "Consumption Cases",
+      "parent": "NDPS_TOTAL",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "NDPS_TOTAL",
+      "section": "NDPS",
+      "sr": null,
+      "label_official": "Total NDPS Cases",
+      "label_as_extracted": "Total NDPS Cases",
+      "label": "Total NDPS Cases",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "BROTHEL_CASES",
+      "section": "BROTHELS",
+      "sr": null,
+      "label_official": "TOTAL CASES ON BROTHELS",
+      "label_as_extracted": "TOTAL CASES ON BROTHELS",
+      "label": "Total Cases on Brothels",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "BROTHEL_WOMEN_RESCUED_MAJOR",
+      "section": "BROTHELS",
+      "sr": null,
+      "label_official": "WOMEN RESCUED - MAJOR",
+      "label_as_extracted": "WOMEN RESCUED - MAJOR",
+      "label": "Women Rescued - Major",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "BROTHEL_WOMEN_RESCUED_MINOR",
+      "section": "BROTHELS",
+      "sr": null,
+      "label_official": "WOMEN RESCUED - MINOR",
+      "label_as_extracted": "WOMEN RESCUED - MINOR",
+      "label": "Women Rescued - Minor",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "BROTHEL_ACCUSED_ARRESTED",
+      "section": "BROTHELS",
+      "sr": null,
+      "label_official": "ACCUSED ARRESTED",
+      "label_as_extracted": "ACCUSED ARRESTED",
+      "label": "Accused Arrested",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "EOW_CASES",
+      "section": "EOW",
+      "sr": null,
+      "label_official": "EOW CASES",
+      "label_as_extracted": "EOW CASES",
+      "label": "Cases Registered by Economic Offences Wing",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_SOURCE_CODE_TAMPERING",
+      "section": "CYBER",
+      "sr": "1",
+      "label_official": "Tampering of Source Code",
+      "label_as_extracted": "Tampering of Source Code",
+      "label": "Tampering of Source Code",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_PHISHING_MIM_SPOOFING",
+      "section": "CYBER",
+      "sr": "2",
+      "label_official": "Phishing /MIM Attack/ Spoofing Mail",
+      "label_as_extracted": "Phishing /MIM Attack/ Spoofing Mail",
+      "label": "Phishing / MIM Attack / Spoofing Mail",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_PORNOGRAPHY",
+      "section": "CYBER",
+      "sr": "3",
+      "label_official": "Pornography",
+      "label_as_extracted": "Pornography",
+      "label": "Pornography",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_OBSCENE_CONTENT",
+      "section": "CYBER",
+      "sr": "4",
+      "label_official": "Obscene Email / SMS / MMS/Post",
+      "label_as_extracted": "Obscene Email / SMS / MMS/Post",
+      "label": "Obscene Email / SMS / MMS / Post",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_FAKE_PROFILE_MORPHING",
+      "section": "CYBER",
+      "sr": "5",
+      "label_official": "Fake Social Media Profile/ Morphing Email/ SMS",
+      "label_as_extracted": "Fake Social Media Profile/ Morphing Email/ SMS",
+      "label": "Fake Social Media Profile / Morphing Email / SMS",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CARD_ONLINE_FRAUD",
+      "section": "CYBER",
+      "sr": "6",
+      "label_official": "Credit Card / Online Fraud",
+      "label_as_extracted": "Credit Card / Online Fraud",
+      "label": "Credit Card / Online Fraud",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_HACKING",
+      "section": "CYBER",
+      "sr": "7",
+      "label_official": "Hacking",
+      "label_as_extracted": "Hacking",
+      "label": "Hacking",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING",
+      "section": "CYBER",
+      "sr": "8",
+      "label_official": "Cheating",
+      "label_as_extracted": "Cheating",
+      "label": "Cheating",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_CUSTOM_GIFT",
+      "section": "CYBER",
+      "sr": "1",
+      "label_official": "Custom/Gift Fraud",
+      "label_as_extracted": "Custom/Gift Fraud",
+      "label": "Custom / Gift Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_PURCHASE",
+      "section": "CYBER",
+      "sr": "2",
+      "label_official": "Purchase fraud",
+      "label_as_extracted": "Purchase fraud",
+      "label": "Purchase Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_JOB",
+      "section": "CYBER",
+      "sr": "3",
+      "label_official": "Job Fraud",
+      "label_as_extracted": "Job Fraud",
+      "label": "Job Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_INSURANCE_PF",
+      "section": "CYBER",
+      "sr": "4",
+      "label_official": "Insurance/ Provident Fund Fraud",
+      "label_as_extracted": "Insurance/ Provident Fund Fraud",
+      "label": "Insurance / Provident Fund Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_ADMISSION",
+      "section": "CYBER",
+      "sr": "5",
+      "label_official": "Admission fraud",
+      "label_as_extracted": "Admission fraud",
+      "label": "Admission Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_FAKE_WEBSITE",
+      "section": "CYBER",
+      "sr": "6",
+      "label_official": "Fake Web site",
+      "label_as_extracted": "Fake Web site",
+      "label": "Fake Website",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_SHARE_MARKET",
+      "section": "CYBER",
+      "sr": "7",
+      "label_official": "Share Market Investment",
+      "label_as_extracted": "Share Market Investment",
+      "label": "Share Market Investment",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_INVESTMENT",
+      "section": "CYBER",
+      "sr": "8",
+      "label_official": "Investment Fraud",
+      "label_as_extracted": "Investment Fraud",
+      "label": "Investment Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_MATRIMONIAL",
+      "section": "CYBER",
+      "sr": "9",
+      "label_official": "Matrimonial Fraud",
+      "label_as_extracted": "Matrimonial Fraud",
+      "label": "Matrimonial Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_CRYPTO",
+      "section": "CYBER",
+      "sr": "10",
+      "label_official": "Crypto currency Fraud",
+      "label_as_extracted": "Crypto currency Fraud",
+      "label": "Cryptocurrency Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_LOAN",
+      "section": "CYBER",
+      "sr": "11",
+      "label_official": "Loan Fraud",
+      "label_as_extracted": "Loan Fraud",
+      "label": "Loan Fraud",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_GOVT_OFFICIAL",
+      "section": "CYBER",
+      "sr": "12",
+      "label_official": "Pretended as Govt Official",
+      "label_as_extracted": "Pretended as Govt Official",
+      "label": "Pretended as Government Official",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_CHEATING_OTHER",
+      "section": "CYBER",
+      "sr": "13",
+      "label_official": "Other Cheating",
+      "label_as_extracted": "Other Cheating",
+      "label": "Other Cheating",
+      "parent": "CYBER_CHEATING",
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_DATA_THEFT",
+      "section": "CYBER",
+      "sr": "9",
+      "label_official": "Data Theft",
+      "label_as_extracted": "Data Theft",
+      "label": "Data Theft",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_SEXTORTION",
+      "section": "CYBER",
+      "sr": "10",
+      "label_official": "Sextortion",
+      "label_as_extracted": "Sextortion",
+      "label": "Sextortion",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_COMMUNAL_POST",
+      "section": "CYBER",
+      "sr": "11",
+      "label_official": "Communal Post",
+      "label_as_extracted": "Communal Post",
+      "label": "Communal Post",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_OTHER",
+      "section": "CYBER",
+      "sr": "12",
+      "label_official": "Other",
+      "label_as_extracted": "Other",
+      "label": "Other",
+      "parent": null,
+      "is_aggregate": false,
+      "legal_reference": null
+    },
+    {
+      "code": "CYBER_TOTAL",
+      "section": "CYBER",
+      "sr": null,
+      "label_official": "Total",
+      "label_as_extracted": "Total",
+      "label": "Total",
+      "parent": null,
+      "is_aggregate": true,
+      "legal_reference": null
+    }
+  ],
+  "values": [
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CM",
+      "metric": "registered",
+      "value": 16,
+      "raw": "16"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CM",
+      "metric": "detected",
+      "value": 16,
+      "raw": "16"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "PM",
+      "metric": "registered",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "PM",
+      "metric": "detected",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CY",
+      "metric": "registered",
+      "value": 104,
+      "raw": "104"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CY",
+      "metric": "detected",
+      "value": 103,
+      "raw": "103"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "PY",
+      "metric": "registered",
+      "value": 87,
+      "raw": "87"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "PY",
+      "metric": "detected",
+      "value": 85,
+      "raw": "85"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "IPC",
+      "head": "MURDER",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 17,
+      "raw": "+ 17"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CM",
+      "metric": "registered",
+      "value": 47,
+      "raw": "47"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CM",
+      "metric": "detected",
+      "value": 46,
+      "raw": "46"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "PM",
+      "metric": "registered",
+      "value": 34,
+      "raw": "34"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "PM",
+      "metric": "detected",
+      "value": 34,
+      "raw": "34"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CY",
+      "metric": "registered",
+      "value": 311,
+      "raw": "311"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CY",
+      "metric": "detected",
+      "value": 310,
+      "raw": "310"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "PY",
+      "metric": "registered",
+      "value": 200,
+      "raw": "200"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "PY",
+      "metric": "detected",
+      "value": 199,
+      "raw": "199"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_MURDER",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 111,
+      "raw": "+ 111"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 13,
+      "raw": "13"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 13,
+      "raw": "13"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "DACOITY",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 5,
+      "raw": "+ 5"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "PREPARATION_FOR_DACOITY",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 0,
+      "raw": "+ 0"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 37,
+      "raw": "37"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 37,
+      "raw": "37"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 37,
+      "raw": "37"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 33,
+      "raw": "33"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 237,
+      "raw": "237"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 235,
+      "raw": "235"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 177,
+      "raw": "177"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 177,
+      "raw": "177"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 60,
+      "raw": "+ 60"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 6,
+      "raw": "6"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "PM",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "PM",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CY",
+      "metric": "registered",
+      "value": 70,
+      "raw": "70"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CY",
+      "metric": "detected",
+      "value": 68,
+      "raw": "68"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "PY",
+      "metric": "registered",
+      "value": 56,
+      "raw": "56"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "PY",
+      "metric": "detected",
+      "value": 55,
+      "raw": "55"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "IPC",
+      "head": "ROBBERY_CHAIN_SNATCHING",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 14,
+      "raw": "+ 14"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 88,
+      "raw": "88"
+    },
+    {
+      "section": "IPC",
+      "head": "ATTEMPT_TO_ROBBERY",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -3,
+      "raw": "- 3"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CM",
+      "metric": "registered",
+      "value": 26,
+      "raw": "26"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CM",
+      "metric": "detected",
+      "value": 21,
+      "raw": "21"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "PM",
+      "metric": "registered",
+      "value": 26,
+      "raw": "26"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "PM",
+      "metric": "detected",
+      "value": 21,
+      "raw": "21"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CY",
+      "metric": "registered",
+      "value": 207,
+      "raw": "207"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CY",
+      "metric": "detected",
+      "value": 191,
+      "raw": "191"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "PY",
+      "metric": "registered",
+      "value": 201,
+      "raw": "201"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "PY",
+      "metric": "detected",
+      "value": 187,
+      "raw": "187"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 93,
+      "raw": "93"
+    },
+    {
+      "section": "IPC",
+      "head": "EXTORTION",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 6,
+      "raw": "+ 6"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 19,
+      "raw": "19"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 12,
+      "raw": "12"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 13,
+      "raw": "13"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 90,
+      "raw": "90"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 59,
+      "raw": "59"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 66,
+      "raw": "66"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 117,
+      "raw": "117"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 70,
+      "raw": "70"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 60,
+      "raw": "60"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_DAY",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -27,
+      "raw": "- 27"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 71,
+      "raw": "71"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 41,
+      "raw": "41"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "PM",
+      "metric": "registered",
+      "value": 83,
+      "raw": "83"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "PM",
+      "metric": "detected",
+      "value": 45,
+      "raw": "45"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CY",
+      "metric": "registered",
+      "value": 560,
+      "raw": "560"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CY",
+      "metric": "detected",
+      "value": 410,
+      "raw": "410"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 73,
+      "raw": "73"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "PY",
+      "metric": "registered",
+      "value": 588,
+      "raw": "588"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "PY",
+      "metric": "detected",
+      "value": 380,
+      "raw": "380"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 65,
+      "raw": "65"
+    },
+    {
+      "section": "IPC",
+      "head": "HBT_NIGHT",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -28,
+      "raw": "- 28"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 518,
+      "raw": "518"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 188,
+      "raw": "188"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "PM",
+      "metric": "registered",
+      "value": 489,
+      "raw": "489"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "PM",
+      "metric": "detected",
+      "value": 188,
+      "raw": "188"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CY",
+      "metric": "registered",
+      "value": 4469,
+      "raw": "4469"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CY",
+      "metric": "detected",
+      "value": 1875,
+      "raw": "1875"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 42,
+      "raw": "42"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "PY",
+      "metric": "registered",
+      "value": 5351,
+      "raw": "5351"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "PY",
+      "metric": "detected",
+      "value": 1678,
+      "raw": "1678"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 31,
+      "raw": "31"
+    },
+    {
+      "section": "IPC",
+      "head": "THEFT",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -882,
+      "raw": "- 882"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 248,
+      "raw": "248"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "PM",
+      "metric": "registered",
+      "value": 233,
+      "raw": "233"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "PM",
+      "metric": "detected",
+      "value": 88,
+      "raw": "88"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CY",
+      "metric": "registered",
+      "value": 1788,
+      "raw": "1788"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CY",
+      "metric": "detected",
+      "value": 1093,
+      "raw": "1093"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 61,
+      "raw": "61"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "PY",
+      "metric": "registered",
+      "value": 1516,
+      "raw": "1516"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "PY",
+      "metric": "detected",
+      "value": 851,
+      "raw": "851"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 56,
+      "raw": "56"
+    },
+    {
+      "section": "IPC",
+      "head": "MV_THEFT",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 272,
+      "raw": "+ 272"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "PM",
+      "metric": "registered",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "PM",
+      "metric": "detected",
+      "value": 10,
+      "raw": "10"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CY",
+      "metric": "registered",
+      "value": 105,
+      "raw": "105"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CY",
+      "metric": "detected",
+      "value": 90,
+      "raw": "90"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 86,
+      "raw": "86"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "PY",
+      "metric": "registered",
+      "value": 133,
+      "raw": "133"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "PY",
+      "metric": "detected",
+      "value": 108,
+      "raw": "108"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 81,
+      "raw": "81"
+    },
+    {
+      "section": "IPC",
+      "head": "SNATCHING",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -28,
+      "raw": "- 28"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 289,
+      "raw": "289"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 270,
+      "raw": "270"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "PM",
+      "metric": "registered",
+      "value": 285,
+      "raw": "285"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "PM",
+      "metric": "detected",
+      "value": 275,
+      "raw": "275"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CY",
+      "metric": "registered",
+      "value": 2802,
+      "raw": "2802"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CY",
+      "metric": "detected",
+      "value": 2775,
+      "raw": "2775"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "PY",
+      "metric": "registered",
+      "value": 2754,
+      "raw": "2754"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "PY",
+      "metric": "detected",
+      "value": 2680,
+      "raw": "2680"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "IPC",
+      "head": "HURT",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 48,
+      "raw": "+ 48"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CM",
+      "metric": "registered",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CM",
+      "metric": "detected",
+      "value": 38,
+      "raw": "38"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "PM",
+      "metric": "registered",
+      "value": 43,
+      "raw": "43"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "PM",
+      "metric": "detected",
+      "value": 39,
+      "raw": "39"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CY",
+      "metric": "registered",
+      "value": 374,
+      "raw": "374"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CY",
+      "metric": "detected",
+      "value": 372,
+      "raw": "372"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "PY",
+      "metric": "registered",
+      "value": 273,
+      "raw": "273"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "PY",
+      "metric": "detected",
+      "value": 272,
+      "raw": "272"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "RIOTS",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 101,
+      "raw": "+ 101"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CM",
+      "metric": "registered",
+      "value": 59,
+      "raw": "59"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CM",
+      "metric": "detected",
+      "value": 55,
+      "raw": "55"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "PM",
+      "metric": "registered",
+      "value": 64,
+      "raw": "64"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "PM",
+      "metric": "detected",
+      "value": 54,
+      "raw": "54"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CY",
+      "metric": "registered",
+      "value": 596,
+      "raw": "596"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CY",
+      "metric": "detected",
+      "value": 588,
+      "raw": "588"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "PY",
+      "metric": "registered",
+      "value": 653,
+      "raw": "653"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "PY",
+      "metric": "detected",
+      "value": 640,
+      "raw": "640"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "IPC",
+      "head": "RAPE",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -57,
+      "raw": "- 57"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CM",
+      "metric": "registered",
+      "value": 25,
+      "raw": "25"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CM",
+      "metric": "detected",
+      "value": 16,
+      "raw": "16"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "PM",
+      "metric": "registered",
+      "value": 29,
+      "raw": "29"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "PM",
+      "metric": "detected",
+      "value": 24,
+      "raw": "24"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "registered",
+      "value": 238,
+      "raw": "238"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "detected",
+      "value": 218,
+      "raw": "218"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "registered",
+      "value": 154,
+      "raw": "154"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "detected",
+      "value": 154,
+      "raw": "154"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "SEXUAL_OFFENCES_SEC69",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 84,
+      "raw": "+ 84"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CM",
+      "metric": "registered",
+      "value": 169,
+      "raw": "169"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CM",
+      "metric": "detected",
+      "value": 158,
+      "raw": "158"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "PM",
+      "metric": "registered",
+      "value": 174,
+      "raw": "174"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "PM",
+      "metric": "detected",
+      "value": 162,
+      "raw": "162"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CY",
+      "metric": "registered",
+      "value": 1484,
+      "raw": "1484"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CY",
+      "metric": "detected",
+      "value": 1455,
+      "raw": "1455"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "PY",
+      "metric": "registered",
+      "value": 1677,
+      "raw": "1677"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "PY",
+      "metric": "detected",
+      "value": 1672,
+      "raw": "1672"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "IPC",
+      "head": "MOLESTATION",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": -193,
+      "raw": "- 193"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CM",
+      "metric": "registered",
+      "value": 5347,
+      "raw": "5347"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CM",
+      "metric": "detected",
+      "value": 4634,
+      "raw": "4634"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "PM",
+      "metric": "registered",
+      "value": 5841,
+      "raw": "5841"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "PM",
+      "metric": "detected",
+      "value": 4767,
+      "raw": "4767"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CY",
+      "metric": "registered",
+      "value": 42016,
+      "raw": "42016"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CY",
+      "metric": "detected",
+      "value": 37368,
+      "raw": "37368"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 89,
+      "raw": "89"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "PY",
+      "metric": "registered",
+      "value": 26836,
+      "raw": "26836"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "PY",
+      "metric": "detected",
+      "value": 23073,
+      "raw": "23073"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 86,
+      "raw": "86"
+    },
+    {
+      "section": "IPC",
+      "head": "OTHER_IPC",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 15180,
+      "raw": "+ 15180"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CM",
+      "metric": "registered",
+      "value": 6934,
+      "raw": "6934"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CM",
+      "metric": "detected",
+      "value": 5647,
+      "raw": "5647"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "PM",
+      "metric": "registered",
+      "value": 7382,
+      "raw": "7382"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "PM",
+      "metric": "detected",
+      "value": 5764,
+      "raw": "5764"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CY",
+      "metric": "registered",
+      "value": 55471,
+      "raw": "55471"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CY",
+      "metric": "detected",
+      "value": 47230,
+      "raw": "47230"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 85,
+      "raw": "85"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "PY",
+      "metric": "registered",
+      "value": 40791,
+      "raw": "40791"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "PY",
+      "metric": "detected",
+      "value": 32298,
+      "raw": "32298"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 79,
+      "raw": "79"
+    },
+    {
+      "section": "IPC",
+      "head": "TOTAL_IPC",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered",
+      "value": 14680,
+      "raw": "+ 14680"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "CM",
+      "metric": "registered",
+      "value": 42,
+      "raw": "42"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "CM",
+      "metric": "detected",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "PM",
+      "metric": "registered",
+      "value": 45,
+      "raw": "45"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "PM",
+      "metric": "detected",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "CY",
+      "metric": "registered",
+      "value": 449,
+      "raw": "449"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "CY",
+      "metric": "detected",
+      "value": 445,
+      "raw": "445"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "PY",
+      "metric": "registered",
+      "value": 418,
+      "raw": "418"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "PY",
+      "metric": "detected",
+      "value": 415,
+      "raw": "415"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_POCSO_MINOR",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "CM",
+      "metric": "registered",
+      "value": 17,
+      "raw": "17"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "CM",
+      "metric": "detected",
+      "value": 15,
+      "raw": "15"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "PM",
+      "metric": "registered",
+      "value": 19,
+      "raw": "19"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "PM",
+      "metric": "detected",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "CY",
+      "metric": "registered",
+      "value": 146,
+      "raw": "146"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "CY",
+      "metric": "detected",
+      "value": 142,
+      "raw": "142"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "PY",
+      "metric": "registered",
+      "value": 234,
+      "raw": "234"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "PY",
+      "metric": "detected",
+      "value": 226,
+      "raw": "226"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_MAJOR",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 59,
+      "raw": "59"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 55,
+      "raw": "55"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "PM",
+      "metric": "registered",
+      "value": 64,
+      "raw": "64"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "PM",
+      "metric": "detected",
+      "value": 54,
+      "raw": "54"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "CY",
+      "metric": "registered",
+      "value": 595,
+      "raw": "595"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "CY",
+      "metric": "detected",
+      "value": 587,
+      "raw": "587"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "PY",
+      "metric": "registered",
+      "value": 652,
+      "raw": "652"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "PY",
+      "metric": "detected",
+      "value": 641,
+      "raw": "641"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_RAPE_TOTAL",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "CM",
+      "metric": "registered",
+      "value": 25,
+      "raw": "25"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "CM",
+      "metric": "detected",
+      "value": 16,
+      "raw": "16"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "PM",
+      "metric": "registered",
+      "value": 29,
+      "raw": "29"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "PM",
+      "metric": "detected",
+      "value": 24,
+      "raw": "24"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "registered",
+      "value": 238,
+      "raw": "238"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "detected",
+      "value": 218,
+      "raw": "218"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "registered",
+      "value": 154,
+      "raw": "154"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "detected",
+      "value": 154,
+      "raw": "154"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SEXUAL_OFFENCES_SEC69",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "CM",
+      "metric": "registered",
+      "value": 109,
+      "raw": "109"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "CM",
+      "metric": "detected",
+      "value": 91,
+      "raw": "91"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "PM",
+      "metric": "registered",
+      "value": 119,
+      "raw": "119"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "PM",
+      "metric": "detected",
+      "value": 105,
+      "raw": "105"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "CY",
+      "metric": "registered",
+      "value": 875,
+      "raw": "875"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "CY",
+      "metric": "detected",
+      "value": 846,
+      "raw": "846"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "PY",
+      "metric": "registered",
+      "value": 941,
+      "raw": "941"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "PY",
+      "metric": "detected",
+      "value": 879,
+      "raw": "879"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MINOR",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 93,
+      "raw": "93"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "CM",
+      "metric": "registered",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "CM",
+      "metric": "detected",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "CY",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "CY",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "PY",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "PY",
+      "metric": "detected",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_MAJOR",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 71,
+      "raw": "71"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 111,
+      "raw": "111"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 93,
+      "raw": "93"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "PM",
+      "metric": "registered",
+      "value": 119,
+      "raw": "119"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "PM",
+      "metric": "detected",
+      "value": 105,
+      "raw": "105"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "CY",
+      "metric": "registered",
+      "value": 882,
+      "raw": "882"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "CY",
+      "metric": "detected",
+      "value": 853,
+      "raw": "853"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "PY",
+      "metric": "registered",
+      "value": 948,
+      "raw": "948"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "PY",
+      "metric": "detected",
+      "value": 884,
+      "raw": "884"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_KIDNAPPING_TOTAL",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 93,
+      "raw": "93"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 169,
+      "raw": "169"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 158,
+      "raw": "158"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 173,
+      "raw": "173"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 161,
+      "raw": "161"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 1483,
+      "raw": "1483"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 1455,
+      "raw": "1455"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 1666,
+      "raw": "1666"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 1665,
+      "raw": "1665"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_OUTRAGING_MODESTY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 78,
+      "raw": "78"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 68,
+      "raw": "68"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "PM",
+      "metric": "registered",
+      "value": 65,
+      "raw": "65"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "PM",
+      "metric": "detected",
+      "value": 59,
+      "raw": "59"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "CY",
+      "metric": "registered",
+      "value": 702,
+      "raw": "702"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "CY",
+      "metric": "detected",
+      "value": 684,
+      "raw": "684"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "PY",
+      "metric": "registered",
+      "value": 588,
+      "raw": "588"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "PY",
+      "metric": "detected",
+      "value": 539,
+      "raw": "539"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_INSULT_TO_MODESTY",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "CY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "CY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "PY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "PY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_PROHIBITION_ACT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "CY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "CY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "PY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "PY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_MURDER",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "CY",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "CY",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "PY",
+      "metric": "registered",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "PY",
+      "metric": "detected",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_DEATH",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "CY",
+      "metric": "registered",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "CY",
+      "metric": "detected",
+      "value": 3,
+      "raw": "3"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 75,
+      "raw": "75"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "PY",
+      "metric": "registered",
+      "value": 6,
+      "raw": "6"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "PY",
+      "metric": "detected",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_SUICIDE",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 67,
+      "raw": "67"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 45,
+      "raw": "45"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 34,
+      "raw": "34"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "PM",
+      "metric": "registered",
+      "value": 44,
+      "raw": "44"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "PM",
+      "metric": "detected",
+      "value": 32,
+      "raw": "32"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "CY",
+      "metric": "registered",
+      "value": 342,
+      "raw": "342"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "CY",
+      "metric": "detected",
+      "value": 320,
+      "raw": "320"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 94,
+      "raw": "94"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "PY",
+      "metric": "registered",
+      "value": 345,
+      "raw": "345"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "PY",
+      "metric": "detected",
+      "value": 317,
+      "raw": "317"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_DOWRY_HARASSMENT",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "PM",
+      "metric": "registered",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "PM",
+      "metric": "detected",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "CY",
+      "metric": "registered",
+      "value": 10,
+      "raw": "10"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detected",
+      "value": 10,
+      "raw": "10"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "PY",
+      "metric": "registered",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detected",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_MURDER_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 89,
+      "raw": "89"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "CY",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "PY",
+      "metric": "registered",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detected",
+      "value": 12,
+      "raw": "12"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_SUICIDE_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 86,
+      "raw": "86"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "CM",
+      "metric": "registered",
+      "value": 43,
+      "raw": "43"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "CM",
+      "metric": "detected",
+      "value": 35,
+      "raw": "35"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "PM",
+      "metric": "registered",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "PM",
+      "metric": "detected",
+      "value": 30,
+      "raw": "30"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "CY",
+      "metric": "registered",
+      "value": 316,
+      "raw": "316"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detected",
+      "value": 291,
+      "raw": "291"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 92,
+      "raw": "92"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "PY",
+      "metric": "registered",
+      "value": 322,
+      "raw": "322"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detected",
+      "value": 289,
+      "raw": "289"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_HARASSMENT_OTHER_REASONS",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 90,
+      "raw": "90"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "CY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "CY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "PY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "PY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_ACID_ATTACK",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "CM",
+      "metric": "registered",
+      "value": 42,
+      "raw": "42"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "CM",
+      "metric": "detected",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "PM",
+      "metric": "registered",
+      "value": 45,
+      "raw": "45"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "PM",
+      "metric": "detected",
+      "value": 40,
+      "raw": "40"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "CY",
+      "metric": "registered",
+      "value": 449,
+      "raw": "449"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "CY",
+      "metric": "detected",
+      "value": 445,
+      "raw": "445"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "PY",
+      "metric": "registered",
+      "value": 418,
+      "raw": "418"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "PY",
+      "metric": "detected",
+      "value": 415,
+      "raw": "415"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_RAPE",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 99,
+      "raw": "99"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "CM",
+      "metric": "registered",
+      "value": 37,
+      "raw": "37"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "CM",
+      "metric": "detected",
+      "value": 36,
+      "raw": "36"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "PM",
+      "metric": "registered",
+      "value": 48,
+      "raw": "48"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "PM",
+      "metric": "detected",
+      "value": 47,
+      "raw": "47"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "CY",
+      "metric": "registered",
+      "value": 344,
+      "raw": "344"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "CY",
+      "metric": "detected",
+      "value": 337,
+      "raw": "337"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 98,
+      "raw": "98"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "PY",
+      "metric": "registered",
+      "value": 426,
+      "raw": "426"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "PY",
+      "metric": "detected",
+      "value": 425,
+      "raw": "425"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_MOLESTATION",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 6,
+      "raw": "6"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 6,
+      "raw": "6"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "PM",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "PM",
+      "metric": "detected",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "CY",
+      "metric": "registered",
+      "value": 38,
+      "raw": "38"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "CY",
+      "metric": "detected",
+      "value": 38,
+      "raw": "38"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "PY",
+      "metric": "registered",
+      "value": 31,
+      "raw": "31"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "PY",
+      "metric": "detected",
+      "value": 29,
+      "raw": "29"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_EVE_TEASING",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 94,
+      "raw": "94"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "PM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "PM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "CY",
+      "metric": "registered",
+      "value": 12,
+      "raw": "12"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "CY",
+      "metric": "detected",
+      "value": 12,
+      "raw": "12"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "PY",
+      "metric": "registered",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "PY",
+      "metric": "detected",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_POCSO_OTHER_IPC",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "CM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "CM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "PM",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "PM",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "CY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "CY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "PY",
+      "metric": "registered",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "PY",
+      "metric": "detected",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_PITA_POCSO",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 508,
+      "raw": "508"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 446,
+      "raw": "446"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "PM",
+      "metric": "registered",
+      "value": 510,
+      "raw": "510"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "PM",
+      "metric": "detected",
+      "value": 446,
+      "raw": "446"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "CY",
+      "metric": "registered",
+      "value": 4354,
+      "raw": "4354"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "CY",
+      "metric": "detected",
+      "value": 4223,
+      "raw": "4223"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 97,
+      "raw": "97"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "PY",
+      "metric": "registered",
+      "value": 4556,
+      "raw": "4556"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "PY",
+      "metric": "detected",
+      "value": 4365,
+      "raw": "4365"
+    },
+    {
+      "section": "CAW",
+      "head": "CAW_TOTAL",
+      "period": "PY",
+      "metric": "detection_pct",
+      "value": 96,
+      "raw": "96"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "cases",
+      "value": 50,
+      "raw": "50"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 62,
+      "raw": "62"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 3.9475,
+      "raw": "3.9475"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": "-"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_HEROIN",
+      "period": "CM",
+      "metric": "value",
+      "value": 160599660,
+      "raw": "160599660"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "cases",
+      "value": 22,
+      "raw": "22"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 31,
+      "raw": "31"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 22.8793,
+      "raw": "22.8793"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": "-"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CHARAS",
+      "period": "CM",
+      "metric": "value",
+      "value": 199100900,
+      "raw": "199100900"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "cases",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 1.0118,
+      "raw": "1.0118"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": "-"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COCAINE",
+      "period": "CM",
+      "metric": "value",
+      "value": 99694800,
+      "raw": "99694800"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "cases",
+      "value": 414,
+      "raw": "414"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 456,
+      "raw": "456"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 544.896,
+      "raw": "544.896"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": "-"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_GANJA",
+      "period": "CM",
+      "metric": "value",
+      "value": 269185495,
+      "raw": "269185495"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "cases",
+      "value": 267,
+      "raw": "267"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 383,
+      "raw": "383"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 53.5828,
+      "raw": "53.5828"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": "-"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_MD",
+      "period": "CM",
+      "metric": "value",
+      "value": 1665310035,
+      "raw": "1665310035"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "cases",
+      "value": 10,
+      "raw": "10"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 22,
+      "raw": "22"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 25.051,
+      "raw": "25.05100"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": 487,
+      "raw": "487"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_OTHER_DRUGS",
+      "period": "CM",
+      "metric": "value",
+      "value": 62377900,
+      "raw": "62377900"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "cases",
+      "value": 23,
+      "raw": "23"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 32,
+      "raw": "32"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 123.2,
+      "raw": "123.20"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_COUGH_SYRUP",
+      "period": "CM",
+      "metric": "value",
+      "value": 1135769,
+      "raw": "1135769"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "cases",
+      "value": 794,
+      "raw": "794"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 995,
+      "raw": "995"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 652.2,
+      "raw": "652.20"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": 487,
+      "raw": "487"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": 123.2,
+      "raw": "123.20"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_POSSESSION_TOTAL",
+      "period": "CM",
+      "metric": "value",
+      "value": 2457404559,
+      "raw": "2457404559"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "cases",
+      "value": 4758,
+      "raw": "4758"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 4138,
+      "raw": "4138"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_CONSUMPTION",
+      "period": "CM",
+      "metric": "value",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "cases",
+      "value": 5552,
+      "raw": "5552"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "persons_arrested",
+      "value": 5133,
+      "raw": "5133"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "quantity_kg",
+      "value": 652.203602,
+      "raw": "652.203602"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "quantity_tablets",
+      "value": 487,
+      "raw": "487"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "quantity_litres",
+      "value": 123.2,
+      "raw": "123.20"
+    },
+    {
+      "section": "NDPS",
+      "head": "NDPS_TOTAL",
+      "period": "CM",
+      "metric": "value",
+      "value": 2457404559,
+      "raw": "2457404559"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_CASES",
+      "period": "CM",
+      "metric": "count",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_CASES",
+      "period": "CY",
+      "metric": "count",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_CASES",
+      "period": "PY",
+      "metric": "count",
+      "value": 15,
+      "raw": "15"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MAJOR",
+      "period": "CM",
+      "metric": "count",
+      "value": 3,
+      "raw": "3"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MAJOR",
+      "period": "CY",
+      "metric": "count",
+      "value": 38,
+      "raw": "38"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MAJOR",
+      "period": "PY",
+      "metric": "count",
+      "value": 44,
+      "raw": "44"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MINOR",
+      "period": "CM",
+      "metric": "count",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MINOR",
+      "period": "CY",
+      "metric": "count",
+      "value": null,
+      "raw": ""
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_WOMEN_RESCUED_MINOR",
+      "period": "PY",
+      "metric": "count",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_ACCUSED_ARRESTED",
+      "period": "CM",
+      "metric": "count",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_ACCUSED_ARRESTED",
+      "period": "CY",
+      "metric": "count",
+      "value": 24,
+      "raw": "24"
+    },
+    {
+      "section": "BROTHELS",
+      "head": "BROTHEL_ACCUSED_ARRESTED",
+      "period": "PY",
+      "metric": "count",
+      "value": 66,
+      "raw": "66"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CM",
+      "metric": "registered",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CM",
+      "metric": "detected",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "PM",
+      "metric": "registered",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "PM",
+      "metric": "detected",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CY",
+      "metric": "registered",
+      "value": 80,
+      "raw": "80"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CY",
+      "metric": "detected",
+      "value": 80,
+      "raw": "80"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CY",
+      "metric": "detection_pct",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "PY",
+      "metric": "registered",
+      "value": 75,
+      "raw": "75"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "PY",
+      "metric": "detected",
+      "value": 75,
+      "raw": "75"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CY_VS_PY",
+      "metric": "difference_registered_as_printed",
+      "value": 100,
+      "raw": "100"
+    },
+    {
+      "section": "EOW",
+      "head": "EOW_CASES",
+      "period": "CY",
+      "metric": "property_involved_rs",
+      "value": 54852628884,
+      "raw": "54852628884"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SOURCE_CODE_TAMPERING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SOURCE_CODE_TAMPERING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SOURCE_CODE_TAMPERING",
+      "period": "CM",
+      "metric": "pa",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PHISHING_MIM_SPOOFING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 151,
+      "raw": "151"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PHISHING_MIM_SPOOFING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 22,
+      "raw": "22"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PHISHING_MIM_SPOOFING",
+      "period": "CM",
+      "metric": "pa",
+      "value": 19,
+      "raw": "19"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PORNOGRAPHY",
+      "period": "CM",
+      "metric": "registered",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PORNOGRAPHY",
+      "period": "CM",
+      "metric": "detected",
+      "value": 8,
+      "raw": "8"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_PORNOGRAPHY",
+      "period": "CM",
+      "metric": "pa",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OBSCENE_CONTENT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 117,
+      "raw": "117"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OBSCENE_CONTENT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 80,
+      "raw": "80"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OBSCENE_CONTENT",
+      "period": "CM",
+      "metric": "pa",
+      "value": 43,
+      "raw": "43"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_FAKE_PROFILE_MORPHING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 151,
+      "raw": "151"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_FAKE_PROFILE_MORPHING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 91,
+      "raw": "91"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_FAKE_PROFILE_MORPHING",
+      "period": "CM",
+      "metric": "pa",
+      "value": 33,
+      "raw": "33"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CARD_ONLINE_FRAUD",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1020,
+      "raw": "1020"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CARD_ONLINE_FRAUD",
+      "period": "CM",
+      "metric": "detected",
+      "value": 182,
+      "raw": "182"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CARD_ONLINE_FRAUD",
+      "period": "CM",
+      "metric": "pa",
+      "value": 104,
+      "raw": "104"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_HACKING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 202,
+      "raw": "202"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_HACKING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 32,
+      "raw": "32"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_HACKING",
+      "period": "CM",
+      "metric": "pa",
+      "value": 47,
+      "raw": "47"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING",
+      "period": "CM",
+      "metric": "registered",
+      "value": 2283,
+      "raw": "2283"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING",
+      "period": "CM",
+      "metric": "detected",
+      "value": 537,
+      "raw": "537"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING",
+      "period": "CM",
+      "metric": "pa",
+      "value": 471,
+      "raw": "471"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CUSTOM_GIFT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 26,
+      "raw": "26"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CUSTOM_GIFT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CUSTOM_GIFT",
+      "period": "CM",
+      "metric": "pa",
+      "value": 3,
+      "raw": "3"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_PURCHASE",
+      "period": "CM",
+      "metric": "registered",
+      "value": 52,
+      "raw": "52"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_PURCHASE",
+      "period": "CM",
+      "metric": "detected",
+      "value": 11,
+      "raw": "11"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_PURCHASE",
+      "period": "CM",
+      "metric": "pa",
+      "value": 5,
+      "raw": "5"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_JOB",
+      "period": "CM",
+      "metric": "registered",
+      "value": 77,
+      "raw": "77"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_JOB",
+      "period": "CM",
+      "metric": "detected",
+      "value": 16,
+      "raw": "16"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_JOB",
+      "period": "CM",
+      "metric": "pa",
+      "value": 23,
+      "raw": "23"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INSURANCE_PF",
+      "period": "CM",
+      "metric": "registered",
+      "value": 15,
+      "raw": "15"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INSURANCE_PF",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INSURANCE_PF",
+      "period": "CM",
+      "metric": "pa",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_ADMISSION",
+      "period": "CM",
+      "metric": "registered",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_ADMISSION",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_ADMISSION",
+      "period": "CM",
+      "metric": "pa",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_FAKE_WEBSITE",
+      "period": "CM",
+      "metric": "registered",
+      "value": 76,
+      "raw": "76"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_FAKE_WEBSITE",
+      "period": "CM",
+      "metric": "detected",
+      "value": 15,
+      "raw": "15"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_FAKE_WEBSITE",
+      "period": "CM",
+      "metric": "pa",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_SHARE_MARKET",
+      "period": "CM",
+      "metric": "registered",
+      "value": 302,
+      "raw": "302"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_SHARE_MARKET",
+      "period": "CM",
+      "metric": "detected",
+      "value": 89,
+      "raw": "89"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_SHARE_MARKET",
+      "period": "CM",
+      "metric": "pa",
+      "value": 137,
+      "raw": "137"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INVESTMENT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 156,
+      "raw": "156"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INVESTMENT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 35,
+      "raw": "35"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_INVESTMENT",
+      "period": "CM",
+      "metric": "pa",
+      "value": 25,
+      "raw": "25"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_MATRIMONIAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 9,
+      "raw": "9"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_MATRIMONIAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 3,
+      "raw": "3"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_MATRIMONIAL",
+      "period": "CM",
+      "metric": "pa",
+      "value": 1,
+      "raw": "1"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CRYPTO",
+      "period": "CM",
+      "metric": "registered",
+      "value": 14,
+      "raw": "14"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CRYPTO",
+      "period": "CM",
+      "metric": "detected",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_CRYPTO",
+      "period": "CM",
+      "metric": "pa",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_LOAN",
+      "period": "CM",
+      "metric": "registered",
+      "value": 42,
+      "raw": "42"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_LOAN",
+      "period": "CM",
+      "metric": "detected",
+      "value": 11,
+      "raw": "11"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_LOAN",
+      "period": "CM",
+      "metric": "pa",
+      "value": 12,
+      "raw": "12"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_GOVT_OFFICIAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 95,
+      "raw": "95"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_GOVT_OFFICIAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 36,
+      "raw": "36"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_GOVT_OFFICIAL",
+      "period": "CM",
+      "metric": "pa",
+      "value": 71,
+      "raw": "71"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_OTHER",
+      "period": "CM",
+      "metric": "registered",
+      "value": 1417,
+      "raw": "1417"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_OTHER",
+      "period": "CM",
+      "metric": "detected",
+      "value": 313,
+      "raw": "313"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_CHEATING_OTHER",
+      "period": "CM",
+      "metric": "pa",
+      "value": 188,
+      "raw": "188"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_DATA_THEFT",
+      "period": "CM",
+      "metric": "registered",
+      "value": 10,
+      "raw": "10"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_DATA_THEFT",
+      "period": "CM",
+      "metric": "detected",
+      "value": 4,
+      "raw": "4"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_DATA_THEFT",
+      "period": "CM",
+      "metric": "pa",
+      "value": 0,
+      "raw": "0"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SEXTORTION",
+      "period": "CM",
+      "metric": "registered",
+      "value": 32,
+      "raw": "32"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SEXTORTION",
+      "period": "CM",
+      "metric": "detected",
+      "value": 23,
+      "raw": "23"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_SEXTORTION",
+      "period": "CM",
+      "metric": "pa",
+      "value": 20,
+      "raw": "20"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_COMMUNAL_POST",
+      "period": "CM",
+      "metric": "registered",
+      "value": 7,
+      "raw": "7"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_COMMUNAL_POST",
+      "period": "CM",
+      "metric": "detected",
+      "value": 3,
+      "raw": "3"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_COMMUNAL_POST",
+      "period": "CM",
+      "metric": "pa",
+      "value": 2,
+      "raw": "2"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OTHER",
+      "period": "CM",
+      "metric": "registered",
+      "value": 272,
+      "raw": "272"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OTHER",
+      "period": "CM",
+      "metric": "detected",
+      "value": 139,
+      "raw": "139"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_OTHER",
+      "period": "CM",
+      "metric": "pa",
+      "value": 46,
+      "raw": "46"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_TOTAL",
+      "period": "CM",
+      "metric": "registered",
+      "value": 4254,
+      "raw": "4254"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_TOTAL",
+      "period": "CM",
+      "metric": "detected",
+      "value": 1121,
+      "raw": "1121"
+    },
+    {
+      "section": "CYBER",
+      "head": "CYBER_TOTAL",
+      "period": "CM",
+      "metric": "pa",
+      "value": 794,
+      "raw": "794"
+    }
+  ],
+  "extraction_notes": [
+    "All pages refer to the reporting month starting 2026-08-01.",
+    "IPC: label of SEXUAL_OFFENCES_SEC69 overflowed into its first value cell ('or)25'); repaired to label='Sexual Offences (Sec 69 BNS -only Mejor)', value='25'.",
+    "CYBER: Split 3 merged rows starting at 'Loan Fraud' into separate rows."
+  ],
+  "checks": [
+    {
+      "id": "IPC.total.CM.registered",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (CM registered; blank cells counted as 0)",
+      "expected": 6934,
+      "observed": 6934,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.CM.detected",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (CM detected; blank cells counted as 0)",
+      "expected": 5647,
+      "observed": 5647,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.PM.registered",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (PM registered; blank cells counted as 0)",
+      "expected": 7382,
+      "observed": 7382,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.PM.detected",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (PM detected; blank cells counted as 0)",
+      "expected": 5764,
+      "observed": 5764,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.CY.registered",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (CY registered; blank cells counted as 0)",
+      "expected": 55471,
+      "observed": 55471,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.CY.detected",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (CY detected; blank cells counted as 0)",
+      "expected": 47230,
+      "observed": 47230,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.PY.registered",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (PY registered; blank cells counted as 0)",
+      "expected": 40791,
+      "observed": 40791,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.total.PY.detected",
+      "section": "IPC",
+      "description": "Total IPC: sum of components equals printed TOTAL_IPC (PY detected; blank cells counted as 0)",
+      "expected": 32298,
+      "observed": 32298,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MURDER.difference",
+      "section": "IPC",
+      "description": "MURDER: printed difference equals current-year minus previous-year registrations",
+      "expected": 17,
+      "observed": 17,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_MURDER.difference",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_MURDER: printed difference equals current-year minus previous-year registrations",
+      "expected": 111,
+      "observed": 111,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.DACOITY.difference",
+      "section": "IPC",
+      "description": "DACOITY: printed difference equals current-year minus previous-year registrations",
+      "expected": 5,
+      "observed": 5,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.PREPARATION_FOR_DACOITY.difference",
+      "section": "IPC",
+      "description": "PREPARATION_FOR_DACOITY: printed difference equals current-year minus previous-year registrations",
+      "expected": 0,
+      "observed": 0,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY.difference",
+      "section": "IPC",
+      "description": "ROBBERY: printed difference equals current-year minus previous-year registrations",
+      "expected": 60,
+      "observed": 60,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY_CHAIN_SNATCHING.difference",
+      "section": "IPC",
+      "description": "ROBBERY_CHAIN_SNATCHING: printed difference equals current-year minus previous-year registrations",
+      "expected": 14,
+      "observed": 14,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_ROBBERY.difference",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_ROBBERY: printed difference equals current-year minus previous-year registrations",
+      "expected": -3,
+      "observed": -3,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.EXTORTION.difference",
+      "section": "IPC",
+      "description": "EXTORTION: printed difference equals current-year minus previous-year registrations",
+      "expected": 6,
+      "observed": 6,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_DAY.difference",
+      "section": "IPC",
+      "description": "HBT_DAY: printed difference equals current-year minus previous-year registrations",
+      "expected": -27,
+      "observed": -27,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_NIGHT.difference",
+      "section": "IPC",
+      "description": "HBT_NIGHT: printed difference equals current-year minus previous-year registrations",
+      "expected": -28,
+      "observed": -28,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.THEFT.difference",
+      "section": "IPC",
+      "description": "THEFT: printed difference equals current-year minus previous-year registrations",
+      "expected": -882,
+      "observed": -882,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MV_THEFT.difference",
+      "section": "IPC",
+      "description": "MV_THEFT: printed difference equals current-year minus previous-year registrations",
+      "expected": 272,
+      "observed": 272,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SNATCHING.difference",
+      "section": "IPC",
+      "description": "SNATCHING: printed difference equals current-year minus previous-year registrations",
+      "expected": -28,
+      "observed": -28,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HURT.difference",
+      "section": "IPC",
+      "description": "HURT: printed difference equals current-year minus previous-year registrations",
+      "expected": 48,
+      "observed": 48,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RIOTS.difference",
+      "section": "IPC",
+      "description": "RIOTS: printed difference equals current-year minus previous-year registrations",
+      "expected": 101,
+      "observed": 101,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RAPE.difference",
+      "section": "IPC",
+      "description": "RAPE: printed difference equals current-year minus previous-year registrations",
+      "expected": -57,
+      "observed": -57,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SEXUAL_OFFENCES_SEC69.difference",
+      "section": "IPC",
+      "description": "SEXUAL_OFFENCES_SEC69: printed difference equals current-year minus previous-year registrations",
+      "expected": 84,
+      "observed": 84,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MOLESTATION.difference",
+      "section": "IPC",
+      "description": "MOLESTATION: printed difference equals current-year minus previous-year registrations",
+      "expected": -193,
+      "observed": -193,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.OTHER_IPC.difference",
+      "section": "IPC",
+      "description": "OTHER_IPC: printed difference equals current-year minus previous-year registrations",
+      "expected": 15180,
+      "observed": 15180,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.TOTAL_IPC.difference",
+      "section": "IPC",
+      "description": "TOTAL_IPC: printed difference equals current-year minus previous-year registrations",
+      "expected": 14680,
+      "observed": 14680,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MURDER.CY.detection_pct",
+      "section": "IPC",
+      "description": "MURDER CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.0,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MURDER.PY.detection_pct",
+      "section": "IPC",
+      "description": "MURDER PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.7,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_MURDER.CY.detection_pct",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_MURDER CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.7,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_MURDER.PY.detection_pct",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_MURDER PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.5,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.DACOITY.CY.detection_pct",
+      "section": "IPC",
+      "description": "DACOITY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.DACOITY.PY.detection_pct",
+      "section": "IPC",
+      "description": "DACOITY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.PREPARATION_FOR_DACOITY.CY.detection_pct",
+      "section": "IPC",
+      "description": "PREPARATION_FOR_DACOITY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.PREPARATION_FOR_DACOITY.PY.detection_pct",
+      "section": "IPC",
+      "description": "PREPARATION_FOR_DACOITY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY.CY.detection_pct",
+      "section": "IPC",
+      "description": "ROBBERY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.2,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY.PY.detection_pct",
+      "section": "IPC",
+      "description": "ROBBERY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY_CHAIN_SNATCHING.CY.detection_pct",
+      "section": "IPC",
+      "description": "ROBBERY_CHAIN_SNATCHING CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.1,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ROBBERY_CHAIN_SNATCHING.PY.detection_pct",
+      "section": "IPC",
+      "description": "ROBBERY_CHAIN_SNATCHING PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.2,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_ROBBERY.CY.detection_pct",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_ROBBERY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.ATTEMPT_TO_ROBBERY.PY.detection_pct",
+      "section": "IPC",
+      "description": "ATTEMPT_TO_ROBBERY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 87.5,
+      "observed": 88,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.EXTORTION.CY.detection_pct",
+      "section": "IPC",
+      "description": "EXTORTION CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 92.3,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.EXTORTION.PY.detection_pct",
+      "section": "IPC",
+      "description": "EXTORTION PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 93.0,
+      "observed": 93,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_DAY.CY.detection_pct",
+      "section": "IPC",
+      "description": "HBT_DAY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 65.6,
+      "observed": 66,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_DAY.PY.detection_pct",
+      "section": "IPC",
+      "description": "HBT_DAY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 59.8,
+      "observed": 60,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_NIGHT.CY.detection_pct",
+      "section": "IPC",
+      "description": "HBT_NIGHT CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 73.2,
+      "observed": 73,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HBT_NIGHT.PY.detection_pct",
+      "section": "IPC",
+      "description": "HBT_NIGHT PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 64.6,
+      "observed": 65,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.THEFT.CY.detection_pct",
+      "section": "IPC",
+      "description": "THEFT CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 42.0,
+      "observed": 42,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.THEFT.PY.detection_pct",
+      "section": "IPC",
+      "description": "THEFT PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 31.4,
+      "observed": 31,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MV_THEFT.CY.detection_pct",
+      "section": "IPC",
+      "description": "MV_THEFT CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 61.1,
+      "observed": 61,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MV_THEFT.PY.detection_pct",
+      "section": "IPC",
+      "description": "MV_THEFT PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 56.1,
+      "observed": 56,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SNATCHING.CY.detection_pct",
+      "section": "IPC",
+      "description": "SNATCHING CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 85.7,
+      "observed": 86,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SNATCHING.PY.detection_pct",
+      "section": "IPC",
+      "description": "SNATCHING PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 81.2,
+      "observed": 81,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HURT.CY.detection_pct",
+      "section": "IPC",
+      "description": "HURT CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.0,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.HURT.PY.detection_pct",
+      "section": "IPC",
+      "description": "HURT PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.3,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RIOTS.CY.detection_pct",
+      "section": "IPC",
+      "description": "RIOTS CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.5,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RIOTS.PY.detection_pct",
+      "section": "IPC",
+      "description": "RIOTS PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.6,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RAPE.CY.detection_pct",
+      "section": "IPC",
+      "description": "RAPE CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.7,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.RAPE.PY.detection_pct",
+      "section": "IPC",
+      "description": "RAPE PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.0,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SEXUAL_OFFENCES_SEC69.CY.detection_pct",
+      "section": "IPC",
+      "description": "SEXUAL_OFFENCES_SEC69 CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 91.6,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.SEXUAL_OFFENCES_SEC69.PY.detection_pct",
+      "section": "IPC",
+      "description": "SEXUAL_OFFENCES_SEC69 PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MOLESTATION.CY.detection_pct",
+      "section": "IPC",
+      "description": "MOLESTATION CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.0,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.MOLESTATION.PY.detection_pct",
+      "section": "IPC",
+      "description": "MOLESTATION PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.7,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.OTHER_IPC.CY.detection_pct",
+      "section": "IPC",
+      "description": "OTHER_IPC CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 88.9,
+      "observed": 89,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.OTHER_IPC.PY.detection_pct",
+      "section": "IPC",
+      "description": "OTHER_IPC PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 86.0,
+      "observed": 86,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.TOTAL_IPC.CY.detection_pct",
+      "section": "IPC",
+      "description": "TOTAL_IPC CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 85.1,
+      "observed": 85,
+      "status": "pass"
+    },
+    {
+      "id": "IPC.TOTAL_IPC.PY.detection_pct",
+      "section": "IPC",
+      "description": "TOTAL_IPC PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 79.2,
+      "observed": 79,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.CM.registered",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (CM registered; blank cells counted as 0)",
+      "expected": 59,
+      "observed": 59,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.CM.registered",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (CM registered; blank cells counted as 0)",
+      "expected": 111,
+      "observed": 111,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.CM.detected",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (CM detected; blank cells counted as 0)",
+      "expected": 55,
+      "observed": 55,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.CM.detected",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (CM detected; blank cells counted as 0)",
+      "expected": 93,
+      "observed": 93,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.PM.registered",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (PM registered; blank cells counted as 0)",
+      "expected": 64,
+      "observed": 64,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.PM.registered",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (PM registered; blank cells counted as 0)",
+      "expected": 119,
+      "observed": 119,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.PM.detected",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (PM detected; blank cells counted as 0)",
+      "expected": 54,
+      "observed": 54,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.PM.detected",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (PM detected; blank cells counted as 0)",
+      "expected": 105,
+      "observed": 105,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.CY.registered",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (CY registered; blank cells counted as 0)",
+      "expected": 595,
+      "observed": 595,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.CY.registered",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (CY registered; blank cells counted as 0)",
+      "expected": 882,
+      "observed": 882,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.CY.detected",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (CY detected; blank cells counted as 0)",
+      "expected": 587,
+      "observed": 587,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.CY.detected",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (CY detected; blank cells counted as 0)",
+      "expected": 853,
+      "observed": 853,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.PY.registered",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (PY registered; blank cells counted as 0)",
+      "expected": 652,
+      "observed": 652,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.PY.registered",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (PY registered; blank cells counted as 0)",
+      "expected": 948,
+      "observed": 948,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.rape_total.PY.detected",
+      "section": "CAW",
+      "description": "Total Rape Cases: sum of components equals printed CAW_RAPE_TOTAL (PY detected; blank cells counted as 0)",
+      "expected": 641,
+      "observed": 641,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.kidnapping_total.PY.detected",
+      "section": "CAW",
+      "description": "Total Kidnapping Cases: sum of components equals printed CAW_KIDNAPPING_TOTAL (PY detected; blank cells counted as 0)",
+      "expected": 884,
+      "observed": 884,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_POCSO_MINOR.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_POCSO_MINOR CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.1,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_POCSO_MINOR.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_POCSO_MINOR PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.3,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_MAJOR.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_MAJOR CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.3,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_MAJOR.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_MAJOR PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 96.6,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_TOTAL.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_TOTAL CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.7,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_RAPE_TOTAL.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_RAPE_TOTAL PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.3,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_SEXUAL_OFFENCES_SEC69.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_SEXUAL_OFFENCES_SEC69 CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 91.6,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_SEXUAL_OFFENCES_SEC69.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_SEXUAL_OFFENCES_SEC69 PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_MINOR.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_MINOR CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 96.7,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_MINOR.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_MINOR PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 93.4,
+      "observed": 93,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_MAJOR.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_MAJOR CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_MAJOR.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_MAJOR PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 71.4,
+      "observed": 71,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_TOTAL.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_TOTAL CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 96.7,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_KIDNAPPING_TOTAL.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_KIDNAPPING_TOTAL PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 93.2,
+      "observed": 93,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_OUTRAGING_MODESTY.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_OUTRAGING_MODESTY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.1,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_OUTRAGING_MODESTY.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_OUTRAGING_MODESTY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.9,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_INSULT_TO_MODESTY.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_INSULT_TO_MODESTY CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.4,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_INSULT_TO_MODESTY.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_INSULT_TO_MODESTY PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 91.7,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_DEATH.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_DEATH CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_DEATH.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_DEATH PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_SUICIDE.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_SUICIDE CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 75.0,
+      "observed": 75,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_SUICIDE.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_SUICIDE PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 66.7,
+      "observed": 67,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_HARASSMENT.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_HARASSMENT CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 93.6,
+      "observed": 94,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_DOWRY_HARASSMENT.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_DOWRY_HARASSMENT PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 91.9,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_MURDER_OTHER_REASONS.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_MURDER_OTHER_REASONS CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_MURDER_OTHER_REASONS.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_MURDER_OTHER_REASONS PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 88.9,
+      "observed": 89,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_SUICIDE_OTHER_REASONS.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_SUICIDE_OTHER_REASONS CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_SUICIDE_OTHER_REASONS.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_SUICIDE_OTHER_REASONS PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 85.7,
+      "observed": 86,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_HARASSMENT_OTHER_REASONS.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_HARASSMENT_OTHER_REASONS CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 92.1,
+      "observed": 92,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_HARASSMENT_OTHER_REASONS.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_HARASSMENT_OTHER_REASONS PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 89.8,
+      "observed": 90,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_RAPE.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_RAPE CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.1,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_RAPE.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_RAPE PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.3,
+      "observed": 99,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_MOLESTATION.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_MOLESTATION CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 98.0,
+      "observed": 98,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_MOLESTATION.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_MOLESTATION PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 99.8,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_EVE_TEASING.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_EVE_TEASING CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_EVE_TEASING.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_EVE_TEASING PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 93.5,
+      "observed": 94,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_OTHER_IPC.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_OTHER_IPC CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_POCSO_OTHER_IPC.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_POCSO_OTHER_IPC PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_TOTAL.CY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_TOTAL CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 97.0,
+      "observed": 97,
+      "status": "pass"
+    },
+    {
+      "id": "CAW.CAW_TOTAL.PY.detection_pct",
+      "section": "CAW",
+      "description": "CAW_TOTAL PY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 95.8,
+      "observed": 96,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.RAPE.CM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (CM registered)",
+      "expected": 59,
+      "observed": 59,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.RAPE.CM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (CM detected)",
+      "expected": 55,
+      "observed": 55,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.RAPE.PM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (PM registered)",
+      "expected": 64,
+      "observed": 64,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.RAPE.PM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (PM detected)",
+      "expected": 54,
+      "observed": 54,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.RAPE.CY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (CY registered)",
+      "expected": 596,
+      "observed": 595,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.RAPE.CY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (CY detected)",
+      "expected": 588,
+      "observed": 587,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.RAPE.PY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (PY registered)",
+      "expected": 653,
+      "observed": 652,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.RAPE.PY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'RAPE' equals CAW table 'CAW_RAPE_TOTAL' (PY detected)",
+      "expected": 640,
+      "observed": 641,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.CM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (CM registered)",
+      "expected": 25,
+      "observed": 25,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.CM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (CM detected)",
+      "expected": 16,
+      "observed": 16,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.PM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (PM registered)",
+      "expected": 29,
+      "observed": 29,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.PM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (PM detected)",
+      "expected": 24,
+      "observed": 24,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.CY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (CY registered)",
+      "expected": 238,
+      "observed": 238,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.CY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (CY detected)",
+      "expected": 218,
+      "observed": 218,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.PY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (PY registered)",
+      "expected": 154,
+      "observed": 154,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.SEXUAL_OFFENCES_SEC69.PY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'SEXUAL_OFFENCES_SEC69' equals CAW table 'CAW_SEXUAL_OFFENCES_SEC69' (PY detected)",
+      "expected": 154,
+      "observed": 154,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.MOLESTATION.CM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (CM registered)",
+      "expected": 169,
+      "observed": 169,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.MOLESTATION.CM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (CM detected)",
+      "expected": 158,
+      "observed": 158,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.MOLESTATION.PM.registered",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (PM registered)",
+      "expected": 174,
+      "observed": 173,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.MOLESTATION.PM.detected",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (PM detected)",
+      "expected": 162,
+      "observed": 161,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.MOLESTATION.CY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (CY registered)",
+      "expected": 1484,
+      "observed": 1483,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.MOLESTATION.CY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (CY detected)",
+      "expected": 1455,
+      "observed": 1455,
+      "status": "pass"
+    },
+    {
+      "id": "CROSS.MOLESTATION.PY.registered",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (PY registered)",
+      "expected": 1677,
+      "observed": 1666,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CROSS.MOLESTATION.PY.detected",
+      "section": "CROSS",
+      "description": "IPC table 'MOLESTATION' equals CAW table 'CAW_OUTRAGING_MODESTY' (PY detected)",
+      "expected": 1672,
+      "observed": 1665,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.CM.registered",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (CM registered; blank cells counted as 0)",
+      "expected": 532,
+      "observed": 508,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.CM.detected",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (CM detected; blank cells counted as 0)",
+      "expected": 461,
+      "observed": 446,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.PM.registered",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (PM registered; blank cells counted as 0)",
+      "expected": 538,
+      "observed": 510,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.PM.detected",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (PM detected; blank cells counted as 0)",
+      "expected": 469,
+      "observed": 446,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.CY.registered",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (CY registered; blank cells counted as 0)",
+      "expected": 4580,
+      "observed": 4354,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.CY.detected",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (CY detected; blank cells counted as 0)",
+      "expected": 4429,
+      "observed": 4223,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.PY.registered",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (PY registered; blank cells counted as 0)",
+      "expected": 4708,
+      "observed": 4556,
+      "status": "discrepancy"
+    },
+    {
+      "id": "CAW.total.PY.detected",
+      "section": "CAW",
+      "description": "Total Crime Against Women vs items 1-9 (composition not stated): sum of components equals printed CAW_TOTAL (PY detected; blank cells counted as 0)",
+      "expected": 4517,
+      "observed": 4365,
+      "status": "discrepancy"
+    },
+    {
+      "id": "NDPS.possession.cases",
+      "section": "NDPS",
+      "description": "Total Possession Cases: sum of components equals printed NDPS_POSSESSION_TOTAL (CM cases; blank cells counted as 0)",
+      "expected": 794,
+      "observed": 794,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.possession.persons_arrested",
+      "section": "NDPS",
+      "description": "Total Possession Cases: sum of components equals printed NDPS_POSSESSION_TOTAL (CM persons_arrested; blank cells counted as 0)",
+      "expected": 995,
+      "observed": 995,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.possession.value",
+      "section": "NDPS",
+      "description": "Total Possession Cases: sum of components equals printed NDPS_POSSESSION_TOTAL (CM value; blank cells counted as 0)",
+      "expected": 2457404559,
+      "observed": 2457404559,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.possession.quantity_tablets",
+      "section": "NDPS",
+      "description": "Total Possession Cases: sum of components equals printed NDPS_POSSESSION_TOTAL (CM quantity_tablets; blank cells counted as 0)",
+      "expected": 487,
+      "observed": 487,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.possession.quantity_kg_excl_cough_syrup",
+      "section": "NDPS",
+      "description": "Total Possession kg vs drugs other than Cough Syrup: sum of components equals printed NDPS_POSSESSION_TOTAL (CM quantity_kg; blank cells counted as 0)",
+      "expected": 651.3684,
+      "observed": 652.2,
+      "status": "discrepancy"
+    },
+    {
+      "id": "NDPS.possession.cough_syrup_litres",
+      "section": "NDPS",
+      "description": "Cough Syrup quantity (printed in the Kgs column) equals the litres total",
+      "expected": 123.2,
+      "observed": 123.2,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.total.quantity_kg",
+      "section": "NDPS",
+      "description": "Total NDPS kg equals Total Possession kg (within 0.01 kg of printed rounding)",
+      "expected": 652.2,
+      "observed": 652.203602,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.total.cases",
+      "section": "NDPS",
+      "description": "Total NDPS Cases: sum of components equals printed NDPS_TOTAL (CM cases; blank cells counted as 0)",
+      "expected": 5552,
+      "observed": 5552,
+      "status": "pass"
+    },
+    {
+      "id": "NDPS.total.persons_arrested",
+      "section": "NDPS",
+      "description": "Total NDPS Cases: sum of components equals printed NDPS_TOTAL (CM persons_arrested; blank cells counted as 0)",
+      "expected": 5133,
+      "observed": 5133,
+      "status": "pass"
+    },
+    {
+      "id": "EOW.difference",
+      "section": "EOW",
+      "description": "EOW: printed 'Diff. in Reg.' equals current-year minus previous-year registrations",
+      "expected": 5,
+      "observed": 100,
+      "status": "discrepancy"
+    },
+    {
+      "id": "EOW.EOW_CASES.CY.detection_pct",
+      "section": "EOW",
+      "description": "EOW_CASES CY: printed detection % matches 100*detected/registered (within rounding)",
+      "expected": 100.0,
+      "observed": 100,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.cheating.registered",
+      "section": "CYBER",
+      "description": "Cheating: sum of components equals printed CYBER_CHEATING (CM registered; blank cells counted as 0)",
+      "expected": 2283,
+      "observed": 2283,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.total.registered",
+      "section": "CYBER",
+      "description": "Cyber total: sum of components equals printed CYBER_TOTAL (CM registered; blank cells counted as 0)",
+      "expected": 4254,
+      "observed": 4254,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.cheating.detected",
+      "section": "CYBER",
+      "description": "Cheating: sum of components equals printed CYBER_CHEATING (CM detected; blank cells counted as 0)",
+      "expected": 537,
+      "observed": 537,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.total.detected",
+      "section": "CYBER",
+      "description": "Cyber total: sum of components equals printed CYBER_TOTAL (CM detected; blank cells counted as 0)",
+      "expected": 1121,
+      "observed": 1121,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.cheating.pa",
+      "section": "CYBER",
+      "description": "Cheating: sum of components equals printed CYBER_CHEATING (CM pa; blank cells counted as 0)",
+      "expected": 471,
+      "observed": 471,
+      "status": "pass"
+    },
+    {
+      "id": "CYBER.total.pa",
+      "section": "CYBER",
+      "description": "Cyber total: sum of components equals printed CYBER_TOTAL (CM pa; blank cells counted as 0)",
+      "expected": 794,
+      "observed": 794,
+      "status": "pass"
+    }
+  ],
+  "checks_summary": {
+    "total": 173,
+    "passed": 154,
+    "discrepancies": 19
+  },
+  "source_notes": [
+    {
+      "id": "NOTE.PREVIOUS_MONTH_LAW_LABEL",
+      "description": "The 'Previous Month' columns are headed 'IPC' while the current month and current year are headed 'IPC + BNS'. Values are stored as printed; month-to-month comparisons may mix legal frameworks."
+    },
+    {
+      "id": "NOTE.CYBER_PA_UNDEFINED",
+      "description": "The cyber table's 'PA' column is not defined in the source. It is stored under the metric name 'pa' without interpretation."
+    },
+    {
+      "id": "NOTE.BROTHELS_NO_ZONES",
+      "description": "The brothel statement is titled 'zonewise' but contains only a Mumbai TOTAL row; no zone breakdown is available."
+    },
+    {
+      "id": "NOTE.NDPS_VALUE_UNIT",
+      "description": "The NDPS 'Values' column does not state its currency or unit."
+    },
+    {
+      "id": "NOTE.NDPS_COUGH_SYRUP_COLUMN",
+      "description": "Cough Syrup's quantity 123.20 is printed in the Kgs column, while both total rows list 123.20 under litres. Stored as printed (quantity_kg)."
+    },
+    {
+      "id": "NOTE.NO_SPATIAL_OR_TEMPORAL_DETAIL",
+      "description": "The statement is city-level only: no incident records, timestamps, coordinates, police-station or zone breakdown. It cannot train a spatial or temporal model on its own."
+    },
+    {
+      "id": "NOTE.SPELLING_AS_PRINTED",
+      "description": "Labels keep the source spelling (e.g. 'Mejor', 'Harrasment')."
+    }
+  ]
+}

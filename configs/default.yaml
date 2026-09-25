@@ -1,0 +1,210 @@
+# CrimeX platform configuration.
+#
+# Numbers here are design values, not scientific constants: score weights, display
+# bands and generator assumptions are all meant to be reviewed and tuned.
+
+region:
+  name: "Mumbai study region (approximate)"
+  description: >-
+    Approximate Greater Mumbai land area used for the demonstration grid: a bounding box,
+    a coarse hand-drawn clip outline and a 1 km global land mask. It is NOT an official
+    municipal, police or jurisdiction boundary.
+  bbox: {south: 18.890, north: 19.272, west: 72.770, east: 72.990}
+  # [lon, lat]; clips the north/north-east edge (Mira-Bhayandar, Thane) and the east
+  # (Navi Mumbai). The coastline itself comes from the land mask.
+  outline:
+    - [72.760, 18.880]
+    - [72.850, 18.880]
+    - [72.880, 18.990]
+    - [72.960, 18.980]
+    - [72.972, 19.060]
+    - [72.966, 19.180]
+    - [72.935, 19.200]
+    - [72.900, 19.235]
+    - [72.880, 19.262]
+    - [72.868, 19.272]
+    - [72.760, 19.272]
+  min_land_fraction: 0.5
+  # Approximate forest/park extent (Sanjay Gandhi National Park, Aarey). Used only to
+  # keep synthetic activity low there.
+  low_activity_areas:
+    - - [72.872, 19.150]
+      - [72.900, 19.148]
+      - [72.930, 19.170]
+      - [72.935, 19.198]
+      - [72.900, 19.235]
+      - [72.880, 19.255]
+      - [72.868, 19.235]
+      - [72.872, 19.190]
+
+grid:
+  cell_size_m: 1500
+  samples_per_axis: 5
+
+time:
+  window_days: 7
+  as_of: 2026-09-01
+  bands:
+    - {code: NIGHT, label: "Night 00:00-06:00", start_hour: 0, end_hour: 6}
+    - {code: MORNING, label: "Morning 06:00-12:00", start_hour: 6, end_hour: 12}
+    - {code: AFTERNOON, label: "Afternoon 12:00-18:00", start_hour: 12, end_hour: 18}
+    - {code: EVENING, label: "Evening 18:00-24:00", start_hour: 18, end_hour: 24}
+
+crime_types:
+  # Official IPC heads modelled spatially: place-based, with enough volume.
+  modelled:
+    - ROBBERY
+    - ROBBERY_CHAIN_SNATCHING
+    - SNATCHING
+    - HBT_DAY
+    - HBT_NIGHT
+    - THEFT
+    - MV_THEFT
+    - HURT
+    - RIOTS
+  not_modelled:
+    MURDER: "Low monthly volume (16 registered in Aug 2026) and largely interpersonal; weakly place-dependent."
+    ATTEMPT_TO_MURDER: "Largely interpersonal; weakly place-dependent."
+    DACOITY: "Very low volume (13 registered in Jan-Aug 2026)."
+    PREPARATION_FOR_DACOITY: "Very low volume (2 registered in Jan-Aug 2026)."
+    ATTEMPT_TO_ROBBERY: "Very low volume (5 registered in Jan-Aug 2026)."
+    EXTORTION: "Not tied to a physical place of occurrence."
+    RAPE: "Sensitive; a large share occurs in non-public settings, so place-based forecasting can misdirect attention. Can be enabled after review."
+    SEXUAL_OFFENCES_SEC69: "Sensitive; a large share occurs in non-public settings. Can be enabled after review."
+    MOLESTATION: "Sensitive; mixed public/non-public settings. Can be enabled after review for public-place safety planning."
+    OTHER_IPC: "Heterogeneous catch-all head; a single spatial profile would not be meaningful."
+  # Project-defined ordinal severity (1-5). This is NOT part of the official statement.
+  severity:
+    ROBBERY: 4
+    ROBBERY_CHAIN_SNATCHING: 4
+    SNATCHING: 3
+    HBT_DAY: 3
+    HBT_NIGHT: 3
+    THEFT: 2
+    MV_THEFT: 2
+    HURT: 3
+    RIOTS: 4
+  # Implied by the official head names (House Breaking Theft by Day / by Night).
+  # 06:00 and 18:00 approximate sunrise/sunset; wraps past midnight when start > end.
+  allowed_hours:
+    HBT_DAY: [6, 18]
+    HBT_NIGHT: [18, 6]
+
+synthetic:
+  seed: 20260901
+  start_date: 2021-01-01
+  end_date: 2026-08-31
+  n_stations: 12
+  land_uses: [COMMERCIAL, RESIDENTIAL, TRANSIT_HUB, INDUSTRIAL, ENTERTAINMENT]
+  activity_sigma: 0.8
+  field_smoothing_cells: 2.0
+  low_activity_multiplier: 0.08
+  noise_share: 0.06
+  hotspots: {persistent_per_type: 1, persistent_extra: 3, seasonal: 4, emerging: 6, declining: 5}
+  hotspot_share_range: [0.025, 0.05]
+  hotspot_spill: 0.3
+  rarity_boost_max: 3.0
+  emerging_onset_weeks_before_end: [8, 22]
+  emerging_ramp_weeks: [4, 10]
+  declining_start_range: [2023-01-01, 2025-06-30]
+  declining_half_life_weeks: [6, 16]
+  seasonal_duration_weeks: [6, 10]
+  n_anomalies: 30
+  n_recent_anomalies: 4
+  anomaly_days: [5, 12]
+  anomaly_multiplier: [5.0, 9.0]
+  anomaly_min_daily: 0.35
+  hotspot_time_signature_share: 0.6
+  defect_rates:
+    missing_timestamp: 0.004
+    missing_location: 0.006
+    invalid_coordinates: 0.002
+    unknown_crime_type: 0.002
+    duplicate_record: 0.003
+  # Hour-of-day, weekday and place-type propensities below are ASSUMPTIONS of the
+  # synthetic generator (the official statement has no such detail). Analytics and
+  # models never read them; they must rediscover patterns from the incidents.
+  profiles:
+    ROBBERY:
+      hour_peaks: [[21, 2.5, 1.0], [1, 2.0, 0.5], [14, 3.0, 0.3]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.1, 1.2, 1.1]
+      land_use_affinity: {COMMERCIAL: 1.0, RESIDENTIAL: 0.5, TRANSIT_HUB: 1.5, INDUSTRIAL: 0.8, ENTERTAINMENT: 1.2}
+    ROBBERY_CHAIN_SNATCHING:
+      hour_peaks: [[7, 1.5, 1.0], [19, 2.0, 1.0]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.1, 1.2]
+      land_use_affinity: {COMMERCIAL: 0.8, RESIDENTIAL: 1.5, TRANSIT_HUB: 1.0, INDUSTRIAL: 0.2, ENTERTAINMENT: 0.5}
+    SNATCHING:
+      hour_peaks: [[19, 2.5, 1.0], [10, 2.0, 0.5]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.1, 1.1, 1.0]
+      land_use_affinity: {COMMERCIAL: 1.2, RESIDENTIAL: 0.7, TRANSIT_HUB: 1.6, INDUSTRIAL: 0.3, ENTERTAINMENT: 0.9}
+    HBT_DAY:
+      hour_peaks: [[11, 2.5, 1.0], [15, 2.0, 0.6]]
+      weekday_weights: [1.1, 1.1, 1.1, 1.1, 1.1, 0.8, 0.7]
+      land_use_affinity: {COMMERCIAL: 0.5, RESIDENTIAL: 1.8, TRANSIT_HUB: 0.3, INDUSTRIAL: 0.4, ENTERTAINMENT: 0.3}
+    HBT_NIGHT:
+      hour_peaks: [[2, 2.0, 1.0], [23, 2.0, 0.5]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.1, 1.1]
+      land_use_affinity: {COMMERCIAL: 1.2, RESIDENTIAL: 1.3, TRANSIT_HUB: 0.4, INDUSTRIAL: 0.8, ENTERTAINMENT: 0.6}
+    THEFT:
+      hour_peaks: [[12, 3.0, 0.8], [18, 2.5, 1.0], [9, 2.0, 0.5]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.1, 1.2, 1.1]
+      land_use_affinity: {COMMERCIAL: 1.5, RESIDENTIAL: 0.6, TRANSIT_HUB: 1.8, INDUSTRIAL: 0.5, ENTERTAINMENT: 1.0}
+    MV_THEFT:
+      hour_peaks: [[2, 3.0, 1.0], [21, 2.5, 0.6]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+      land_use_affinity: {COMMERCIAL: 1.0, RESIDENTIAL: 1.2, TRANSIT_HUB: 0.8, INDUSTRIAL: 0.8, ENTERTAINMENT: 0.7}
+    HURT:
+      hour_peaks: [[21, 3.0, 1.0], [15, 3.0, 0.5]]
+      weekday_weights: [0.9, 0.9, 0.9, 0.95, 1.05, 1.25, 1.3]
+      land_use_affinity: {COMMERCIAL: 0.8, RESIDENTIAL: 1.0, TRANSIT_HUB: 0.9, INDUSTRIAL: 0.5, ENTERTAINMENT: 1.5}
+    RIOTS:
+      hour_peaks: [[20, 3.0, 1.0], [13, 3.0, 0.5]]
+      weekday_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.1, 1.1]
+      land_use_affinity: {COMMERCIAL: 0.8, RESIDENTIAL: 1.0, TRANSIT_HUB: 0.7, INDUSTRIAL: 0.6, ENTERTAINMENT: 0.9}
+
+scoring:
+  cai_weights: {spatial: 0.45, recency: 0.20, recurrence: 0.20, consistency: 0.15}
+  crs_weights: {F: 0.20, R: 0.15, T: 0.15, A: 0.20, S: 0.10, P: 0.10, X: 0.10}
+  blend_ml_weight: 0.60
+  lq_cap: 10.0
+  count_epsilon: 1.0
+  neighbor_radius_cells: 2
+  affinity_window_weeks: 52
+  affinity_period_weeks: 4
+  affinity_recency_half_life_days: 90
+  frequency_window_weeks: 8
+  trend_recent_weeks: 4
+  baseline_weeks: 52
+  trend_k: 3.0
+  trend_b: 0.5
+  anomaly_history_weeks: 52
+  anomaly_z_cap: 3.0
+  anomaly_alert_z: 3.0
+  anomaly_alert_min_count: 3
+  recency_half_life_days_default: 14
+  recency_half_life_grid_days: [3, 7, 14, 30, 60, 120]
+
+hotspots:
+  gi_neighbor_radius_cells: 1
+  fdr_correction: false
+  period_weeks: 4
+  n_periods: 26
+  recent_periods: 3
+  hot_z: 1.96
+  trend_alpha: 0.05
+
+training:
+  # Chronological splits by forecast-window start; windows that straddle a boundary
+  # are dropped (embargo). Train: 2021-2024, validation: 2025, test: 2026-01-01 .. as_of.
+  splits: {train_end: 2025-01-01, validation_end: 2026-01-01}
+  min_history_weeks: 52
+  xgb: {n_estimators: 400, learning_rate: 0.05, max_depth: 6, min_child_weight: 5.0,
+        subsample: 0.8, colsample_bytree: 0.8}
+  rf: {n_estimators: 150, max_depth: 14, min_samples_leaf: 20, max_train_rows: 400000}
+  top_k_fraction: 0.10
+  shap_top_k: 6
+
+paths:
+  data_dir: data
+  artifacts_dir: artifacts
+  official_statement: data/official/mumbai_police_statement_2026-08.json

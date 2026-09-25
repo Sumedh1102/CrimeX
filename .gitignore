@@ -1,0 +1,24 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# Generated data and model artifacts (reproducible via `make pipeline`)
+data/raw/
+data/processed/
+artifacts/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/next-env.d.ts
+frontend/*.tsbuildinfo
+
+# Misc
+.DS_Store
+.env
+.env.local
