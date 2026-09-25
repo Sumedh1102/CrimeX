@@ -26,12 +26,12 @@ export default function CrimeTypePage({ params }: { params: Promise<{ code: stri
   const { code } = use(params);
   const { data: p, error } = useCrimeTypeProfile(code);
   const ui = useUI();
-  if (error) return <div className="p-5"><ErrorNote error={error} /></div>;
+  if (error) return <div className="p-3 sm:p-5"><ErrorNote error={error} /></div>;
   if (!p) return <Loading />;
   const fp = p.fingerprint;
   const official = (["CM", "PM", "CY", "PY"] as const).map((k) => [k, p.official.values[k] as OfficialPeriod] as const);
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <div className="flex items-end justify-between gap-4">
         <div>
           <Link href="/crime-types" className="text-[11px] text-muted hover:text-ink-2">← Crime types</Link>

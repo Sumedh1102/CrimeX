@@ -44,7 +44,9 @@ export function riskStyle(item: RiskItem, metric: RiskMetric, textures: boolean)
   let texture: string | null = null;
   if (textures && band === "HIGH") texture = "tex-risk-high";
   if (textures && band === "VERY HIGH") texture = "tex-risk-veryhigh";
-  return { fill: RISK_COLORS[band], texture, icon: null, label: fmtNum(value, 0), legendKey: band };
+  // Attention markers: a non-colour cue that also gives the top bands a tap target.
+  const icon = band === "VERY HIGH" ? "risk-veryhigh" : band === "HIGH" ? "risk-high" : null;
+  return { fill: RISK_COLORS[band], texture, icon, label: fmtNum(value, 0), legendKey: band };
 }
 
 export function hotspotStyle(item: HotspotItem): ZoneStyle {

@@ -1,7 +1,8 @@
 // Canvas-drawn images registered with MapLibre: state icons, the surge-alert icon,
 // 45/135-degree textures, and value labels. Drawing labels as images keeps them
 // working with the offline fallback style, which has no font glyphs.
-import { CHROME, STATE_STYLE, TEXTURE_INK } from "@/lib/colors";
+import { REFERENCE_COLORS } from "@/lib/basemap";
+import { CHROME, RISK_COLORS, STATE_STYLE, TEXTURE_INK } from "@/lib/colors";
 import type { HotspotState } from "@/lib/types";
 
 const PR = 2; // pixel ratio for crisp images
@@ -130,7 +131,40 @@ export const TEXTURES: Record<string, () => MapImage> = {
   "tex-persistent": () => texture(TEXTURE_INK.persistent, false),
 };
 
+/**
+ * Attention marker for zones in the HIGH / VERY HIGH risk bands: an ink ring (filled
+ * centre for VERY HIGH) with a dark halo, so the mark reads on any fill and is a second,
+ * non-colour cue for the top bands.
+ */
+export function riskMarker(veryHigh: boolean): MapImage {
+  const s = 20;
+  const { c, ctx } = canvas(s, s);
+  const m = s / 2;
+  ctx.beginPath();
+  ctx.arc(m, m, 6.5, 0, Math.PI * 2);
+  ctx.lineWidth = 4.5;
+  ctx.strokeStyle = CHROME.plane;
+  ctx.stroke();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = CHROME.ink;
+  ctx.stroke();
+  if (veryHigh) {
+    ctx.beginPath();
+    ctx.arc(m, m, 3, 0, Math.PI * 2);
+    ctx.fillStyle = CHROME.ink;
+    ctx.fill();
+  } else {
+    ctx.beginPath();
+    ctx.arc(m, m, 2.2, 0, Math.PI * 2);
+    ctx.fillStyle = RISK_COLORS.HIGH;
+    ctx.fill();
+  }
+  return toImage(c);
+}
+
 export const ICONS: Record<string, () => MapImage> = {
+  "risk-high": () => riskMarker(false),
+  "risk-veryhigh": () => riskMarker(true),
   "state-emerging": () => stateIcon("EMERGING"),
   "state-active": () => stateIcon("ACTIVE"),
   "state-persistent": () => stateIcon("PERSISTENT"),
@@ -156,6 +190,38 @@ export function labelImage(text: string): MapImage {
   ctx.strokeText(text, w / 2, h / 2 + 0.5);
   ctx.fillStyle = CHROME.ink;
   ctx.fillText(text, w / 2, h / 2 + 0.5);
+  return toImage(c);
+}
+
+/**
+ * Offline reference labels for ids like "ref:place:Andheri". Places in secondary ink,
+ * water names in italic blue-grey, areas outside the study region in muted ink.
+ */
+export function referenceLabelImage(id: string): MapImage {
+  const [, kind, ...rest] = id.split(":");
+  const text = rest.join(":");
+  const font =
+    kind === "water"
+      ? "italic 500 11px system-ui, -apple-system, 'Segoe UI', sans-serif"
+      : kind === "context"
+        ? "500 10px system-ui, -apple-system, 'Segoe UI', sans-serif"
+        : "600 10.5px system-ui, -apple-system, 'Segoe UI', sans-serif";
+  const color = kind === "water" ? REFERENCE_COLORS.waterLabel : kind === "context" ? CHROME.muted : REFERENCE_COLORS.label;
+  const probe = document.createElement("canvas").getContext("2d")!;
+  probe.font = font;
+  const label = kind === "context" ? text.toUpperCase() : text;
+  const w = Math.ceil(probe.measureText(label).width) + 8;
+  const h = 16;
+  const { c, ctx } = canvas(w, h);
+  ctx.font = font;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.lineJoin = "round";
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "rgba(13,13,13,0.9)";
+  ctx.strokeText(label, w / 2, h / 2 + 0.5);
+  ctx.fillStyle = color;
+  ctx.fillText(label, w / 2, h / 2 + 0.5);
   return toImage(c);
 }
 

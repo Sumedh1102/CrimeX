@@ -10,9 +10,10 @@ import {
   Loading,
   RiskBadge,
   StateBadge,
+  Swatch,
 } from "@/components/ui/primitives";
 import { useMeta, useRiskLayer, useZones } from "@/lib/api";
-import { RISK_ORDER } from "@/lib/colors";
+import { RISK_COLORS, RISK_ORDER } from "@/lib/colors";
 import { fmtNum, fmtPct, fmtWindow } from "@/lib/format";
 import { useUI } from "@/lib/store";
 import type { RiskItem } from "@/lib/types";
@@ -38,7 +39,7 @@ export default function PredictionsPage() {
   const bandLabel = (b: string) => meta?.bands.find((t) => t.code === b)?.label ?? b;
 
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <FilterBar showPeriod={false} />
       {error && <ErrorNote error={error} />}
       <Card
@@ -49,9 +50,10 @@ export default function PredictionsPage() {
             : undefined
         }
         actions={
-          <span className="flex gap-3 text-[11px] text-muted">
+          <span className="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-muted">
             {RISK_ORDER.map((b) => (
-              <span key={b} className="tabular">
+              <span key={b} className="tabular inline-flex items-center gap-1">
+                <Swatch color={RISK_COLORS[b]} />
                 {b}: {rows.filter((r) => r.risk_band === b).length}
               </span>
             ))}

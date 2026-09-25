@@ -15,7 +15,7 @@ export default function AnomaliesPage() {
   const { data, error } = useAnomalies(ui.crimeType);
   const label = (c: string) => meta?.crime_types.find((t) => t.code === c)?.label ?? c;
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <FilterBar showBand={false} showPeriod={false} />
       {error && <ErrorNote error={error} />}
       <div className="grid grid-cols-1 gap-3 xl:grid-cols-[minmax(0,1fr)_440px]">

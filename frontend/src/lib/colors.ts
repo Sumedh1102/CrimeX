@@ -1,6 +1,9 @@
 // Color roles. Every ramp below was validated with the dataviz validator
 // (scripts/validate_palette.js) against the dark chart surface #1a1a19:
-//   risk (ordinal, orange)        PASS monotone L, adjacent dL >= 0.06, low end 2.29:1
+//   risk (ordinal, rust->peach)   PASS monotone L, adjacent dL ~0.105, hue spread 33 deg, low end
+//                                 2.35:1 vs the map background at RISK_FILL_OPACITY; adjacent
+//                                 OKLab dE 10.7-13.3 normal vision, >= 8.9 under protan/deutan/tritan
+//                                 (the previous orange ramp at 0.74 opacity was dE 5.9-7.4)
 //   affinity (ordinal, blue)      PASS (documented blue steps 600..200), low end 2.15:1
 //   anomaly (ordinal, blue, 3)    PASS, low end 2.63:1
 //   Gi* hot arm (ordinal, red, 3) PASS, low end 2.71:1; cold arm = documented blue steps
@@ -28,13 +31,17 @@ export const SERIES = {
   neutral: "#383835", // diverging midpoint
 } as const;
 
+// OKLCH L 0.475 -> 0.90 in equal steps, hue 34 -> 66 deg (rust -> peach). In dark mode the
+// ramp's anchor flips: low risk recedes into the dark map, the highest band is the brightest.
 export const RISK_COLORS: Record<RiskBand, string> = {
-  LOW: "#76492c",
-  MODERATE: "#9e5b2f",
-  ELEVATED: "#ca6d2b",
-  HIGH: "#ef8234",
-  "VERY HIGH": "#ffa05b",
+  LOW: "#973a25",
+  MODERATE: "#ce4700",
+  ELEVATED: "#f16d02",
+  HIGH: "#fea158",
+  "VERY HIGH": "#ffd6ad",
 };
+// Fills are near-opaque so the bands stay apart; basemap labels are drawn above them.
+export const RISK_FILL_OPACITY = 0.9;
 export const RISK_ORDER: RiskBand[] = ["LOW", "MODERATE", "ELEVATED", "HIGH", "VERY HIGH"];
 
 // Presentation bins for the calibrated probability (not risk bands).
@@ -114,7 +121,7 @@ export const WARN = "#fab219";
 
 // Texture strokes: tone-on-tone (a darker step of the fill's own ramp), 45 / 135 degrees.
 export const TEXTURE_INK = {
-  riskHigh: "#9e5b2f",
-  riskVeryHigh: "#ca6d2b",
+  riskHigh: RISK_COLORS.MODERATE,
+  riskVeryHigh: RISK_COLORS.ELEVATED,
   persistent: "#a03f3c",
 } as const;

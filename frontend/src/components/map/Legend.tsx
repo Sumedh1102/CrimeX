@@ -32,6 +32,17 @@ function Chip({ color, tex }: { color: string | null; tex?: string | null }) {
   return <span aria-hidden className="inline-block h-3 w-4 shrink-0 rounded-[3px]" style={style} />;
 }
 
+/** Matches the canvas-drawn attention marker on the map (mapImages.riskMarker). */
+function RiskMarker({ filled }: { filled: boolean }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 20 20" aria-hidden className="shrink-0">
+      <circle cx="10" cy="10" r="6.5" fill="none" stroke="#0d0d0d" strokeWidth="4.5" />
+      <circle cx="10" cy="10" r="6.5" fill="none" stroke="#ffffff" strokeWidth="2" />
+      <circle cx="10" cy="10" r={filled ? 3 : 2.2} fill={filled ? "#ffffff" : RISK_COLORS.HIGH} />
+    </svg>
+  );
+}
+
 interface Entry {
   key: string;
   chip: ReactNode;
@@ -68,7 +79,8 @@ export function Legend({
   let note = "";
   if (layer === "risk" && metric !== "probability") {
     heading = metric === "crs" ? "Explainable risk score (CRS)" : "Blended risk score";
-    note = "0–100 indicator, not a probability. Bands are presentation cut points.";
+    note =
+      "0–100 indicator, not a probability. Bands are presentation cut points; HIGH and VERY HIGH also carry a marker and hatching.";
     entries = meta.risk_bands.map((b) => {
       const band = b.label as RiskBand;
       const tex =
@@ -77,7 +89,18 @@ export function Legend({
           : textures && band === "VERY HIGH"
             ? texture(TEXTURE_INK.riskVeryHigh, true)
             : null;
-      return { key: band, chip: <Chip color={RISK_COLORS[band]} tex={tex} />, label: band, sub: `${b.min === 0 ? 0 : b.min}–${b.max}` };
+      const marker = band === "VERY HIGH" ? <RiskMarker filled /> : band === "HIGH" ? <RiskMarker filled={false} /> : null;
+      return {
+        key: band,
+        chip: (
+          <span className="flex w-[34px] shrink-0 items-center gap-1">
+            <Chip color={RISK_COLORS[band]} tex={tex} />
+            {marker}
+          </span>
+        ),
+        label: band,
+        sub: `${b.min === 0 ? 0 : b.min}–${b.max}`,
+      };
     });
   } else if (layer === "risk") {
     heading = "Calibrated probability";
@@ -129,6 +152,7 @@ export function Legend({
   return (
     <div className="text-[11px]">
       <p className="font-semibold text-ink">{heading}</p>
+      <p className="sr-only">Zone counts per legend entry are shown on the right.</p>
       <ul className="mt-1.5 space-y-1">
         {entries.map((e) => (
           <li key={e.key} className="flex items-center gap-2 text-ink-2">

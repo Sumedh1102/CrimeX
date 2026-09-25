@@ -14,7 +14,7 @@ const cell = (x: number | null) => (x === null ? <span className="text-muted">bl
 export default function OfficialPage() {
   const { data, error } = useOfficial();
   const [section, setSection] = useState("IPC");
-  if (error) return <div className="p-5"><ErrorNote error={error} /></div>;
+  if (error) return <div className="p-3 sm:p-5"><ErrorNote error={error} /></div>;
   if (!data) return <Loading />;
   const sec = data.sections.find((s) => s.id === section)!;
   const per = data.periods;
@@ -69,7 +69,7 @@ export default function OfficialPage() {
               ];
 
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <Card
         title="Official statistics: Brihan Mumbai monthly statement"
         subtitle={`${data.report.source_file} · statement month ${data.report.statement_month} · ${data.note}`}

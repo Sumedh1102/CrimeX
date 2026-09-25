@@ -31,8 +31,9 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
   const { data: stations } = useStations();
   if (!meta) return null;
   return (
-    <div className="flex flex-wrap items-end gap-3">
+    <div className="grid grid-cols-2 items-end gap-2 sm:flex sm:flex-wrap sm:gap-3">
       <Select
+        className="min-w-0"
         label="Station"
         value={ui.stationId ?? "ALL"}
         onChange={(v) => ui.set({ stationId: v === "ALL" ? null : v })}
@@ -42,6 +43,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
         ]}
       />
       <Select
+        className="min-w-0"
         label="Crime type"
         value={ui.crimeType}
         onChange={(v) => ui.set({ crimeType: v })}
@@ -52,6 +54,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
       />
       {showBand && (
         <Select
+          className="min-w-0"
           label="Time band (next 7 days)"
           value={ui.band}
           onChange={(v) => ui.set({ band: v })}
@@ -60,6 +63,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
       )}
       {showPeriod && (
         <Select
+          className="min-w-0"
           label="History period"
           value={ui.period}
           onChange={(v) => ui.set({ period: v })}
@@ -67,7 +71,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
         />
       )}
       {showPeriod && ui.period === "custom" && (
-        <div className="flex items-end gap-2">
+        <div className="col-span-2 flex items-end gap-2">
           {(["customStart", "customEnd"] as const).map((k) => (
             <label key={k} className="flex flex-col gap-1">
               <span className="text-[11px] font-medium uppercase tracking-wide text-muted">
@@ -86,7 +90,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
           ))}
         </div>
       )}
-      <p className="ml-auto max-w-[340px] text-right text-[11px] leading-snug text-muted">
+      <p className="col-span-2 text-[11px] leading-snug text-muted sm:ml-auto sm:max-w-[340px] sm:text-right">
         {ui.crimeType === "ALL" || ui.band === "ALL"
           ? "With “All”, each zone shows its highest crime-type/band-specific value (never a sum)."
           : "Risk(zone, crime type, time window) for the next 7 days."}

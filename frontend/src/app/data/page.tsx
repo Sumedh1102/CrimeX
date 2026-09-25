@@ -6,12 +6,12 @@ import { fmtDateTime, fmtInt } from "@/lib/format";
 
 export default function DataQualityPage() {
   const { data, error } = useDataQuality();
-  if (error) return <div className="p-5"><ErrorNote error={error} /></div>;
+  if (error) return <div className="p-3 sm:p-5"><ErrorNote error={error} /></div>;
   if (!data) return <Loading />;
   const r = data.report;
   const ds = data.dataset;
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <Card title="Data quality monitor" subtitle={data.note} actions={ds.is_synthetic ? <SyntheticBadge label={ds.data_label} /> : null}>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {[

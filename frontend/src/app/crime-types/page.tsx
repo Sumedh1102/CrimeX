@@ -7,7 +7,7 @@ import { useCrimeTypes } from "@/lib/api";
 export default function CrimeTypesPage() {
   const { data, error } = useCrimeTypes();
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       {error && <ErrorNote error={error} />}
       <Card
         title="Spatially modelled crime heads"

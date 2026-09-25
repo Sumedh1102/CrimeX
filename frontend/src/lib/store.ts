@@ -1,6 +1,7 @@
 "use client";
 
 import { create } from "zustand";
+import type { BasemapChoice } from "./basemap";
 import type { LayerKey, RiskMetric } from "./types";
 
 export interface Selection {
@@ -20,6 +21,8 @@ interface UIState {
   riskMetric: RiskMetric;
   showStations: boolean;
   textures: boolean;
+  basemap: BasemapChoice;
+  navOpen: boolean; // mobile / tablet navigation drawer
   selected: Selection | null;
   set: (patch: Partial<Omit<UIState, "set" | "select" | "clearSelection">>) => void;
   select: (s: Selection) => void;
@@ -37,6 +40,8 @@ export const useUI = create<UIState>((set) => ({
   riskMetric: "final_risk",
   showStations: true,
   textures: true,
+  basemap: "auto",
+  navOpen: false,
   selected: null,
   set: (patch) => set(patch),
   select: (s) => set({ selected: s }),

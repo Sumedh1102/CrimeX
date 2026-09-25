@@ -69,6 +69,15 @@ origin), zone assignment from coordinates, derived calendar fields and time band
 `quality_report.json`, and `dataset_manifest.json` with the content-hashed
 `dataset_version` (e.g. `Dataset-2026-09-01-005b2007`).
 
+## Map reference geography (display only)
+
+`frontend/public/geo/mumbai-land.geojson` and `mumbai-water.geojson` are OpenStreetMap-derived
+land and water-body polygons (geo-maps 0.6.0, 100 m resolution, © OpenStreetMap contributors,
+ODbL), clipped to the study area by `scripts/build_reference_basemap.py`. Locality labels in
+`frontend/src/lib/localities.ts` are approximate positions of well-known neighbourhoods. Both
+are used only to draw the offline basemap and to name a zone "near …" in the map popup; no
+analytics, feature or model reads them, and they are not administrative or police boundaries.
+
 ## Replacing synthetic data with real incidents
 
 1. Export incidents as CSV with at least `incident_id, timestamp, crime_type, latitude,

@@ -34,9 +34,12 @@ describe("risk layer styling", () => {
     expect(s.legendKey).toBe("VERY HIGH");
     expect(s.label).toBe("84");
     expect(s.texture).toBe("tex-risk-veryhigh");
+    expect(s.icon).toBe("risk-veryhigh");
     const crs = riskStyle(risk, "crs", true);
     expect(crs.fill).toBe(RISK_COLORS.ELEVATED);
     expect(crs.texture).toBeNull();
+    expect(crs.icon).toBeNull();
+    expect(riskStyle({ ...risk, risk_band: "HIGH" }, "final_risk", false).icon).toBe("risk-high");
   });
 
   it("textures can be switched off", () => {

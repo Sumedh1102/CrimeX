@@ -27,15 +27,15 @@ export function Card({
       style={{ borderColor: "var(--border)" }}
     >
       {(title || actions) && (
-        <header className="flex items-start justify-between gap-3 px-4 pt-3.5">
+        <header className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2 px-3 pt-3.5 sm:px-4">
           <div className="min-w-0">
             {title && <h2 className="text-[13px] font-semibold text-ink">{title}</h2>}
             {subtitle && <p className="mt-0.5 text-xs text-muted">{subtitle}</p>}
           </div>
-          {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
+          {actions && <div className="flex min-w-0 flex-wrap items-center gap-2">{actions}</div>}
         </header>
       )}
-      <div className={clsx("px-4 pb-4 pt-3", bodyClassName)}>{children}</div>
+      <div className={clsx("px-3 pb-4 pt-3 sm:px-4", bodyClassName)}>{children}</div>
     </section>
   );
 }
@@ -129,7 +129,7 @@ export function Select<T extends string>({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as T)}
-        className="h-8 rounded-md border bg-surface px-2 text-[13px] text-ink outline-none hover:bg-surface-2"
+        className="h-9 w-full min-w-0 rounded-md border bg-surface px-2 text-[13px] text-ink outline-none hover:bg-surface-2 sm:h-8 sm:w-auto"
         style={{ borderColor: "var(--border)" }}
       >
         {options.map((o) => (
@@ -195,15 +195,15 @@ export function Kpi({
 }) {
   return (
     <div
-      className="rounded-lg border bg-surface px-4 py-3"
+      className="min-w-0 rounded-lg border bg-surface px-3 py-2.5 sm:px-4 sm:py-3"
       style={{ borderColor: "var(--border)" }}
       title={hint}
     >
       <div className="flex items-center gap-2 text-xs text-ink-2">
         {icon}
-        <span>{label}</span>
+        <span className="min-w-0 truncate">{label}</span>
       </div>
-      <div className="mt-1.5 text-[26px] font-semibold leading-none text-ink">{value}</div>
+      <div className="mt-1.5 text-[22px] font-semibold leading-none text-ink sm:text-[26px]">{value}</div>
       {hint && <p className="mt-2 line-clamp-2 text-[11px] leading-snug text-muted">{hint}</p>}
     </div>
   );

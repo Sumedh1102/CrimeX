@@ -30,10 +30,10 @@ export default function DashboardPage() {
     ui.select({ zoneId, crimeType, band: band ?? "AUTO" });
 
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <FilterBar />
       {error && <ErrorNote error={error} />}
-      <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-3 xl:grid-cols-4">
         <Kpi
           label="Active hotspots"
           value={d ? fmtInt(d.kpis.active_hotspots) : "–"}
@@ -62,7 +62,7 @@ export default function DashboardPage() {
 
       <div className="grid grid-cols-1 gap-3 2xl:grid-cols-[minmax(0,1fr)_360px] xl:grid-cols-[minmax(0,1fr)_320px]">
         <MapCard height={560} />
-        <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:flex xl:flex-col">
           <Card title="Top emerging zones" subtitle="Recent vs earlier incident rate per four-week period">
             {!d ? (
               <Loading />

@@ -43,6 +43,7 @@ npm run build
 - **Leakage:** features at origin k only use windows < k (`ml/features/rolling.py`); splits embargo boundary-straddling windows. Keep the leakage tests passing.
 - **Config over constants:** weights, windows, bands, thresholds and generator assumptions live in `configs/default.yaml`.
 - **Dataviz:** map and chart colors come from `frontend/src/lib/colors.ts` (validated ramps). Every layer also uses labels, icons or textures, and every chart card has a table view.
+- **Basemap is optional decoration.** `frontend/src/lib/basemap.ts` probes a provider chain (custom `NEXT_PUBLIC_MAP_STYLE_URL`, CARTO vector, OpenFreeMap, CARTO raster) and falls back, including at runtime, to the bundled offline reference map (`frontend/public/geo/`, OSM/ODbL, built by `scripts/build_reference_basemap.py`). Overlays must keep working with no tile server; zone fills go under basemap labels. Locality names (`frontend/src/lib/localities.ts`) are approximate and display-only.
 
 ## What the product is
 

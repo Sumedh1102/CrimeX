@@ -1,38 +1,37 @@
 "use client";
 
-import type { GeoJSONSource, Map as MLMap, MapLayerMouseEvent, StyleSpecification } from "maplibre-gl";
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import type {
+  GeoJSONSource,
+  LayerSpecification,
+  Map as MLMap,
+  MapLayerMouseEvent,
+  StyleSpecification,
+} from "maplibre-gl";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useMeta, useZones } from "@/lib/api";
-import { CHROME } from "@/lib/colors";
+import {
+  offlineBaseStyle,
+  probeProvider,
+  providerChain,
+  rasterBaseStyle,
+  referenceStyleParts,
+  REFERENCE_LAYERS,
+  REFERENCE_SOURCES,
+  type BasemapProvider,
+} from "@/lib/basemap";
+import { CHROME, RISK_FILL_OPACITY } from "@/lib/colors";
 import { stationBoundaries, styleFor, type LayerItem } from "@/lib/layers";
+import { localitiesGeoJSON } from "@/lib/localities";
 import { useUI } from "@/lib/store";
 import type { LayerKey, ZonesGeoJSON } from "@/lib/types";
-import { ICONS, labelImage, PIXEL_RATIO, TEXTURES } from "./mapImages";
+import { BasemapStatus, type BasemapState } from "./BasemapStatus";
+import { ICONS, labelImage, PIXEL_RATIO, referenceLabelImage, TEXTURES } from "./mapImages";
 import { MapTooltip } from "./MapTooltip";
+import { ZonePopup } from "./ZonePopup";
 import { useLayerData } from "./useLayerData";
 
-const DEFAULT_STYLE_URL = "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json";
-
-const FALLBACK_STYLE: StyleSpecification = {
-  version: 8,
-  sources: {},
-  layers: [{ id: "background", type: "background", paint: { "background-color": "#121211" } }],
-};
-
-async function resolveStyle(): Promise<{ style: StyleSpecification; offline: boolean }> {
-  const url = process.env.NEXT_PUBLIC_MAP_STYLE_URL ?? DEFAULT_STYLE_URL;
-  if (url === "none") return { style: FALLBACK_STYLE, offline: true };
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 4000);
-    const res = await fetch(url, { signal: ctrl.signal });
-    clearTimeout(timer);
-    if (!res.ok) throw new Error(String(res.status));
-    return { style: (await res.json()) as StyleSpecification, offline: false };
-  } catch {
-    return { style: FALLBACK_STYLE, offline: true };
-  }
-}
+const PROBE_DEADLINE_MS = 6000; // after this the offline reference map is used
+const TILE_WATCHDOG_MS = 12000; // live basemap that has loaded no tile by then -> offline
 
 function bbox(zones: ZonesGeoJSON): [[number, number], [number, number]] {
   let w = Infinity, s = Infinity, e = -Infinity, n = -Infinity;
@@ -50,7 +49,56 @@ function centroid(ring: number[][]): [number, number] {
 
 const EMPTY_FC: GeoJSON.FeatureCollection = { type: "FeatureCollection", features: [] };
 
-function addLayers(map: MLMap, zones: ZonesGeoJSON) {
+/** Probe providers in parallel; take the first, in priority order, that serves a real tile. */
+async function chooseBasemap(
+  chain: BasemapProvider[],
+  center: [number, number],
+): Promise<{ provider: BasemapProvider; style: StyleSpecification; failures: string[] }> {
+  const offline = chain[chain.length - 1];
+  const live = chain.filter((p) => p.kind !== "offline");
+  const probes = live.map((p) => probeProvider(p, center, { timeoutMs: PROBE_DEADLINE_MS - 500 }));
+  const failures: string[] = [];
+  for (let i = 0; i < live.length; i++) {
+    const r = await probes[i];
+    if (r.ok) {
+      const p = live[i];
+      return { provider: p, style: p.kind === "raster" ? rasterBaseStyle(p) : r.style!, failures };
+    }
+    failures.push(`${live[i].label}: ${r.reason}`);
+  }
+  return { provider: offline, style: offlineBaseStyle(), failures };
+}
+
+/** Basemap + the offline reference layers (hidden unless offline). */
+function composeStyle(base: StyleSpecification, offline: boolean): StyleSpecification {
+  const ref = referenceStyleParts(localitiesGeoJSON(), offline);
+  const layers = base.layers ?? [];
+  const firstSymbol = layers.findIndex((l) => l.type === "symbol");
+  const cut = firstSymbol < 0 ? layers.length : firstSymbol;
+  const sea: LayerSpecification = {
+    id: "ref-sea",
+    type: "background",
+    layout: { visibility: offline ? "visible" : "none" },
+    paint: { "background-color": "#0f1a26" },
+  };
+  return {
+    ...base,
+    sources: { ...base.sources, ...ref.sources },
+    layers: [...layers.slice(0, cut), sea, ...ref.below, ...layers.slice(cut), ...ref.above],
+  };
+}
+
+function isOurs(id: string) {
+  return (
+    id === "ref-sea" ||
+    (REFERENCE_LAYERS as readonly string[]).includes(id) ||
+    id.startsWith("zones-") ||
+    id.startsWith("zone-") ||
+    id === "stations-line"
+  );
+}
+
+function addOverlays(map: MLMap, zones: ZonesGeoJSON) {
   for (const [id, make] of Object.entries({ ...TEXTURES, ...ICONS })) {
     if (!map.hasImage(id)) map.addImage(id, make(), { pixelRatio: PIXEL_RATIO });
   }
@@ -64,6 +112,9 @@ function addLayers(map: MLMap, zones: ZonesGeoJSON) {
     type: "geojson",
     data: { type: "Feature", properties: {}, geometry: { type: "MultiLineString", coordinates: segs } },
   });
+  // Fills sit under the basemap's labels so place and road names stay readable.
+  const beforeLabels = map.getStyle().layers.find((l) => l.type === "symbol" && !isOurs(l.id))?.id ??
+    (map.getLayer("ref-labels") ? "ref-labels" : undefined);
   map.addLayer({
     id: "zones-fill",
     type: "fill",
@@ -73,60 +124,73 @@ function addLayers(map: MLMap, zones: ZonesGeoJSON) {
       "fill-color": ["get", "fill"],
       "fill-opacity": ["case", ["==", ["get", "outside"], true], 0.12, 0.74],
     },
-  });
+  }, beforeLabels);
   map.addLayer({
     id: "zones-texture",
     type: "fill",
     source: "zones",
     filter: ["all", ["==", ["get", "has_texture"], true], ["!=", ["get", "outside"], true]],
     paint: { "fill-pattern": ["get", "texture"], "fill-opacity": 0.85 },
-  });
+  }, beforeLabels);
   map.addLayer({
     id: "zones-grid",
     type: "line",
     source: "zones",
-    paint: { "line-color": CHROME.baseline, "line-width": 0.6, "line-opacity": 0.9 },
-  });
+    paint: { "line-color": CHROME.plane, "line-width": 0.8, "line-opacity": 0.85 },
+  }, beforeLabels);
   map.addLayer({
     id: "stations-line",
     type: "line",
     source: "stations",
-    paint: { "line-color": CHROME.ink2, "line-width": 1.3, "line-opacity": 0.55 },
-  });
+    paint: { "line-color": CHROME.ink2, "line-width": 1.3, "line-opacity": 0.6 },
+  }, beforeLabels);
   map.addLayer({
     id: "zones-hit",
     type: "fill",
     source: "zones",
     paint: { "fill-color": "#000000", "fill-opacity": 0 },
   });
-  map.addLayer({
-    id: "zones-hover",
-    type: "line",
-    source: "zones",
-    filter: ["==", ["get", "zone_id"], ""],
-    paint: { "line-color": CHROME.ink, "line-width": 1.5 },
-  });
-  map.addLayer({
-    id: "zones-selected",
-    type: "line",
-    source: "zones",
-    filter: ["==", ["get", "zone_id"], ""],
-    paint: { "line-color": CHROME.ink, "line-width": 2.6 },
-  });
+  // Hover / selection outlines: white line on a dark halo, legible on the brightest fill.
+  for (const [id, width] of [["zones-hover", 1.6], ["zones-selected", 2.6]] as const) {
+    map.addLayer({
+      id: `${id}-halo`,
+      type: "line",
+      source: "zones",
+      filter: ["==", ["get", "zone_id"], ""],
+      paint: { "line-color": CHROME.plane, "line-width": width + 3 },
+    });
+    map.addLayer({
+      id,
+      type: "line",
+      source: "zones",
+      filter: ["==", ["get", "zone_id"], ""],
+      paint: { "line-color": CHROME.ink, "line-width": width },
+    });
+  }
   map.addLayer({
     id: "zone-icons",
     type: "symbol",
     source: "centroids",
     filter: ["!=", ["get", "icon"], ""],
-    layout: { "icon-image": ["get", "icon"], "icon-allow-overlap": true, "icon-ignore-placement": true },
+    layout: {
+      "icon-image": ["get", "icon"],
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+      "icon-size": ["interpolate", ["linear"], ["zoom"], 9, 0.8, 12, 1, 14, 1.15],
+    },
   });
   map.addLayer({
     id: "zone-labels",
     type: "symbol",
     source: "centroids",
     minzoom: 11.6,
-    filter: ["all", ["!=", ["get", "label"], ""], ["==", ["get", "icon"], ""]],
-    layout: { "icon-image": ["get", "label"], "icon-allow-overlap": false },
+    filter: ["!=", ["get", "label"], ""],
+    layout: {
+      "icon-image": ["get", "label"],
+      "icon-allow-overlap": false,
+      // Values sit below a marker when the zone has one.
+      "icon-offset": ["case", ["!=", ["get", "icon"], ""], ["literal", [0, 15]], ["literal", [0, 0]]],
+    },
   });
 }
 
@@ -143,9 +207,14 @@ export default function MapView({
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
+  const camera = useRef<{ center: [number, number]; zoom: number } | null>(null);
   const [ready, setReady] = useState(false);
-  const [offline, setOffline] = useState(false);
+  const [basemap, setBasemap] = useState<BasemapState>({ phase: "probing" });
+  const [attempt, setAttempt] = useState(0);
   const [hover, setHover] = useState<{ x: number; y: number; zoneId: string } | null>(null);
+  const [popup, setPopup] = useState<{ zoneId: string; lngLat: [number, number] } | null>(null);
+  const [popupPoint, setPopupPoint] = useState<{ x: number; y: number } | null>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
   const ui = useUI();
   const layer = layerProp ?? ui.layer;
@@ -158,69 +227,159 @@ export default function MapView({
     return new Set(zones.features.filter((f) => f.properties.station_id === ui.stationId).map((f) => f.properties.zone_id));
   }, [zones, ui.stationId]);
 
+  const centroids = useMemo(
+    () => new Map((zones?.features ?? []).map((f) => [f.properties.zone_id, centroid(f.geometry.coordinates[0])])),
+    [zones],
+  );
+
   // Latest values for event handlers bound once at map creation.
-  const latest = useRef({ layer, byZone: data.byZone, crimeType: ui.crimeType, band: ui.band });
+  const latest = useRef({ centroids, popup });
   useEffect(() => {
-    latest.current = { layer, byZone: data.byZone, crimeType: ui.crimeType, band: ui.band };
+    latest.current = { centroids, popup };
   });
+
+  useEffect(() => {
+    const el = container.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!container.current || !zones || mapRef.current) return;
     let cancelled = false;
     let map: MLMap | null = null;
+    let watchdog: ReturnType<typeof setTimeout> | undefined;
+    setBasemap({ phase: "probing" });
     (async () => {
       const ml = await import("maplibre-gl");
       ml.setWorkerUrl(`${window.location.origin}/maplibre/maplibre-gl-worker.mjs`);
-      const { style, offline: off } = await resolveStyle();
+      const [[w, s], [e, n]] = bbox(zones);
+      const chain = providerChain(ui.basemap, process.env.NEXT_PUBLIC_MAP_STYLE_URL);
+      const { provider, style: base, failures } = await chooseBasemap(chain, [(w + e) / 2, (s + n) / 2]);
       if (cancelled || !container.current) return;
-      setOffline(off);
+      const offline = provider.kind === "offline";
+      const baseSources = new Set(Object.keys(base.sources ?? {}));
       map = new ml.Map({
         container: container.current,
-        style,
-        bounds: bbox(zones),
-        fitBoundsOptions: { padding: 24 },
+        style: composeStyle(base, offline),
+        ...(camera.current
+          ? { center: camera.current.center, zoom: camera.current.zoom }
+          : { bounds: [[w, s], [e, n]] as [[number, number], [number, number]], fitBoundsOptions: { padding: 24 } }),
         attributionControl: { compact: true },
         dragRotate: false,
         pitchWithRotate: false,
+        touchPitch: false,
+        cooperativeGestures: false,
         minZoom: 9,
         maxZoom: 16,
+        maxBounds: [[w - 0.45, s - 0.35], [e + 0.45, n + 0.35]],
       });
+      map.touchZoomRotate.disableRotation();
       map.addControl(new ml.NavigationControl({ showCompass: false }), "top-right");
-      // Value labels are generated on demand; MapLibre waits for the resolver.
+      // Canvas-drawn images are generated on demand; MapLibre waits for the resolver. This
+      // also re-supplies icons and textures if a style reload drops them.
       map.setMissingStyleImageResolver((id) => {
-        if (id.startsWith("lbl:") && map && !map.hasImage(id)) {
-          map.addImage(id, labelImage(id.slice(4)), { pixelRatio: PIXEL_RATIO });
-        }
+        if (!map || map.hasImage(id)) return;
+        const make = TEXTURES[id] ?? ICONS[id];
+        const img = id.startsWith("lbl:") ? labelImage(id.slice(4)) : id.startsWith("ref:") ? referenceLabelImage(id) : make?.();
+        if (img) map.addImage(id, img, { pixelRatio: PIXEL_RATIO });
       });
+
+      let failedOver: string | null = null; // runtime failure reason, if the live basemap died
+      const goOffline = (reason: string) => {
+        if (!map || failedOver) return;
+        failedOver = reason;
+        for (const l of map.getStyle().layers) {
+          const ref = l.id === "ref-sea" || (REFERENCE_LAYERS as readonly string[]).includes(l.id);
+          if (ref) map.setLayoutProperty(l.id, "visibility", "visible");
+          else if (!isOurs(l.id)) map.setLayoutProperty(l.id, "visibility", "none");
+        }
+        setBasemap({ phase: "offline", provider: provider.label, reason, failures });
+      };
+
+      let tilesOk = 0;
+      let tileErrors = 0;
+      map.on("data", (ev) => {
+        const e = ev as { dataType?: string; sourceId?: string; tile?: unknown };
+        if (e.dataType === "source" && e.tile && e.sourceId && baseSources.has(e.sourceId)) tilesOk++;
+      });
+      map.on("error", (ev) => {
+        const sid = (ev as { sourceId?: string }).sourceId;
+        if (offline || !sid || !baseSources.has(sid) || (REFERENCE_SOURCES as readonly string[]).includes(sid)) return;
+        tileErrors++;
+        if (tilesOk === 0 && tileErrors >= 3) goOffline(`${provider.label}: street tiles failed to load`);
+      });
+
       map.on("load", () => {
         if (!map) return;
-        addLayers(map, zones);
+        addOverlays(map, zones);
         setReady(true);
+        // Tile errors can arrive before "load"; a failover already reported wins.
+        if (failedOver) setBasemap({ phase: "offline", provider: provider.label, reason: failedOver, failures });
+        else
+          setBasemap(
+            offline
+              ? { phase: "offline", provider: provider.label, reason: failures.length ? "no street-map provider reachable" : "selected", failures }
+              : { phase: "live", provider: provider.label, failures },
+          );
+        if (!offline && !failedOver) {
+          watchdog = setTimeout(() => {
+            if (tilesOk === 0) goOffline(`${provider.label}: no street tiles loaded`);
+          }, TILE_WATCHDOG_MS);
+        }
       });
-      map.on("mousemove", "zones-hit", (e: MapLayerMouseEvent) => {
-        const zoneId = e.features?.[0]?.properties?.zone_id as string | undefined;
+
+      const openPopup = (zoneId: string | undefined) => {
+        if (!zoneId) return;
+        const c = latest.current.centroids.get(zoneId);
+        if (c) setPopup({ zoneId, lngLat: c });
+      };
+      map.on("mousemove", "zones-hit", (ev: MapLayerMouseEvent) => {
+        const zoneId = ev.features?.[0]?.properties?.zone_id as string | undefined;
         if (!zoneId || !map) return;
         map.getCanvas().style.cursor = "pointer";
         map.setFilter("zones-hover", ["==", ["get", "zone_id"], zoneId]);
-        setHover({ x: e.point.x, y: e.point.y, zoneId });
+        map.setFilter("zones-hover-halo", ["==", ["get", "zone_id"], zoneId]);
+        setHover({ x: ev.point.x, y: ev.point.y, zoneId });
       });
       map.on("mouseleave", "zones-hit", () => {
         if (!map) return;
         map.getCanvas().style.cursor = "";
         map.setFilter("zones-hover", ["==", ["get", "zone_id"], ""]);
+        map.setFilter("zones-hover-halo", ["==", ["get", "zone_id"], ""]);
         setHover(null);
       });
-      map.on("click", "zones-hit", (e: MapLayerMouseEvent) => {
-        const zoneId = e.features?.[0]?.properties?.zone_id as string | undefined;
-        if (!zoneId) return;
-        const { byZone, crimeType, band } = latest.current;
-        const item = byZone.get(zoneId) as (LayerItem & { crime_type?: string; band?: string }) | undefined;
-        useUI.getState().select({
-          zoneId,
-          crimeType: crimeType !== "ALL" ? crimeType : item?.crime_type ?? "AUTO",
-          band: band !== "ALL" ? band : item && "band" in item && item.band && item.band !== "ALL" ? item.band : "AUTO",
-        });
+      // Markers and zone polygons both open the popup (markers are larger tap targets).
+      map.on("click", (ev) => {
+        if (!map) return;
+        const pad = 10;
+        const hits = map.queryRenderedFeatures(
+          [[ev.point.x - pad, ev.point.y - pad], [ev.point.x + pad, ev.point.y + pad]],
+          { layers: ["zone-icons"] },
+        );
+        // Markers can sit closer together than the tap box: take the nearest one.
+        let nearest: { id: string; d: number } | null = null;
+        for (const h of hits) {
+          const c = latest.current.centroids.get(h.properties?.zone_id as string);
+          if (!c) continue;
+          const q = map.project(c);
+          const d = Math.hypot(q.x - ev.point.x, q.y - ev.point.y);
+          if (!nearest || d < nearest.d) nearest = { id: h.properties.zone_id as string, d };
+        }
+        const zoneId = (nearest?.id ??
+          map.queryRenderedFeatures(ev.point, { layers: ["zones-hit"] })[0]?.properties?.zone_id) as string | undefined;
+        if (zoneId) openPopup(zoneId);
+        else setPopup(null);
       });
+      map.on("mouseenter", "zone-icons", () => map && (map.getCanvas().style.cursor = "pointer"));
+      // Keep the popup anchored to its zone while the map pans and zooms.
+      map.on("move", () => {
+        const p = latest.current.popup;
+        if (p && map) setPopupPoint(map.project(p.lngLat));
+      });
+
       mapRef.current = map;
       if (process.env.NODE_ENV !== "production") {
         (window as unknown as { __crimexMap?: MLMap }).__crimexMap = map; // e2e / debugging hook
@@ -228,11 +387,17 @@ export default function MapView({
     })();
     return () => {
       cancelled = true;
-      map?.remove();
+      clearTimeout(watchdog);
+      if (map) {
+        const c = map.getCenter();
+        camera.current = { center: [c.lng, c.lat], zoom: map.getZoom() };
+        map.remove();
+      }
       mapRef.current = null;
       setReady(false);
     };
-  }, [zones]);
+    // ui.basemap / attempt: a new provider choice or a retry rebuilds the map (camera kept).
+  }, [zones, ui.basemap, attempt]);
 
   // Push layer styling into the sources whenever data or presentation options change.
   useEffect(() => {
@@ -269,13 +434,19 @@ export default function MapView({
     });
     (map.getSource("zones") as GeoJSONSource).setData({ type: "FeatureCollection", features } as GeoJSON.FeatureCollection);
     (map.getSource("centroids") as GeoJSONSource).setData({ type: "FeatureCollection", features: points });
+    // Risk bands are near-opaque so they stay distinguishable; other layers keep their
+    // validated translucent fill.
+    const opacity = layer === "risk" ? RISK_FILL_OPACITY : 0.74;
+    map.setPaintProperty("zones-fill", "fill-opacity", ["case", ["==", ["get", "outside"], true], 0.12, opacity]);
   }, [ready, zones, layer, data.byZone, ui.riskMetric, ui.textures, stationZones]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!ready || !map) return;
-    map.setFilter("zones-selected", ["==", ["get", "zone_id"], ui.selected?.zoneId ?? ""]);
-  }, [ready, ui.selected]);
+    const id = popup?.zoneId ?? ui.selected?.zoneId ?? "";
+    map.setFilter("zones-selected", ["==", ["get", "zone_id"], id]);
+    map.setFilter("zones-selected-halo", ["==", ["get", "zone_id"], id]);
+  }, [ready, ui.selected, popup]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -283,7 +454,21 @@ export default function MapView({
     map.setLayoutProperty("stations-line", "visibility", ui.showStations ? "visible" : "none");
   }, [ready, ui.showStations]);
 
+  useEffect(() => {
+    const map = mapRef.current;
+    setPopupPoint(popup && map && ready ? map.project(popup.lngLat) : null);
+  }, [popup, ready]);
+
+  useEffect(() => {
+    if (!popup) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setPopup(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [popup]);
+
+  const retry = useCallback(() => setAttempt((a) => a + 1), []);
   const hoverZone = hover && zones?.features.find((f) => f.properties.zone_id === hover.zoneId)?.properties;
+  const popupZone = popup && zones?.features.find((f) => f.properties.zone_id === popup.zoneId)?.properties;
 
   return (
     <div className={className} style={{ position: "relative", height }}>
@@ -292,25 +477,28 @@ export default function MapView({
       <div
         ref={container}
         className="overflow-hidden rounded-md"
-        style={{ position: "absolute", inset: 0, background: "#121211" }}
+        style={{ position: "absolute", inset: 0, background: "#0f1a26" }}
+        aria-label="Zone risk map"
+        role="region"
       />
-      {(data.validating || data.loading) && (
-        <div className="pointer-events-none absolute left-3 top-3 rounded bg-plane/80 px-2 py-1 text-[11px] text-muted">
-          Updating…
+      {basemap.phase === "probing" && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-xs text-muted">
+          Loading map…
         </div>
       )}
-      {offline && ready && (
-        <div className="pointer-events-none absolute right-12 top-3 rounded bg-plane/80 px-2 py-1 text-[10px] text-muted">
-          Basemap unavailable offline: showing the zone grid only
-        </div>
-      )}
+      <div className="absolute left-2 top-2 z-10 flex max-w-[calc(100%-56px)] flex-col items-start gap-1.5">
+        <BasemapStatus state={basemap} onRetry={retry} />
+        {(data.validating || data.loading) && (
+          <div className="pointer-events-none rounded bg-plane/85 px-2 py-1 text-[11px] text-muted">Updating…</div>
+        )}
+      </div>
       {(zonesError || data.error) && (
-        <div className="absolute inset-x-3 top-3 rounded border bg-plane/90 px-3 py-2 text-xs text-ink-2" style={{ borderColor: "rgba(208,59,59,0.5)" }}>
+        <div className="absolute inset-x-3 top-12 z-10 rounded border bg-plane/90 px-3 py-2 text-xs text-ink-2" style={{ borderColor: "rgba(208,59,59,0.5)" }}>
           {(zonesError ?? data.error)?.message}
         </div>
       )}
       {children}
-      {hover && hoverZone && meta && (
+      {hover && hoverZone && meta && !popup && (
         <MapTooltip
           x={hover.x}
           y={hover.y}
@@ -320,6 +508,17 @@ export default function MapView({
           meta={meta}
           metric={ui.riskMetric}
           band={ui.band}
+          bounds={size}
+        />
+      )}
+      {popup && popupZone && popupPoint && (
+        <ZonePopup
+          key={popup.zoneId}
+          zone={popupZone}
+          point={popupPoint}
+          bounds={size}
+          item={data.byZone.get(popup.zoneId) as (LayerItem & { crime_type?: string; band?: string }) | undefined}
+          onClose={() => setPopup(null)}
         />
       )}
     </div>

@@ -34,7 +34,9 @@ export function MapTooltip({
   meta,
   metric,
   band,
+  bounds,
 }: {
+  bounds?: { w: number; h: number };
   x: number;
   y: number;
   zone: ZoneProps;
@@ -115,7 +117,12 @@ export function MapTooltip({
     <div
       role="tooltip"
       className="pointer-events-none absolute z-20 w-[250px] rounded-md border bg-surface px-3 py-2 text-[11px] shadow-2xl"
-      style={{ left: x + 14, top: y + 14, borderColor: "var(--border-strong)" }}
+      style={{
+        // Flip to the other side of the cursor near the right / bottom edge of the map.
+        left: bounds && x + 14 + 250 > bounds.w ? Math.max(4, x - 14 - 250) : x + 14,
+        top: bounds && y + 14 + 170 > bounds.h ? Math.max(4, y - 14 - 170) : y + 14,
+        borderColor: "var(--border-strong)",
+      }}
     >
       <p className="mb-1 text-xs font-semibold text-ink">
         Zone {zone.zone_id}

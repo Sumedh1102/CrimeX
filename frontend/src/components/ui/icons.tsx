@@ -82,6 +82,8 @@ export function Icon({ name, size = 16 }: { name: string; size?: number }) {
       return (<svg {...p}><circle cx="6" cy="6" r="2" /><circle cx="18" cy="6" r="2" /><circle cx="12" cy="18" r="2" /><path d="M7.5 7.5 11 16M16.5 7.5 13 16M8 6h8" /></svg>);
     case "data":
       return (<svg {...p}><ellipse cx="12" cy="5" rx="8" ry="3" /><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5" /><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3" /></svg>);
+    case "menu":
+      return (<svg {...p}><path d="M4 7h16M4 12h16M4 17h16" /></svg>);
     case "close":
       return (<svg {...p}><path d="M6 6l12 12M18 6 6 18" /></svg>);
     case "info":

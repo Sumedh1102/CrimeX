@@ -101,7 +101,11 @@ Interactive docs are served at `http://localhost:8000/docs`.
 Next.js 16 App Router with client components. `src/lib/api.ts` has typed SWR hooks, and
 responses keep their previous render while refetching. `src/lib/store.ts` (Zustand) holds the
 single filter row shared by every page. `src/components/map/` is MapLibre with canvas-generated
-icons, textures and labels, so it works without a glyph server. `src/components/zone/` is the
+icons, textures and labels, so it works without a glyph server. Its basemap comes from a
+probed provider chain (`src/lib/basemap.ts`) that falls back to a bundled offline reference map
+(OSM coastline and water in `public/geo/`), so the overlays never depend on a tile server.
+Clicking a zone or attention marker opens a popup (`ZonePopup.tsx`) with the zone-detail API's
+risk, contributing signals and forecast window; `src/components/zone/` is the full
 intelligence panel. The browser calls `/api/v1/*` on the Next origin, and `next.config.ts`
 rewrites to `CRIMEX_API_URL`.
 

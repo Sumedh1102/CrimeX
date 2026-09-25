@@ -15,10 +15,11 @@ import {
   StateBadge,
   Swatch,
 } from "@/components/ui/primitives";
-import { useMeta, useRiskLayer, useZoneDetail } from "@/lib/api";
+import { useMeta, useZoneDetail } from "@/lib/api";
 import { AFFINITY_COLORS, RISK_COLORS, SERIES, STATE_BADGE } from "@/lib/colors";
 import { fmtDate, fmtDateTime, fmtInt, fmtNum, fmtPct, fmtWeek, fmtWindow } from "@/lib/format";
 import { useUI, type Selection } from "@/lib/store";
+import { useResolvedSelection } from "@/lib/useResolvedSelection";
 import type { ZoneDetail } from "@/lib/types";
 
 export function ZonePanelHost() {
@@ -49,21 +50,9 @@ export function ZonePanelHost() {
   );
 }
 
-/** Resolve "AUTO" crime type / band to the zone's highest blended risk for the window. */
-function useResolved(sel: Selection) {
-  const needCrime = sel.crimeType === "AUTO";
-  const needBand = sel.band === "AUTO";
-  const { data } = useRiskLayer(needCrime ? "ALL" : sel.crimeType, needBand ? "ALL" : sel.band, needCrime || needBand);
-  const item = data?.items.find((i) => i.zone_id === sel.zoneId);
-  return {
-    crimeType: needCrime ? item?.crime_type ?? null : sel.crimeType,
-    band: needBand ? item?.band ?? null : sel.band,
-  };
-}
-
 function ZonePanel({ selection, onClose }: { selection: Selection; onClose: () => void }) {
   const { data: meta } = useMeta();
-  const resolved = useResolved(selection);
+  const resolved = useResolvedSelection(selection);
   // Panel-local overrides; the host remounts this component for every new selection.
   const [crimeType, setCrimeType] = useState<string | null>(null);
   const [band, setBand] = useState<string | null>(null);

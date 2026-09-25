@@ -21,7 +21,7 @@ const MODEL_LABELS: Record<string, string> = {
 
 export default function ModelPage() {
   const { data, error } = useModelCard();
-  if (error) return <div className="p-5"><ErrorNote error={error} /></div>;
+  if (error) return <div className="p-3 sm:p-5"><ErrorNote error={error} /></div>;
   if (!data) return <Loading />;
   const md = data.metadata;
   const test = data.metrics.test;
@@ -30,7 +30,7 @@ export default function ModelPage() {
   const rel = data.metrics.reliability.test;
   const splits = md.splits as Record<string, { origins?: number; first_window_start?: string; last_window_end?: string } | string>;
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <Card title="Model card" subtitle={`${md.model_version} · trained ${fmtDateTime(md.trained_at)} UTC · ${md.data_label}`}>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           <Dl

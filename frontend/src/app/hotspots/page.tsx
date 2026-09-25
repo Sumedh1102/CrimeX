@@ -33,7 +33,7 @@ export default function HotspotsPage() {
   );
 
   return (
-    <div className="space-y-4 p-5">
+    <div className="space-y-4 p-3 sm:p-5">
       <FilterBar showBand={view === "hotspots"} showPeriod={view === "hotspots"} />
       <Segmented
         ariaLabel="Hotspot view"
