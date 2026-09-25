@@ -4,7 +4,45 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project status
 
-Greenfield. The repository has no code yet. The source of truth is the project specification ("AI Crime Pattern Prediction & Detection Platform — Project Specification and AI Formula Handbook"). No build, lint, or test commands exist yet: add them here as soon as the frontend, backend, and ML packages are scaffolded, including how to run a single test in each.
+MVP vertical slice built: official-statistics extraction, anchored synthetic incident data with a quality monitor, 1.5 km grid, CAI, Gi* hotspots, hotspot states, surge detector, XGBoost baseline with calibration and SHAP, explainable risk score, FastAPI, and a Next.js dashboard. The source of truth is the project specification ("AI Crime Pattern Prediction & Detection Platform — Project Specification and AI Formula Handbook") plus the user's Mumbai-focused master context. Exact definitions are in `docs/methodology.md`; data provenance is in `docs/data-dictionary.md` and `docs/dataset.md`.
+
+## Commands
+
+Python (3.11, from the repo root):
+
+```bash
+python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"   # or: uv venv && uv pip install -e ".[dev]"
+make pipeline        # synthetic data -> preprocess -> train -> predictions (about 4 min); or: data, preprocess, train, infer
+make api             # uvicorn backend.main:app --reload --port 8000  (docs: /docs)
+make test            # pytest ml/tests backend/tests (builds a small pipeline in tmp dirs, about 1 min)
+make lint            # ruff check + ruff format --check (make format to fix)
+.venv/bin/python -m pytest ml/tests/test_scoring.py::test_cai_worked_example_is_87      # one test
+.venv/bin/python -m pytest backend/tests/test_api.py -k zone_detail                     # one API test
+make official        # re-extract the official PDF + regenerate docs/official-statistics-reference.md
+.venv/bin/python scripts/build_model_card.py   # regenerate docs/model-card.md from the latest bundle
+```
+
+Frontend (`frontend/`, Node 22; read `frontend/AGENTS.md` first — this Next.js version differs from older training data, and its docs live in `frontend/node_modules/next/dist/docs/`):
+
+```bash
+cd frontend && npm install
+npm run dev                          # http://localhost:3000, proxies /api/v1 to CRIMEX_API_URL (default :8000)
+npm run lint && npm run typecheck
+npm test                             # vitest
+npx vitest run src/lib/layers.test.ts -t "probability"   # one test
+npm run build
+```
+
+## Decisions made (keep consistent)
+
+- **Two data layers, never mixed.** `data/official/` holds the Brihan Mumbai statement (city-level aggregates, as printed, with discrepancy flags). All spatial and temporal work runs on incident data, which is **synthetic** in the MVP (`source = SYNTHETIC_DEMO`, anchored to the official monthly counts).
+- **Modelled heads** (`configs/default.yaml → crime_types.modelled`): Robbery, Robbery Chain Snatching, Snatching, H.B.T. Day/Night, Thefts, M.V. Thefts, Hurt, Riots. Other heads are official-statistics only, with reasons in `crime_types.not_modelled`. UI text uses the official labels (`ml/data/official/taxonomy.py`).
+- **Prediction unit:** zone (1.5 km cell) × crime type × 7-day window × 6-hour band. The event for the probability is "≥1 incident in the band on any day of the window".
+- **Study region and stations are approximations** (land mask + outline; synthetic `SYN-PS-xx` stations). Never present them as official boundaries.
+- **Storage:** versioned Parquet/JSON artifacts read through `backend/app/services/store.py`. The PostGIS schema in `docs/db-schema.sql` is the target once feedback and users need writes.
+- **Leakage:** features at origin k only use windows < k (`ml/features/rolling.py`); splits embargo boundary-straddling windows. Keep the leakage tests passing.
+- **Config over constants:** weights, windows, bands, thresholds and generator assumptions live in `configs/default.yaml`.
+- **Dataviz:** map and chart colors come from `frontend/src/lib/colors.ts` (validated ramps). Every layer also uses labels, icons or textures, and every chart card has a table view.
 
 ## What the product is
 
@@ -26,13 +64,13 @@ These cut across the UI, API, ML, and reports, so every layer must respect them:
 - **Display bands are configurable presentation values**, not scientific thresholds. Default risk bands: 0–20 LOW, 21–40 MODERATE, 41–60 ELEVATED, 61–80 HIGH, 81–100 VERY HIGH. Affinity uses the same cut points (Very Low … Very High).
 - **Every forecast has an explicit time window**, and every stored prediction records `model_version`, `training_dataset_version`, `feature_version`, and `generated_at`.
 
-## Planned architecture
+## Architecture
 
 ```
-Next.js (UI, auth, map, charts, reports) -> API layer -> FastAPI (Pydantic) -> ML services -> PostgreSQL + PostGIS
+Next.js (UI, map, charts) -> /api/v1 rewrite -> FastAPI (Pydantic) -> ML package outputs (artifacts/) ; PostgreSQL + PostGIS planned
 ```
 
-Planned layout: `frontend/` (Next.js + TypeScript + Tailwind, MapLibre GL, Recharts, Framer Motion, Zustand), `backend/app/{api,services,models,schemas,utils}` + `backend/main.py`, `ml/{data,preprocessing,features,training,models,evaluation,explainability,inference}`, `scripts/` (`generate_synthetic_data.py`, `preprocess_data.py`, `train_model.py`), `docs/` (`architecture.md`, `methodology.md`, `model-card.md`, `dataset.md`).
+Layout: `frontend/` (Next.js 16 + TypeScript + Tailwind v4, MapLibre GL v6, Recharts, Framer Motion, Zustand, SWR), `backend/app/{api,services,schemas,utils}` + `backend/main.py`, `ml/{data,preprocessing,features,analytics,scoring,training,models,evaluation,explainability,inference}`, `scripts/` (one CLI per pipeline step), `configs/default.yaml`, `docs/` (`architecture.md`, `methodology.md`, `model-card.md` (generated), `dataset.md`, `data-dictionary.md`, `official-statistics-reference.md` (generated), `db-schema.sql`). See `docs/architecture.md`.
 
 All data processing, feature engineering, training, inference, anomaly detection, clustering, and explainability live in Python. The frontend only consumes API results and must not re-derive scores.
 
@@ -83,7 +121,7 @@ The weights are starting design values. Keep them configurable and tune or compa
 
 ## Build order
 
-Deliver a complete working vertical slice before breadth. The MVP, in order: synthetic dataset → map → geographic grid → crime-type filter → historical hotspot map → CAI → emerging hotspot detection → XGBoost prediction → explainable risk score → zone detail panel. Later phases add fingerprints, lifecycle, clustering, anomalies, advanced models, feedback, station dashboards, reports, scenario simulation, and RBAC (ADMIN, STATION_OFFICER, ANALYST, SUPERVISOR, VIEWER).
+Deliver a complete working vertical slice before breadth. The MVP, in order: synthetic dataset → map → geographic grid → crime-type filter → historical hotspot map → CAI → emerging hotspot detection → XGBoost prediction → explainable risk score → zone detail panel. **All of these are done**, plus a first crime pattern fingerprint, the surge detector (alerts and the anomaly layer) and official-statistics views. Next phases: hotspot lifecycle over successive origins, hotspot movement, historical pattern matching, clustering, the feedback loop with PostGIS persistence, station dashboards and multi-scale views, reports, a 24-hour window (`time.window_days: 1`), scenario simulation, RBAC (ADMIN, STATION_OFFICER, ANALYST, SUPERVISOR, VIEWER), and advanced models only if they beat the baseline.
 
 Synthetic data schema: `incident_id, timestamp, crime_type, latitude, longitude, zone_id, police_station_id, severity, source` (optional: `day_of_week, hour, month, is_weekend`). The generator must produce recurring, emerging, and declining hotspots, crime-type concentration, time-dependent patterns, background noise, anomalies, and neighbor-zone relationships, so that every module has signal to find.
 
