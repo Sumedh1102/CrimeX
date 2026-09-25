@@ -48,3 +48,13 @@ class OfficialStatement:
         if v is None:
             raise ValueError(f"IPC {head} {period} registered is blank in the source")
         return int(v)
+
+
+def _head_labels() -> dict[str, str]:
+    from ml.data.official.taxonomy import HEADS_BY_CODE
+
+    return {code: h.label for code, h in HEADS_BY_CODE.items()}
+
+
+# Expanded official labels by code (e.g. HBT_DAY -> "House Breaking Theft - Day").
+HEADS_LABELS: dict[str, str] = _head_labels()
