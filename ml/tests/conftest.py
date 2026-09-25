@@ -46,3 +46,26 @@ def generated(small_cfg, small_grid):
 @pytest.fixture(scope="session")
 def processed(small_cfg, generated):
     return preprocess(small_cfg)
+
+
+@pytest.fixture(scope="session")
+def small_panel(small_cfg, small_grid, processed):
+    from ml.preprocessing.panel import build_panel
+    from ml.preprocessing.pipeline import load_processed
+
+    incidents, _, _ = load_processed(small_cfg)
+    return build_panel(
+        incidents,
+        small_grid.zone_ids,
+        small_cfg.crime_types.modelled,
+        [b.code for b in small_cfg.time.bands],
+        small_cfg.time.as_of,
+        small_cfg.time.window_days,
+    )
+
+
+@pytest.fixture(scope="session")
+def small_components(small_cfg, small_grid, small_panel):
+    from ml.features.engine import compute_components
+
+    return compute_components(small_panel, small_grid, small_cfg.scoring)

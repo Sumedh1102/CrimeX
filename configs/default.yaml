@@ -112,8 +112,8 @@ synthetic:
   n_anomalies: 30
   n_recent_anomalies: 4
   anomaly_days: [5, 12]
-  anomaly_multiplier: [5.0, 9.0]
-  anomaly_min_daily: 0.35
+  anomaly_multiplier: [6.0, 10.0]
+  anomaly_min_daily: 0.6
   hotspot_time_signature_share: 0.6
   defect_rates:
     missing_timestamp: 0.004
@@ -179,6 +179,7 @@ scoring:
   trend_b: 0.5
   anomaly_history_weeks: 52
   anomaly_z_cap: 3.0
+  anomaly_epsilon: 0.5
   anomaly_alert_z: 3.0
   anomaly_alert_min_count: 3
   recency_half_life_days_default: 14

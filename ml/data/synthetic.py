@@ -383,8 +383,9 @@ class SyntheticGenerator:
             p[self._low_activity] = 0
             z = int(rng.choice(self.grid.n_zones, p=p / p.sum()))
             length = int(rng.integers(*s.anomaly_days, endpoint=True))
-            if k < s.n_recent_anomalies:  # guarantee surges visible at the forecast origin
-                d0 = n_days - length - int(rng.integers(0, 14))
+            if k < s.n_recent_anomalies:  # surges under way in the final forecast window
+                length = min(length, self.cfg.time.window_days)
+                d0 = n_days - length
             else:
                 d0 = int(rng.integers(0, n_days - length))
             zone_rate = rates[ci, d0 : d0 + length].mean() * base[z, ci]

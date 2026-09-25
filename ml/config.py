@@ -175,6 +175,7 @@ class ScoringConfig(BaseModel):
     trend_b: float = 0.5
     anomaly_history_weeks: int = 52
     anomaly_z_cap: float = 3.0
+    anomaly_epsilon: float = 0.5  # guards the z-score against zero variance
     anomaly_alert_z: float = 3.0
     anomaly_alert_min_count: int = 3
     temporal_profile_prior: float = 10.0
@@ -215,6 +216,8 @@ class HotspotConfig(BaseModel):
     persistent_min_fraction: float = 0.8
     declining_min_early_fraction: float = 0.5
     emerging_max_prior_fraction: float = 0.15
+    emerging_min_recent_hot: int = 2
+    emerging_min_rate_ratio: float = 1.5
     sporadic_min_hot_periods: int = 2
 
 
