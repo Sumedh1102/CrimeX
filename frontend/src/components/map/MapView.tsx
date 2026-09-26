@@ -8,7 +8,7 @@ import type {
   StyleSpecification,
 } from "maplibre-gl";
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { useMeta, useZones } from "@/lib/api";
+import { useMeta, useMovement, useZones } from "@/lib/api";
 import {
   offlineBaseStyle,
   probeProvider,
@@ -20,7 +20,7 @@ import {
   type BasemapProvider,
 } from "@/lib/basemap";
 import { CHROME, RISK_FILL_OPACITY } from "@/lib/colors";
-import { stationBoundaries, styleFor, type LayerItem } from "@/lib/layers";
+import { movementFeatures, stationBoundaries, styleFor, type LayerItem } from "@/lib/layers";
 import { localitiesGeoJSON } from "@/lib/localities";
 import { useUI } from "@/lib/store";
 import type { LayerKey, ZonesGeoJSON } from "@/lib/types";
@@ -94,7 +94,8 @@ function isOurs(id: string) {
     (REFERENCE_LAYERS as readonly string[]).includes(id) ||
     id.startsWith("zones-") ||
     id.startsWith("zone-") ||
-    id === "stations-line"
+    id === "stations-line" ||
+    id.startsWith("movement-")
   );
 }
 
@@ -144,6 +145,16 @@ function addOverlays(map: MLMap, zones: ZonesGeoJSON) {
     source: "stations",
     paint: { "line-color": CHROME.ink2, "line-width": 1.3, "line-opacity": 0.6 },
   }, beforeLabels);
+  // Hotspot movement: dashed path under the markers, above zone fills.
+  map.addSource("movement", { type: "geojson", data: EMPTY_FC });
+  map.addLayer({
+    id: "movement-path",
+    type: "line",
+    source: "movement",
+    filter: ["==", ["get", "role"], "path"],
+    layout: { visibility: "none", "line-cap": "round" },
+    paint: { "line-color": CHROME.ink, "line-width": 2, "line-dasharray": [2, 1.5] },
+  });
   map.addLayer({
     id: "zones-hit",
     type: "fill",
@@ -177,6 +188,33 @@ function addOverlays(map: MLMap, zones: ZonesGeoJSON) {
       "icon-allow-overlap": true,
       "icon-ignore-placement": true,
       "icon-size": ["interpolate", ["linear"], ["zoom"], 9, 0.8, 12, 1, 14, 1.15],
+    },
+  });
+  map.addLayer({
+    id: "movement-markers",
+    type: "symbol",
+    source: "movement",
+    filter: ["==", ["get", "role"], "marker"],
+    layout: {
+      visibility: "none",
+      "icon-image": ["get", "icon"],
+      "icon-rotate": ["get", "rotation"],
+      "icon-rotation-alignment": "map",
+      "icon-allow-overlap": true,
+      "icon-ignore-placement": true,
+    },
+  });
+  map.addLayer({
+    id: "movement-labels",
+    type: "symbol",
+    source: "movement",
+    minzoom: 10.5,
+    filter: ["all", ["==", ["get", "role"], "marker"], ["!=", ["get", "label"], ""]],
+    layout: {
+      visibility: "none",
+      "icon-image": ["get", "label"],
+      "icon-offset": ["literal", [0, 16]],
+      "icon-allow-overlap": false,
     },
   });
   map.addLayer({
@@ -221,6 +259,7 @@ export default function MapView({
   const { data: zones, error: zonesError } = useZones();
   const { data: meta } = useMeta();
   const data = useLayerData(layer);
+  const movement = useMovement(ui.crimeType, null, ui.showMovement);
 
   const stationZones = useMemo(() => {
     if (!zones || !ui.stationId) return null;
@@ -453,6 +492,15 @@ export default function MapView({
     if (!ready || !map) return;
     map.setLayoutProperty("stations-line", "visibility", ui.showStations ? "visible" : "none");
   }, [ready, ui.showStations]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!ready || !map) return;
+    const vis = ui.showMovement ? "visible" : "none";
+    for (const id of ["movement-path", "movement-markers", "movement-labels"]) map.setLayoutProperty(id, "visibility", vis);
+    const items = ui.showMovement ? (movement.data?.items ?? []) : [];
+    (map.getSource("movement") as GeoJSONSource).setData(movementFeatures(items));
+  }, [ready, ui.showMovement, movement.data]);
 
   useEffect(() => {
     const map = mapRef.current;

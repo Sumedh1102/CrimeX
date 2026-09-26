@@ -76,3 +76,13 @@ export function compact(n: number): string {
   if (Math.abs(n) >= 1e3) return `${(n / 1e3).toFixed(1)}K`;
   return String(n);
 }
+
+/** "next 7 days" / "next 24 hours" for a forecast window of ``days`` days. */
+export function fmtNextWindow(days: number): string {
+  return days === 1 ? "next 24 hours" : `next ${days} days`;
+}
+
+/** Name of one panel window: "day", "week" or "N-day window". */
+export function windowUnit(days: number): string {
+  return days === 1 ? "day" : days === 7 ? "week" : `${days}-day window`;
+}

@@ -20,8 +20,10 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from ml.analytics.analogs import pattern_matches
 from ml.analytics.anomaly import surge_table
-from ml.analytics.hotspot_states import classify_states
+from ml.analytics.hotspot_states import classify_states, period_windows
+from ml.analytics.lifecycle import hotspot_lifecycle, hotspot_movement, lifecycle_summary
 from ml.config import LIMITATION_STATEMENT
 from ml.explainability.narrative import ReasonInputs, reasons
 from ml.explainability.shap_values import top_contributions
@@ -85,7 +87,10 @@ def generate_predictions(inputs: Inputs, bundle: ModelBundle) -> dict[str, Any]:
     shap = bundle.shap_values(fm.X)[:, :-1]
     shap_top = top_contributions(shap, fm.X, fm.names, cfg.training.shap_top_k, labels)
 
-    states = classify_states(panel.zc_counts, k, grid, panel.crime_types, cfg.hotspots)
+    period = period_windows(cfg.hotspots, panel.window_days)
+    states = classify_states(
+        panel.zc_counts, k, grid, panel.crime_types, cfg.hotspots, period_windows=period
+    )
     states_idx = states.set_index(["zone_id", "crime_type"])
     surges = surge_table(cp, k, panel.zones, panel.crime_types, s)
 
@@ -128,6 +133,8 @@ def generate_predictions(inputs: Inputs, bundle: ModelBundle) -> dict[str, Any]:
                     hot_periods=int(st["hot_periods"]),
                     n_periods=int(st["n_periods"]),
                     recent_hot_periods=int(st["recent_hot_periods"]),
+                    window_days=panel.window_days,
+                    recent_periods=cfg.hotspots.recent_periods,
                 )
             )
         )
@@ -221,6 +228,30 @@ def generate_predictions(inputs: Inputs, bundle: ModelBundle) -> dict[str, Any]:
         on=["zone_id", "crime_type"],
         how="left",
     )
+    lifecycle = hotspot_lifecycle(
+        panel.zc_counts, k, panel.origins, grid, panel.crime_types, cfg.hotspots, period
+    )
+    movement = hotspot_movement(lifecycle, grid, cfg.hotspots)
+    zc = zc.merge(
+        lifecycle_summary(lifecycle).rename(columns={"stage": "lifecycle_stage"}),
+        on=["zone_id", "crime_type"],
+        how="left",
+    )
+    lookback = max(1, round(cfg.patterns.lookback_weeks * 7 / panel.window_days))
+    analogs = pattern_matches(
+        panel.zc_counts,
+        k,
+        panel.origins,
+        panel.zones,
+        panel.crime_types,
+        lookback,
+        cfg.patterns.top_k,
+    )
+    for col in ("current_counts", "analogs"):
+        analogs[col] = analogs[col].map(json.dumps)
+    if not movement.empty:
+        for col in ("zones", "from_cluster_ids"):
+            movement[col] = movement[col].map(json.dumps)
     for col in ("gi_z_series", "count_series"):
         zc[col] = zc[col].map(json.dumps)
     for key, val in versions.items():
@@ -288,7 +319,29 @@ def generate_predictions(inputs: Inputs, bundle: ModelBundle) -> dict[str, Any]:
             "states": zc["state"].value_counts().to_dict(),
         },
     }
-    return {"predictions": pred, "zone_crime": zc, "history": history, "manifest": manifest}
+    manifest["analysis_period_windows"] = period
+    manifest["pattern_lookback_windows"] = lookback
+    return {
+        "predictions": pred,
+        "zone_crime": zc,
+        "history": history,
+        "lifecycle": lifecycle[
+            [
+                "zone_id",
+                "crime_type",
+                "step",
+                "period_start",
+                "period_end",
+                "state",
+                "stage",
+                "final_period_hot",
+                "gi_z_last",
+            ]
+        ],
+        "movement": movement,
+        "analogs": analogs,
+        "manifest": manifest,
+    }
 
 
 def write_predictions(out: dict[str, Any], predictions_dir: Path) -> Path:
@@ -299,6 +352,8 @@ def write_predictions(out: dict[str, Any], predictions_dir: Path) -> Path:
     out["predictions"].to_parquet(d / "predictions.parquet", index=False)
     out["zone_crime"].to_parquet(d / "zone_crime.parquet", index=False)
     out["history"].to_parquet(d / "crs_history.parquet", index=False)
+    for part in ("lifecycle", "movement", "analogs"):
+        out[part].to_parquet(d / f"{part}.parquet", index=False)
     (d / "manifest.json").write_text(json.dumps(m, indent=2, default=str), encoding="utf-8")
     (predictions_dir / "LATEST").write_text(name + "\n", encoding="utf-8")
     return d

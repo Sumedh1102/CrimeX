@@ -14,7 +14,9 @@ import {
   STATE_STYLE,
   TEXTURE_INK,
 } from "@/lib/colors";
+import { windowUnit } from "@/lib/format";
 import { styleFor, type LayerItem } from "@/lib/layers";
+import { useUI } from "@/lib/store";
 import type { LayerKey, Meta, RiskBand, RiskMetric } from "@/lib/types";
 
 function texture(ink: string, cross: boolean): string {
@@ -43,6 +45,42 @@ function RiskMarker({ filled }: { filled: boolean }) {
   );
 }
 
+/** SVG twins of the canvas movement markers (mapImages.movementIcon). */
+function MoveGlyph({ kind }: { kind: "arrow" | "hold" | "new" | "gone" }) {
+  return (
+    <svg width="13" height="13" viewBox="0 0 20 20" aria-hidden className="shrink-0">
+      {kind === "arrow" && <path d="M10 2.5 16 16 10 13 4 16Z" fill="#ffffff" stroke="#0d0d0d" strokeWidth="1.5" strokeLinejoin="round" />}
+      {kind === "hold" && <circle cx="10" cy="10" r="5.5" fill="none" stroke="#ffffff" strokeWidth="1.8" />}
+      {(kind === "new" || kind === "gone") && (
+        <>
+          <circle cx="10" cy="10" r="7" fill="#0d0d0d" stroke="#ffffff" strokeWidth="1.4" />
+          <path
+            d={kind === "new" ? "M10 6.5v7M6.5 10h7" : "M7.2 7.2l5.6 5.6M12.8 7.2l-5.6 5.6"}
+            stroke="#ffffff"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </>
+      )}
+    </svg>
+  );
+}
+
+function MovementLegend() {
+  return (
+    <div className="mt-2.5 border-t pt-2" style={{ borderColor: "var(--border)" }}>
+      <p className="font-semibold text-ink">Hotspot movement</p>
+      <ul className="mt-1 space-y-1 text-ink-2">
+        <li className="flex items-center gap-2"><MoveGlyph kind="arrow" />Shifted (dashed path, distance, direction)</li>
+        <li className="flex items-center gap-2"><MoveGlyph kind="hold" />Continued in place</li>
+        <li className="flex items-center gap-2"><MoveGlyph kind="new" />New cluster</li>
+        <li className="flex items-center gap-2"><MoveGlyph kind="gone" />Dissipated</li>
+      </ul>
+      <p className="mt-1 leading-snug text-muted">Gi* hotspot clusters, previous vs latest analysis period. Descriptive, not a forecast.</p>
+    </div>
+  );
+}
+
 interface Entry {
   key: string;
   chip: ReactNode;
@@ -65,6 +103,7 @@ export function Legend({
   items: Map<string, LayerItem>;
   title?: string;
 }) {
+  const showMovement = useUI((st) => st.showMovement);
   const counts = useMemo(() => {
     const c = new Map<string, number>();
     for (const it of items.values()) {
@@ -142,7 +181,7 @@ export function Legend({
     }));
   } else {
     heading = "Crime Surge Detector";
-    note = "Last week vs the previous 52 weeks (z-score).";
+    note = `Last ${windowUnit(meta.forecast_window.days)} vs the previous 52 weeks (z-score).`;
     entries = [
       ...ANOMALY_BINS.map((b) => ({ key: b.label, chip: <Chip color={b.color} />, label: b.label })),
       { key: "alert", chip: <AlertIcon size={13} />, label: "Surge alert" },
@@ -166,6 +205,7 @@ export function Legend({
         ))}
       </ul>
       {note && <p className="mt-2 leading-snug text-muted">{note}</p>}
+      {showMovement && <MovementLegend />}
     </div>
   );
 }

@@ -159,3 +159,47 @@ def test_zone_crime_table(output, inputs):
     }
     h = output["history"]
     assert h["crs"].between(0, 100).all()
+
+
+def test_24_hour_window_end_to_end(tmp_path):
+    """time.window_days = 1: the pipeline runs, and weekly settings convert to windows."""
+    from ml.config import load_config
+    from ml.data.official.load import OfficialStatement
+    from ml.data.synthetic import SyntheticGenerator, write_outputs
+    from ml.inference.predict import generate_predictions
+    from ml.pipeline import load_inputs
+    from ml.preprocessing.grid import Grid
+    from ml.preprocessing.pipeline import preprocess
+    from ml.training.train import train_models
+
+    cfg = load_config(
+        None,
+        time__window_days=1,
+        grid__cell_size_m=3000,
+        synthetic__start_date="2023-01-01",
+        synthetic__n_stations=5,
+        training__xgb__n_estimators=40,
+        training__rf__n_estimators=20,
+        training__rf__max_train_rows=30_000,
+        paths__data_dir=str(tmp_path / "data"),
+        paths__artifacts_dir=str(tmp_path / "artifacts"),
+    )
+    grid = Grid.build(cfg.region, cfg.grid)
+    stmt = OfficialStatement.load(cfg.paths.official_statement)
+    write_outputs(SyntheticGenerator(cfg, grid, stmt).generate(), cfg.paths.raw_dir)
+    preprocess(cfg)
+    inputs = load_inputs(cfg)
+    assert inputs.panel.window_days == 1
+    bundle = train_models(inputs, log=lambda _: None)
+    out = generate_predictions(inputs, bundle)
+    m = out["manifest"]
+    assert m["window_days"] == 1
+    assert pd.Timestamp(m["window_end"]) - pd.Timestamp(m["window_start"]) == pd.Timedelta(days=1)
+    assert m["analysis_period_windows"] == 28  # 4-week analysis periods in 1-day windows
+    assert m["pattern_lookback_windows"] == 56
+    p = out["predictions"]
+    assert p["probability"].between(0, 1).all()
+    assert len(p) == grid.n_zones * len(cfg.crime_types.modelled) * len(cfg.time.bands)
+    assert not out["lifecycle"].empty
+    reasons = " ".join(p["reasons"])
+    assert "last week" not in reasons and "per week" not in reasons

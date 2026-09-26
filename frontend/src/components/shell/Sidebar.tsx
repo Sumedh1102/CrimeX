@@ -10,6 +10,7 @@ import { useUI } from "@/lib/store";
 const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: "dashboard" },
   { href: "/map", label: "Map", icon: "map" },
+  { href: "/stations", label: "Stations", icon: "stations" },
   { href: "/predictions", label: "Predictions", icon: "predictions" },
   { href: "/hotspots", label: "Hotspots", icon: "hotspots" },
   { href: "/anomalies", label: "Anomalies", icon: "anomalies" },

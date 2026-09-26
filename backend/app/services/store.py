@@ -128,6 +128,18 @@ class DataStore:
     def crs_history(self) -> pd.DataFrame:
         return _read_parquet(self.predictions_dir / "crs_history.parquet")
 
+    @cached_property
+    def lifecycle(self) -> pd.DataFrame:
+        return _read_parquet(self.predictions_dir / "lifecycle.parquet")
+
+    @cached_property
+    def movement(self) -> pd.DataFrame:
+        return _read_parquet(self.predictions_dir / "movement.parquet")
+
+    @cached_property
+    def analogs(self) -> pd.DataFrame:
+        return _read_parquet(self.predictions_dir / "analogs.parquet")
+
     @property
     def as_of(self) -> pd.Timestamp:
         return pd.Timestamp(self.predictions_manifest["as_of"])

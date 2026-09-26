@@ -12,8 +12,10 @@ Python (3.11, from the repo root):
 
 ```bash
 python3 -m venv .venv && .venv/bin/pip install -e ".[dev]"   # or: uv venv && uv pip install -e ".[dev]"
+make install         # venv + Python deps + frontend npm install in one step
 make pipeline        # synthetic data -> preprocess -> train -> predictions (about 4 min); or: data, preprocess, train, infer
 make api             # uvicorn backend.main:app --reload --port 8000  (docs: /docs)
+make web             # Next.js dashboard on :3000 (needs `make api` running)
 make test            # pytest ml/tests backend/tests (builds a small pipeline in tmp dirs, about 1 min)
 make lint            # ruff check + ruff format --check (make format to fix)
 .venv/bin/python -m pytest ml/tests/test_scoring.py::test_cai_worked_example_is_87      # one test

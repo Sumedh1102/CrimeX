@@ -193,6 +193,12 @@ hotspots:
   recent_periods: 3
   hot_z: 1.96
   trend_alpha: 0.05
+  lifecycle_steps: 8        # successive origins, one analysis period apart
+  movement_max_km: 4.5      # link a hotspot cluster to an earlier one within this distance
+
+patterns:
+  lookback_weeks: 8         # length of the recent count sequence that is matched
+  top_k: 5                  # non-overlapping most similar past sequences
 
 training:
   # Chronological splits by forecast-window start; windows that straddle a boundary

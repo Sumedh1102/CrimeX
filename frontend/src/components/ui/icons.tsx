@@ -68,6 +68,8 @@ export function Icon({ name, size = 16 }: { name: string; size?: number }) {
       return (<svg {...p}><rect x="3" y="3" width="7" height="9" rx="1.5" /><rect x="14" y="3" width="7" height="5" rx="1.5" /><rect x="14" y="12" width="7" height="9" rx="1.5" /><rect x="3" y="16" width="7" height="5" rx="1.5" /></svg>);
     case "map":
       return (<svg {...p}><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z" /><path d="M9 4v14M15 6v14" /></svg>);
+    case "stations":
+      return (<svg {...p}><path d="M4 21V9l8-5 8 5v12" /><path d="M9 21v-6h6v6M3 21h18" /></svg>);
     case "predictions":
       return (<svg {...p}><path d="M4 19h16" /><path d="M6 15l4-5 3 3 5-7" /></svg>);
     case "hotspots":

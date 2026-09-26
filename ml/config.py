@@ -219,6 +219,17 @@ class HotspotConfig(BaseModel):
     emerging_min_recent_hot: int = 2
     emerging_min_rate_ratio: float = 1.5
     sporadic_min_hot_periods: int = 2
+    # lifecycle: how many successive origins (one analysis period apart) to classify
+    lifecycle_steps: int = 8
+    # movement: max centroid distance for linking a hotspot cluster to an earlier one
+    movement_max_km: float = 4.5
+
+
+class PatternConfig(BaseModel):
+    """Historical pattern matching (analog windows) for a zone and crime type."""
+
+    lookback_weeks: int = 8
+    top_k: int = 5
 
 
 class SplitConfig(BaseModel):
@@ -287,6 +298,7 @@ class PlatformConfig(BaseModel):
     synthetic: SyntheticConfig
     scoring: ScoringConfig = ScoringConfig()
     hotspots: HotspotConfig = HotspotConfig()
+    patterns: PatternConfig = PatternConfig()
     training: TrainingConfig
     paths: PathsConfig = PathsConfig()
 

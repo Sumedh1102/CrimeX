@@ -162,7 +162,65 @@ export function riskMarker(veryHigh: boolean): MapImage {
   return toImage(c);
 }
 
+/**
+ * Hotspot movement markers in ink on a dark halo (shape carries the meaning):
+ * arrow = shifted (drawn pointing north, rotated to the bearing on the map),
+ * ring = continued in place, plus = new cluster, cross = dissipated.
+ */
+export function movementIcon(kind: "arrow" | "hold" | "new" | "gone"): MapImage {
+  const s = 20;
+  const m = s / 2;
+  const { c, ctx } = canvas(s, s);
+  const stroke = (width: number, color: string) => {
+    ctx.lineWidth = width;
+    ctx.strokeStyle = color;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.stroke();
+  };
+  ctx.beginPath();
+  if (kind === "arrow") {
+    ctx.moveTo(m, 2.5);
+    ctx.lineTo(s - 4, s - 4);
+    ctx.lineTo(m, s - 7);
+    ctx.lineTo(4, s - 4);
+    ctx.closePath();
+    stroke(3.5, CHROME.plane);
+    ctx.fillStyle = CHROME.ink;
+    ctx.fill();
+    return toImage(c);
+  }
+  if (kind === "hold") {
+    ctx.arc(m, m, 5.5, 0, Math.PI * 2);
+    stroke(4.5, CHROME.plane);
+    stroke(1.8, CHROME.ink);
+    return toImage(c);
+  }
+  ctx.arc(m, m, 7, 0, Math.PI * 2);
+  ctx.fillStyle = CHROME.plane;
+  ctx.fill();
+  stroke(1.4, CHROME.ink);
+  ctx.beginPath();
+  if (kind === "new") {
+    ctx.moveTo(m, m - 3.5);
+    ctx.lineTo(m, m + 3.5);
+    ctx.moveTo(m - 3.5, m);
+    ctx.lineTo(m + 3.5, m);
+  } else {
+    ctx.moveTo(m - 2.8, m - 2.8);
+    ctx.lineTo(m + 2.8, m + 2.8);
+    ctx.moveTo(m + 2.8, m - 2.8);
+    ctx.lineTo(m - 2.8, m + 2.8);
+  }
+  stroke(1.8, CHROME.ink);
+  return toImage(c);
+}
+
 export const ICONS: Record<string, () => MapImage> = {
+  "move-arrow": () => movementIcon("arrow"),
+  "move-hold": () => movementIcon("hold"),
+  "move-new": () => movementIcon("new"),
+  "move-gone": () => movementIcon("gone"),
   "risk-high": () => riskMarker(false),
   "risk-veryhigh": () => riskMarker(true),
   "state-emerging": () => stateIcon("EMERGING"),

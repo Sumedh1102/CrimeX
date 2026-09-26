@@ -9,7 +9,7 @@ import { AlertIcon, StateIcon } from "@/components/ui/icons";
 import { Card, ErrorNote, Kpi, Loading, RiskBadge, Swatch } from "@/components/ui/primitives";
 import { useDashboard, useMeta } from "@/lib/api";
 import { RISK_COLORS, STATE_BADGE, STATE_STYLE } from "@/lib/colors";
-import { fmtDate, fmtInt, fmtNum, fmtSignedPct, fmtWeek } from "@/lib/format";
+import { fmtDate, fmtInt, fmtNextWindow, fmtNum, fmtSignedPct, fmtWeek } from "@/lib/format";
 import { useUI } from "@/lib/store";
 
 export default function DashboardPage() {
@@ -213,7 +213,7 @@ export default function DashboardPage() {
             <ul className="space-y-2 text-xs leading-snug text-ink-2">
               <li>
                 <span className="font-semibold text-ink">Calibrated probability</span>: chance of at least one reported
-                incident of the crime type in the zone during the time band of the next 7 days. The only probability.
+                incident of the crime type in the zone during the time band of the {fmtNextWindow(d.window.days)}. The only probability.
               </li>
               <li>
                 <span className="font-semibold text-ink">Explainable risk score (CRS)</span>: 0–100 weighted sum of seven

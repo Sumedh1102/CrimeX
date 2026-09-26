@@ -38,6 +38,21 @@ class ReasonInputs:
     hot_periods: int
     n_periods: int
     recent_hot_periods: int
+    window_days: int = 7  # length of one panel window (frequency/trend counts are in windows)
+    recent_periods: int = 3
+
+
+def span(n_windows: int, window_days: int) -> str:
+    """'8 weeks', '4 weeks', '56 days' ... for ``n_windows`` panel windows."""
+    days = n_windows * window_days
+    if days % 7 == 0:
+        weeks = days // 7
+        return f"{weeks} week" + ("s" if weeks != 1 else "")
+    return f"{days} day" + ("s" if days != 1 else "")
+
+
+def unit(window_days: int) -> str:
+    return {1: "day", 7: "week"}.get(window_days, f"{window_days}-day window")
 
 
 def reasons(r: ReasonInputs) -> list[dict]:
@@ -58,7 +73,8 @@ def reasons(r: ReasonInputs) -> list[dict]:
             "F",
             f"Recent activity is above most zones: {r.current_band_count:.0f} "
             f"{r.crime_label} incidents in the {r.band_label} band over the last "
-            f"{r.frequency_weeks} weeks (average zone: {r.city_mean_band_count:.1f}).",
+            f"{span(r.frequency_weeks, r.window_days)} "
+            f"(average zone: {r.city_mean_band_count:.1f}).",
         )
     if c["T"] >= SHOW_WHEN["T"]:
         pct = (
@@ -70,7 +86,7 @@ def reasons(r: ReasonInputs) -> list[dict]:
         add(
             "T",
             f"Recent activity is above this zone's own baseline: {r.trend_recent:.0f} "
-            f"incidents in the last {r.trend_weeks} weeks vs a typical "
+            f"incidents in the last {span(r.trend_weeks, r.window_days)} vs a typical "
             f"{r.trend_baseline:.1f}{change}.",
         )
     if c["A"] >= SHOW_WHEN["A"]:
@@ -92,7 +108,7 @@ def reasons(r: ReasonInputs) -> list[dict]:
             "S",
             f"Neighbouring zones show elevated {r.crime_label} activity in this band "
             f"(inverse-distance weighted mean {r.nbr_weighted:.1f} incidents over "
-            f"{r.frequency_weeks} weeks).",
+            f"{span(r.frequency_weeks, r.window_days)}).",
         )
     if c["P"] >= SHOW_WHEN["P"]:
         add(
@@ -104,16 +120,17 @@ def reasons(r: ReasonInputs) -> list[dict]:
     if c["X"] >= SHOW_WHEN["X"]:
         add(
             "X",
-            f"Unusual surge last week: {r.surge_current:.0f} incidents vs a typical "
-            f"{r.surge_mean:.1f} per week (z = {r.surge_z:.1f}).",
+            f"Unusual surge in the last {unit(r.window_days)}: {r.surge_current:.0f} "
+            f"incidents vs a typical {r.surge_mean:.1f} per {unit(r.window_days)} "
+            f"(z = {r.surge_z:.1f}).",
         )
     if r.hotspot_state in ("EMERGING", "ACTIVE", "PERSISTENT"):
         out.append(
             {
                 "component": "HOTSPOT_STATE",
                 "text": f"Hotspot state {r.hotspot_state}: statistically significant hotspot "
-                f"(Gi*) in {r.hot_periods} of the last {r.n_periods} four-week periods, "
-                f"including {r.recent_hot_periods} of the most recent 3.",
+                f"(Gi*) in {r.hot_periods} of the last {r.n_periods} analysis periods, "
+                f"including {r.recent_hot_periods} of the most recent {r.recent_periods}.",
                 "contribution_points": None,
             }
         )

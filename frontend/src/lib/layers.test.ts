@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { AFFINITY_COLORS, RISK_COLORS, STATE_STYLE } from "./colors";
-import { fmtPct, fmtWindow } from "./format";
+import { fmtNextWindow, fmtPct, fmtWindow, windowUnit } from "./format";
 import {
   anomalyStyle,
+  movementFeatures,
   probabilityBin,
   riskStyle,
   stateStyle,
@@ -104,5 +105,53 @@ describe("formatting", () => {
     expect(fmtPct(0.0567)).toBe("5.7%");
     expect(fmtPct(0.41)).toBe("41%");
     expect(fmtWindow("2026-09-01T00:00:00", "2026-09-08T00:00:00")).toBe("1–7 Sep 2026");
+  });
+});
+
+describe("movementFeatures", () => {
+  const base = {
+    crime_type: "ROBBERY",
+    label: "Robbery",
+    step: 7,
+    period_end: "2026-09-01",
+    zones: ["Z001"],
+    n_zones: 1,
+    lat: 19.1,
+    lon: 72.85,
+    peak_z: 3,
+    merged: false,
+    split: false,
+    from_cluster_ids: [],
+  };
+
+  it("draws a path and a rotated arrow for a shifted cluster", () => {
+    const fc = movementFeatures([
+      { ...base, cluster_id: "A", kind: "SHIFTED", from_lat: 19.09, from_lon: 72.85, distance_km: 1.43, bearing_deg: 10, direction: "N" },
+    ]);
+    const path = fc.features.find((f) => f.properties?.role === "path")!;
+    const marker = fc.features.find((f) => f.properties?.role === "marker")!;
+    expect(path.geometry).toEqual({ type: "LineString", coordinates: [[72.85, 19.09], [72.85, 19.1]] });
+    expect(marker.properties).toMatchObject({ icon: "move-arrow", rotation: 10, label: "lbl:1.4 km N" });
+  });
+
+  it("uses shapes, not only color, for other kinds and skips the baseline", () => {
+    const fc = movementFeatures([
+      { ...base, cluster_id: "B", kind: "BASELINE" },
+      { ...base, cluster_id: "N", kind: "NEW" },
+      { ...base, cluster_id: "D", kind: "DISSIPATED" },
+      { ...base, cluster_id: "C", kind: "CONTINUED", from_lat: 19.1, from_lon: 72.85, distance_km: 0.2 },
+    ]);
+    expect(fc.features.map((f) => f.properties?.icon)).toEqual(["move-new", "move-gone", "move-hold"]);
+    expect(fc.features.every((f) => f.properties?.role === "marker")).toBe(true);
+  });
+});
+
+describe("window wording", () => {
+  it("follows the configured window length", () => {
+    expect(fmtNextWindow(7)).toBe("next 7 days");
+    expect(fmtNextWindow(1)).toBe("next 24 hours");
+    expect(windowUnit(1)).toBe("day");
+    expect(windowUnit(7)).toBe("week");
+    expect(windowUnit(3)).toBe("3-day window");
   });
 });

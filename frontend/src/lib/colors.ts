@@ -9,7 +9,7 @@
 //   Gi* hot arm (ordinal, red, 3) PASS, low end 2.71:1; cold arm = documented blue steps
 //   hotspot states violet + red   PASS all-pairs (CVD dE 19.5, normal-vision dE 22.5)
 // Colors never carry meaning alone: every layer also has labels, icons and/or texture.
-import type { AffinityBand, HotspotClass, HotspotState, RiskBand } from "./types";
+import type { AffinityBand, HotspotClass, HotspotState, LifecycleStage, RiskBand } from "./types";
 
 export const CHROME = {
   plane: "#0d0d0d",
@@ -125,3 +125,15 @@ export const TEXTURE_INK = {
   riskVeryHigh: RISK_COLORS.ELEVATED,
   persistent: "#a03f3c",
 } as const;
+
+// Hotspot lifecycle stages reuse the validated state colors; every stage also carries a
+// short text code so the strip never relies on color alone.
+export const LIFECYCLE_STYLE: Record<LifecycleStage, { color: string; code: string; label: string }> = {
+  NORMAL: { color: "#3f3e3a", code: "–", label: "Normal" },
+  EMERGING: { color: STATE_BADGE.EMERGING, code: "E", label: "Emerging" },
+  ACTIVE: { color: STATE_BADGE.ACTIVE, code: "A", label: "Active" },
+  PERSISTENT: { color: TEXTURE_INK.persistent, code: "P", label: "Persistent" },
+  DECLINING: { color: STATE_BADGE.DECLINING, code: "D", label: "Declining" },
+  RESOLVED: { color: STATE_BADGE.STABLE, code: "R", label: "Resolved" },
+};
+export const LIFECYCLE_ORDER: LifecycleStage[] = ["NORMAL", "EMERGING", "ACTIVE", "PERSISTENT", "DECLINING", "RESOLVED"];

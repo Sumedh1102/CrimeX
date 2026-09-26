@@ -197,3 +197,79 @@ def test_not_ready_returns_503(tmp_path, api_cfg):
             assert c.get(f"{API}/predictions").status_code == 503
     finally:
         set_store(DataStore(api_cfg))
+
+
+# ---------------------------------------------------------------- lifecycle, movement, patterns
+
+
+def test_hotspot_lifecycle_overview(client):
+    r = client.get("/api/v1/hotspot-lifecycle?crime_type=ALL").json()
+    stages = {"NORMAL", "EMERGING", "ACTIVE", "PERSISTENT", "DECLINING", "RESOLVED"}
+    assert {s["stage"] for s in r["stages"]} == stages
+    assert r["steps"] and all(set(stages) <= set(s) for s in r["steps"])
+    assert r["steps"][0]["RESOLVED"] == 0  # no predecessor at the first origin
+    assert all(i["stage"] in stages for i in r["items"])
+    assert all(t["from"] != t["to"] for t in r["transitions_latest"])
+    assert client.get("/api/v1/hotspot-lifecycle?crime_type=NOPE").status_code == 422
+
+
+def test_zone_lifecycle_and_patterns(client, meta):
+    zone = client.get("/api/v1/predictions?crime_type=THEFT&band=ALL").json()["items"][0]["zone_id"]
+    lc = client.get(f"/api/v1/zones/{zone}/lifecycle?crime_type=THEFT").json()
+    assert lc["timeline"] and lc["current_stage"] == lc["timeline"][-1]["stage"]
+    assert lc["steps_in_stage"] >= 1
+    pm = client.get(f"/api/v1/zones/{zone}/patterns?crime_type=THEFT").json()
+    assert len(pm["current_counts"]) == pm["lookback_windows"]
+    assert "not a forecast" in pm["note"]
+    assert all(a["outcome_start"] < pm["current_start"] for a in pm["analogs"])
+    assert all(0 < a["similarity"] <= 1 for a in pm["analogs"])
+    assert client.get("/api/v1/zones/Z999/lifecycle?crime_type=THEFT").status_code == 404
+    assert client.get(f"/api/v1/zones/{zone}/patterns?crime_type=ALL").status_code == 422
+
+
+def test_hotspot_movement(client):
+    r = client.get("/api/v1/hotspot-movement").json()
+    assert r["step"] == r["steps"][-1]
+    kinds = {"NEW", "CONTINUED", "SHIFTED", "DISSIPATED"}
+    assert all(i["kind"] in kinds for i in r["items"])
+    for i in r["items"]:
+        if i["kind"] == "SHIFTED":
+            assert i["distance_km"] > 0 and i["direction"]
+    assert "does not predict" in r["note"]
+    first = client.get(f"/api/v1/hotspot-movement?step={r['steps'][0]}").json()
+    assert {i["kind"] for i in first["items"]} <= {"BASELINE"}
+    assert client.get("/api/v1/hotspot-movement?step=999").status_code == 422
+
+
+# ---------------------------------------------------------------- stations and reports
+
+
+def test_station_overview_and_detail(client):
+    ov = client.get("/api/v1/stations/overview").json()
+    assert ov["items"]
+    sid = ov["items"][0]["station_id"]
+    d = client.get(f"/api/v1/stations/{sid}").json()
+    assert d["station"]["station_id"] == sid and d["station"]["is_synthetic"]
+    assert d["kpis"]["zones"] == len(d["station"]["zones"])
+    assert all(t["zone_id"] in d["station"]["zones"] for t in d["top_attention"])
+    risks = [t["final_risk"] for t in d["top_attention"]]
+    assert risks == sorted(risks, reverse=True)
+    assert "not official" in d["boundary_note"]
+    band = client.get(f"/api/v1/stations/{sid}?band=NIGHT").json()
+    assert all(t["band"] == "NIGHT" for t in band["top_attention"])
+    assert client.get("/api/v1/stations/NOPE").status_code == 404
+
+
+def test_reports_carry_provenance_and_limitations(client, meta):
+    sid = client.get("/api/v1/stations/overview").json()["items"][0]["station_id"]
+    r = client.get(f"/api/v1/reports/stations/{sid}")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
+    zone = client.get("/api/v1/predictions?crime_type=THEFT&band=ALL").json()["items"][0]["zone_id"]
+    z = client.get(f"/api/v1/reports/zones/{zone}?crime_type=THEFT&band=EVENING")
+    assert z.status_code == 200
+    for html in (r.text, z.text):
+        assert LIMITATION_STATEMENT in html
+        assert "synthetic demonstration data" in html
+        assert "not probabilities" in html
+        assert meta["versions"]["model_version"] in html
+    assert client.get("/api/v1/reports/stations/NOPE").status_code == 404

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import HTMLResponse
 
 from backend.app.schemas.models import (
     AffinityResponse,
@@ -20,6 +21,8 @@ from backend.app.schemas.models import (
     ZoneDetail,
 )
 from backend.app.services import analytics as svc
+from backend.app.services import intelligence as intel
+from backend.app.services import reports
 from backend.app.services.store import DataStore, NotReadyError, get_store
 
 router = APIRouter()
@@ -81,6 +84,16 @@ def stations(store: Store):
     return svc.stations(store)
 
 
+@router.get("/stations/overview", tags=["stations"])
+def stations_overview(store: Store):
+    return _run(intel.station_overview, store)
+
+
+@router.get("/stations/{station_id}", tags=["stations"])
+def station_detail(station_id: str, store: Store, band: BandParam = "ALL"):
+    return _run(intel.station_detail, store, station_id, band)
+
+
 @router.get("/zones", tags=["reference"])
 def zones(store: Store):
     return svc.zones_geojson(store)
@@ -94,6 +107,20 @@ def zone_detail(
     band: Annotated[str, Query(description="Time band code")],
 ):
     return _run(svc.zone_detail, store, zone_id, crime_type, band)
+
+
+@router.get("/zones/{zone_id}/lifecycle", tags=["zones"])
+def zone_lifecycle(
+    zone_id: str, store: Store, crime_type: Annotated[str, Query(description="Crime type code")]
+):
+    return _run(intel.zone_lifecycle, store, zone_id, crime_type)
+
+
+@router.get("/zones/{zone_id}/patterns", tags=["zones"])
+def zone_patterns(
+    zone_id: str, store: Store, crime_type: Annotated[str, Query(description="Crime type code")]
+):
+    return _run(intel.zone_patterns, store, zone_id, crime_type)
 
 
 @router.get("/predictions", response_model=RiskLayer, tags=["predictions"])
@@ -121,6 +148,20 @@ def hotspots(
 @router.get("/emerging-hotspots", response_model=StatesResponse, tags=["hotspots"])
 def emerging_hotspots(store: Store, crime_type: CrimeParam = "ALL"):
     return _run(svc.hotspot_states, store, crime_type)
+
+
+@router.get("/hotspot-lifecycle", tags=["hotspots"])
+def hotspot_lifecycle(store: Store, crime_type: CrimeParam = "ALL"):
+    return _run(intel.lifecycle_overview, store, crime_type)
+
+
+@router.get("/hotspot-movement", tags=["hotspots"])
+def hotspot_movement(
+    store: Store,
+    crime_type: CrimeParam = "ALL",
+    step: Annotated[int | None, Query(description="Lifecycle step; default latest")] = None,
+):
+    return _run(intel.movement, store, crime_type, step)
 
 
 @router.get("/affinity", response_model=AffinityResponse, tags=["hotspots"])
@@ -162,3 +203,18 @@ def incidents(
     limit: Annotated[int, Query(ge=1, le=500)] = 100,
 ):
     return _run(svc.incidents, store, zone_id, crime_type, start, end, limit)
+
+
+@router.get("/reports/stations/{station_id}", response_class=HTMLResponse, tags=["reports"])
+def station_report(station_id: str, store: Store):
+    return HTMLResponse(_run(reports.station_report, store, station_id))
+
+
+@router.get("/reports/zones/{zone_id}", response_class=HTMLResponse, tags=["reports"])
+def zone_report(
+    zone_id: str,
+    store: Store,
+    crime_type: Annotated[str, Query(description="Crime type code")],
+    band: Annotated[str, Query(description="Time band code")],
+):
+    return HTMLResponse(_run(reports.zone_report, store, zone_id, crime_type, band))

@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { Segmented, Select } from "@/components/ui/primitives";
 import { useMeta, useStations } from "@/lib/api";
+import { fmtNextWindow } from "@/lib/format";
 import { useUI } from "@/lib/store";
 import type { LayerKey, RiskMetric } from "@/lib/types";
 
@@ -55,7 +56,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
       {showBand && (
         <Select
           className="min-w-0"
-          label="Time band (next 7 days)"
+          label={`Time band (${fmtNextWindow(meta.forecast_window.days)})`}
           value={ui.band}
           onChange={(v) => ui.set({ band: v })}
           options={[{ value: "ALL", label: "All bands" }, ...meta.bands.map((b) => ({ value: b.code, label: b.label }))]}
@@ -93,7 +94,7 @@ export function FilterBar({ showPeriod = true, showBand = true }: { showPeriod?:
       <p className="col-span-2 text-[11px] leading-snug text-muted sm:ml-auto sm:max-w-[340px] sm:text-right">
         {ui.crimeType === "ALL" || ui.band === "ALL"
           ? "With “All”, each zone shows its highest crime-type/band-specific value (never a sum)."
-          : "Risk(zone, crime type, time window) for the next 7 days."}
+          : `Risk(zone, crime type, time window) for the ${fmtNextWindow(meta.forecast_window.days)}.`}
       </p>
     </div>
   );
@@ -124,18 +125,25 @@ export function LayerControls({ compact = false }: { compact?: boolean }) {
         />
       )}
       <Toggle label="Stations" on={ui.showStations} onClick={() => ui.set({ showStations: !ui.showStations })} />
+      <Toggle
+        label="Movement"
+        on={ui.showMovement}
+        onClick={() => ui.set({ showMovement: !ui.showMovement })}
+        title="Hotspot cluster movement between the last two analysis periods"
+      />
       <Toggle label="Textures" on={ui.textures} onClick={() => ui.set({ textures: !ui.textures })} />
     </div>
   );
 }
 
-function Toggle({ label, on, onClick }: { label: string; on: boolean; onClick: () => void }) {
+function Toggle({ label, on, onClick, title }: { label: string; on: boolean; onClick: () => void; title?: string }) {
   return (
     <button
       type="button"
       role="switch"
       aria-checked={on}
       onClick={onClick}
+      title={title}
       className={clsx(
         "flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px]",
         on ? "text-ink" : "text-muted",

@@ -633,3 +633,185 @@ export interface DataQuality {
   };
   note: string;
 }
+
+// ---------------------------------------------------------------- lifecycle / movement
+
+export type LifecycleStage = "NORMAL" | "EMERGING" | "ACTIVE" | "PERSISTENT" | "DECLINING" | "RESOLVED";
+
+export interface AnalysisSettings {
+  period_weeks: number;
+  period_windows: number | null;
+  n_periods: number;
+  hot_z: number;
+  steps: number;
+}
+
+export interface LifecycleStep {
+  step: number;
+  period_start: string;
+  period_end: string;
+}
+
+export interface LifecycleOverview {
+  crime_type: string;
+  as_of: string;
+  analysis: AnalysisSettings;
+  stages: { stage: LifecycleStage; description: string }[];
+  steps: (LifecycleStep & Record<LifecycleStage, number>)[];
+  transitions_latest: { from: LifecycleStage; to: LifecycleStage; count: number }[];
+  items: { zone_id: string; crime_type: string; stage: LifecycleStage; state: HotspotState }[];
+  aggregation: string | null;
+  data_label: string;
+  versions: Versions;
+}
+
+export interface ZoneLifecycle {
+  zone_id: string;
+  crime_type: string;
+  label: string;
+  analysis: AnalysisSettings;
+  current_stage: LifecycleStage | null;
+  previous_stage: LifecycleStage | null;
+  steps_in_stage: number;
+  stage_description: string | null;
+  timeline: (LifecycleStep & {
+    state: HotspotState;
+    stage: LifecycleStage;
+    gi_z_last: number;
+    final_period_hot: boolean;
+  })[];
+  data_label: string;
+  versions: Versions;
+}
+
+export type MovementKind = "BASELINE" | "NEW" | "CONTINUED" | "SHIFTED" | "DISSIPATED";
+
+export interface MovementItem {
+  crime_type: string;
+  label: string;
+  step: number;
+  period_end: string;
+  cluster_id: string;
+  zones: string[];
+  n_zones: number;
+  lat: number;
+  lon: number;
+  peak_z: number;
+  merged: boolean;
+  split: boolean;
+  kind: MovementKind;
+  from_cluster_ids: string[];
+  from_lat?: number | null;
+  from_lon?: number | null;
+  distance_km?: number | null;
+  bearing_deg?: number | null;
+  direction?: string | null;
+}
+
+export interface MovementResponse {
+  crime_type: string;
+  step: number;
+  steps: number[];
+  period_end: string | null;
+  analysis: AnalysisSettings & { movement_max_km: number };
+  summary: Partial<Record<MovementKind, number>>;
+  mean_shift_km: number | null;
+  items: MovementItem[];
+  note: string;
+  data_label: string;
+  versions: Versions;
+}
+
+// ---------------------------------------------------------------- pattern matching
+
+export interface PatternAnalog {
+  context_start: string;
+  outcome_start: string;
+  context_counts: number[];
+  outcome_count: number;
+  similarity: number;
+}
+
+export interface ZonePatterns {
+  zone_id: string;
+  crime_type: string;
+  label: string;
+  current_start: string;
+  current_counts: number[];
+  analogs: PatternAnalog[];
+  n_analogs: number;
+  analog_mean_outcome: number | null;
+  analog_share_any: number | null;
+  history_mean: number | null;
+  history_share_any: number | null;
+  mean_similarity: number | null;
+  lookback_windows: number;
+  window_days: number;
+  method: string;
+  note: string;
+  data_label: string;
+  versions: Versions;
+}
+
+// ---------------------------------------------------------------- stations
+
+export interface StationOverviewItem {
+  station_id: string;
+  name: string;
+  zones: number;
+  high_risk_zones: number;
+  peak_final_risk: number;
+  surge_alerts: number;
+  emerging_hotspots: number;
+}
+
+export interface StationsOverview {
+  items: StationOverviewItem[];
+  window: ForecastWindow;
+  data_label: string;
+  versions: Versions;
+}
+
+export interface StationDetail {
+  station: {
+    station_id: string;
+    name: string;
+    latitude: number;
+    longitude: number;
+    is_synthetic: boolean;
+    zones: string[];
+  };
+  band: string;
+  as_of: string;
+  window: ForecastWindow;
+  kpis: {
+    zones: number;
+    high_risk_zones: number;
+    active_hotspots: number;
+    emerging_hotspots: number;
+    current_anomalies: number;
+    incidents_4w: number;
+  };
+  kpi_definitions: Record<string, string>;
+  top_attention: {
+    zone_id: string;
+    crime_type: string;
+    label: string;
+    band: string;
+    final_risk: number;
+    risk_band: RiskBand;
+    probability: number;
+    confidence: Confidence;
+    crs: number;
+    cai: number;
+    hotspot_state: HotspotState;
+  }[];
+  zones: { zone_id: string; crime_type: string; label: string; band: string; final_risk: number; risk_band: RiskBand }[];
+  crime_mix: { crime_type: string; label: string; incidents_52w: number; incidents_4w: number }[];
+  lifecycle: Record<LifecycleStage, number>;
+  alerts: { zone_id: string; crime_type: string; label: string; current_count: number; baseline_mean: number; z_score: number }[];
+  boundary_note: string;
+  data_label: string;
+  limitation_statement: string;
+  versions: Versions;
+}

@@ -15,9 +15,9 @@ import {
   StateBadge,
   Swatch,
 } from "@/components/ui/primitives";
-import { useMeta, useZoneDetail } from "@/lib/api";
-import { AFFINITY_COLORS, RISK_COLORS, SERIES, STATE_BADGE } from "@/lib/colors";
-import { fmtDate, fmtDateTime, fmtInt, fmtNum, fmtPct, fmtWeek, fmtWindow } from "@/lib/format";
+import { useMeta, useZoneDetail, useZoneLifecycle, useZonePatterns, zoneReportUrl } from "@/lib/api";
+import { AFFINITY_COLORS, LIFECYCLE_STYLE, RISK_COLORS, SERIES, STATE_BADGE } from "@/lib/colors";
+import { fmtDate, fmtDateTime, fmtInt, fmtNextWindow, fmtNum, fmtPct, fmtWeek, fmtWindow, windowUnit } from "@/lib/format";
 import { useUI, type Selection } from "@/lib/store";
 import { useResolvedSelection } from "@/lib/useResolvedSelection";
 import type { ZoneDetail } from "@/lib/types";
@@ -213,7 +213,7 @@ function PanelBody({ d }: { d: ZoneDetail }) {
       </Section>
 
       <ChartCard
-        title="Time bands, next 7 days"
+        title={`Time bands, ${fmtNextWindow(d.window.days)}`}
         subtitle={`Blended risk per band · highest: ${peak.label}`}
         table={{
           columns: [
@@ -267,13 +267,20 @@ function PanelBody({ d }: { d: ZoneDetail }) {
         </div>
       </Section>
 
-      <Section title="Crime Surge Detector" hint="Last week compared with the previous 52 weeks for this crime type in the zone.">
+      <LifecycleSection zoneId={d.zone.zone_id} crimeType={d.crime_type} />
+
+      <PatternsSection zoneId={d.zone.zone_id} crimeType={d.crime_type} />
+
+      <Section
+        title="Crime Surge Detector"
+        hint={`Last ${windowUnit(d.window.days)} compared with the previous 52 weeks for this crime type in the zone.`}
+      >
         <div className="flex items-center gap-3">
           {d.surge.is_alert && <AlertIcon size={16} />}
           <Dl
             items={[
-              ["Last week", fmtInt(d.surge.current_count)],
-              ["Typical week", `${fmtNum(d.surge.baseline_mean, 2)} ± ${fmtNum(d.surge.baseline_std, 2)}`],
+              [`Last ${windowUnit(d.window.days)}`, fmtInt(d.surge.current_count)],
+              [`Typical ${windowUnit(d.window.days)}`, `${fmtNum(d.surge.baseline_mean, 2)} ± ${fmtNum(d.surge.baseline_std, 2)}`],
               ["z-score", fmtNum(d.surge.z_score, 2)],
               ["Status", d.surge.is_alert ? "Surge alert" : "No alert"],
             ]}
@@ -400,10 +407,131 @@ function PanelBody({ d }: { d: ZoneDetail }) {
           ]}
         />
         <p className="mt-2 text-[11px] leading-snug text-muted">{d.limitation_statement}</p>
+        <a
+          href={zoneReportUrl(d.zone.zone_id, d.crime_type, d.band)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 inline-flex items-center gap-1.5 rounded-md border px-2 py-1 text-[11px] text-ink-2 hover:bg-surface-2 hover:text-ink"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <Icon name="official" size={13} />
+          Open printable zone brief
+        </a>
       </Section>
       <p className="pb-2 text-center text-[10px] text-muted">
         <StateIcon state={hs.state} color={STATE_BADGE[hs.state]} size={10} /> Press Esc to close
       </p>
     </>
+  );
+}
+
+function LifecycleSection({ zoneId, crimeType }: { zoneId: string; crimeType: string }) {
+  const { data: lc, error } = useZoneLifecycle(zoneId, crimeType);
+  return (
+    <Section
+      title="Hotspot lifecycle"
+      hint={
+        lc
+          ? `Hotspot stage at ${lc.timeline.length} successive origins, ${lc.analysis.period_weeks} weeks apart (oldest → latest).`
+          : undefined
+      }
+    >
+      {error && <ErrorNote error={error} />}
+      {!lc && !error && <Loading />}
+      {lc && lc.current_stage && (
+        <>
+          <p className="text-xs text-ink-2">
+            <span className="font-semibold text-ink">{LIFECYCLE_STYLE[lc.current_stage].label}</span>
+            {lc.previous_stage && lc.previous_stage !== lc.current_stage
+              ? ` (was ${LIFECYCLE_STYLE[lc.previous_stage].label.toLowerCase()})`
+              : ` for ${lc.steps_in_stage} step${lc.steps_in_stage === 1 ? "" : "s"}`}
+            . <span className="text-muted">{lc.stage_description}</span>
+          </p>
+          <ol className="mt-2 flex gap-1" aria-label="Lifecycle stages, oldest to latest">
+            {lc.timeline.map((t) => {
+              const st = LIFECYCLE_STYLE[t.stage];
+              return (
+                <li
+                  key={t.step}
+                  className="flex h-7 flex-1 items-center justify-center rounded text-[11px] font-semibold"
+                  style={{ background: st.color, color: "#ffffff" }}
+                  title={`${fmtDate(t.period_start)} – ${fmtDate(t.period_end)}: ${st.label} (state ${t.state.toLowerCase()}, Gi* z ${t.gi_z_last.toFixed(2)})`}
+                >
+                  <span aria-hidden>{st.code}</span>
+                  <span className="sr-only">
+                    Period ending {fmtDate(t.period_end)}: {st.label}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <div className="mt-1 flex justify-between text-[10px] text-muted">
+            <span>{fmtDate(lc.timeline[0].period_end)}</span>
+            <span>{fmtDate(lc.timeline[lc.timeline.length - 1].period_end)}</span>
+          </div>
+          <p className="mt-1 text-[10px] text-muted">
+            E emerging · A active · P persistent · D declining · R resolved · – normal
+          </p>
+        </>
+      )}
+    </Section>
+  );
+}
+
+function PatternsSection({ zoneId, crimeType }: { zoneId: string; crimeType: string }) {
+  const { data: pm, error } = useZonePatterns(zoneId, crimeType);
+  const unit = pm ? windowUnit(pm.window_days) : "window";
+  return (
+    <Section title="Similar past patterns" hint={pm?.note}>
+      {error && <ErrorNote error={error} />}
+      {!pm && !error && <Loading />}
+      {pm && (
+        <>
+          <p className="text-xs text-ink-2">
+            Recent {pm.lookback_windows} {unit}s:{" "}
+            <span className="tabular font-mono text-ink">{pm.current_counts.join(" · ")}</span>
+          </p>
+          {pm.n_analogs === 0 ? (
+            <p className="mt-2 text-xs text-muted">Not enough history for a comparison.</p>
+          ) : (
+            <>
+              <Dl
+                items={[
+                  [
+                    `After similar patterns`,
+                    `${fmtNum(pm.analog_mean_outcome, 1)} incidents in the following ${unit} on average (≥1 in ${fmtPct(pm.analog_share_any)})`,
+                  ],
+                  [
+                    "All history",
+                    `${fmtNum(pm.history_mean, 1)} per ${unit} on average (≥1 in ${fmtPct(pm.history_share_any)})`,
+                  ],
+                  ["Mean similarity", fmtNum(pm.mean_similarity, 2)],
+                ]}
+              />
+              <table className="mt-2 w-full text-[11px]">
+                <thead>
+                  <tr className="text-muted">
+                    <th className="py-1 text-left font-medium">Pattern from</th>
+                    <th className="py-1 text-left font-medium">Counts</th>
+                    <th className="py-1 text-right font-medium">Next {unit}</th>
+                    <th className="py-1 text-right font-medium">Similarity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pm.analogs.map((a) => (
+                    <tr key={a.context_start} className="border-t text-ink-2" style={{ borderColor: "var(--border)" }}>
+                      <td className="py-1">{fmtDate(a.context_start)}</td>
+                      <td className="tabular py-1 font-mono text-muted">{a.context_counts.join(" ")}</td>
+                      <td className="tabular py-1 text-right">{a.outcome_count}</td>
+                      <td className="tabular py-1 text-right">{a.similarity.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </>
+      )}
+    </Section>
   );
 }

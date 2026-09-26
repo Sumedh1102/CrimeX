@@ -20,6 +20,7 @@ interface UIState {
   stationId: string | null;
   riskMetric: RiskMetric;
   showStations: boolean;
+  showMovement: boolean; // hotspot movement overlay (latest analysis step)
   textures: boolean;
   basemap: BasemapChoice;
   navOpen: boolean; // mobile / tablet navigation drawer
@@ -39,6 +40,7 @@ export const useUI = create<UIState>((set) => ({
   stationId: null,
   riskMetric: "final_risk",
   showStations: true,
+  showMovement: false,
   textures: true,
   basemap: "auto",
   navOpen: false,

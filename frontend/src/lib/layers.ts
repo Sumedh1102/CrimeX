@@ -14,6 +14,7 @@ import type {
   AffinityItem,
   HotspotItem,
   LayerKey,
+  MovementItem,
   RiskItem,
   RiskMetric,
   StateItem,
@@ -141,4 +142,45 @@ export function stationBoundaries(
     if (!north) segs.push([ne, nw]);
   }
   return segs;
+}
+
+/**
+ * Map features for hotspot movement: a line from the earlier cluster centroid to the
+ * current one (SHIFTED / CONTINUED) and a marker at the current (or, for DISSIPATED, the
+ * last) centroid. Marker shape carries the kind; the arrow is rotated to the bearing.
+ */
+export function movementFeatures(items: MovementItem[]): GeoJSON.FeatureCollection {
+  const features: GeoJSON.Feature[] = [];
+  for (const m of items) {
+    if (m.kind === "BASELINE") continue;
+    const moved = m.kind === "SHIFTED" && m.from_lat != null && m.from_lon != null;
+    if (moved) {
+      features.push({
+        type: "Feature",
+        properties: { cluster_id: m.cluster_id, kind: m.kind, role: "path" },
+        geometry: { type: "LineString", coordinates: [[m.from_lon!, m.from_lat!], [m.lon, m.lat]] },
+      });
+    }
+    const icon = moved ? "move-arrow" : m.kind === "NEW" ? "move-new" : m.kind === "DISSIPATED" ? "move-gone" : "move-hold";
+    const label = moved
+      ? `${fmtNum(m.distance_km ?? 0, 1)} km ${m.direction ?? ""}`.trim()
+      : m.kind === "NEW"
+        ? "new"
+        : m.kind === "DISSIPATED"
+          ? "dissipated"
+          : "";
+    features.push({
+      type: "Feature",
+      properties: {
+        cluster_id: m.cluster_id,
+        kind: m.kind,
+        role: "marker",
+        icon,
+        rotation: moved ? (m.bearing_deg ?? 0) : 0,
+        label: label ? `lbl:${label}` : "",
+      },
+      geometry: { type: "Point", coordinates: [m.lon, m.lat] },
+    });
+  }
+  return { type: "FeatureCollection", features };
 }

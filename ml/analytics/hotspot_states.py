@@ -40,6 +40,11 @@ STATE_DESCRIPTIONS = {
 }
 
 
+def period_windows(cfg: HotspotConfig, window_days: int) -> int:
+    """Analysis period (``period_weeks``) expressed in panel windows."""
+    return max(1, round(cfg.period_weeks * 7 / window_days))
+
+
 def period_counts(zc_counts: np.ndarray, origin_k: int, period: int, n_periods: int) -> np.ndarray:
     """(Z, C, n_periods) counts for consecutive periods ending at window ``origin_k``."""
     start = origin_k - period * n_periods
