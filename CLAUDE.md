@@ -22,6 +22,7 @@ make lint            # ruff check + ruff format --check (make format to fix)
 .venv/bin/python -m pytest backend/tests/test_api.py -k zone_detail                     # one API test
 make official        # re-extract the official PDF + regenerate docs/official-statistics-reference.md
 .venv/bin/python scripts/build_model_card.py   # regenerate docs/model-card.md from the latest bundle
+.venv/bin/python scripts/build_vercel_api.py  # assemble .vercel-api/ (API + latest artifacts) for Vercel; see docs/deployment.md
 ```
 
 Frontend (`frontend/`, Node 22; read `frontend/AGENTS.md` first — this Next.js version differs from older training data, and its docs live in `frontend/node_modules/next/dist/docs/`):

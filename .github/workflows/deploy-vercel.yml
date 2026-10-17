@@ -1,0 +1,71 @@
+# Deploys the FastAPI backend to Vercel. The dashboard (frontend/) deploys through Vercel's
+# Git integration; see docs/deployment.md for the one-time project setup.
+#
+# Required repository secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_API_PROJECT_ID.
+name: Deploy API to Vercel
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "backend/**"
+      - "ml/**"
+      - "configs/**"
+      - "data/official/**"
+      - "scripts/**"
+      - "pyproject.toml"
+      - ".github/workflows/deploy-vercel.yml"
+
+concurrency:
+  group: deploy-vercel-api
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Manual runs deploy any branch; pushes deploy only the default branch.
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_API_PROJECT_ID }}
+    steps:
+      - name: Check Vercel secrets
+        id: secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "::warning::Vercel secrets are not set; skipping deploy (see docs/deployment.md)."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ready == 'true'
+
+      - uses: actions/setup-python@v5
+        if: steps.secrets.outputs.ready == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        if: steps.secrets.outputs.ready == 'true'
+        run: pip install -e .
+
+      - name: Run pipeline (synthetic data, training, predictions)
+        if: steps.secrets.outputs.ready == 'true'
+        run: python scripts/run_pipeline.py
+
+      - name: Assemble API bundle
+        if: steps.secrets.outputs.ready == 'true'
+        run: python scripts/build_vercel_api.py --out .vercel-api
+
+      - name: Deploy to Vercel (production)
+        if: steps.secrets.outputs.ready == 'true'
+        run: |
+          url=$(npx --yes vercel@62.0.0 deploy --prod --yes --token "$VERCEL_TOKEN" --cwd .vercel-api)
+          echo "Deployed API: $url"
+          curl --fail --silent --show-error --retry 5 --retry-delay 5 --retry-all-errors \
+            "$url/api/v1/health" || echo "::warning::Health check did not pass; check the deployment logs."
