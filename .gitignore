@@ -11,6 +11,10 @@ data/raw/
 data/processed/
 artifacts/
 
+# Vercel (API bundle assembled by scripts/build_vercel_api.py; CLI project links)
+.vercel-api/
+.vercel/
+
 # Frontend
 frontend/node_modules/
 frontend/.next/

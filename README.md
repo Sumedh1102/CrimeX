@@ -56,3 +56,4 @@ Tests: `make test` (Python), and `cd frontend && npm test && npm run lint && npm
 - [Datasets](docs/dataset.md) and [data dictionary](docs/data-dictionary.md)
 - [Official statistics reference](docs/official-statistics-reference.md): generated from the PDF extraction
 - [Proposed PostGIS schema](docs/db-schema.sql)
+- [Deploying to Vercel](docs/deployment.md)
